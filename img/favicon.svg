@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Favicon variant: single ring, heavier weights for 16px legibility -->
+  <circle cx="256" cy="256" r="230" fill="none" stroke="#1a1a17" stroke-width="26"/>
+  <line x1="188" y1="205" x2="256" y2="292" stroke="#0d6b56" stroke-width="30" stroke-linecap="round"/>
+  <line x1="324" y1="205" x2="256" y2="292" stroke="#0d6b56" stroke-width="30" stroke-linecap="round"/>
+  <line x1="172" y1="205" x2="172" y2="305" stroke="#1a1a17" stroke-width="26"/>
+  <line x1="340" y1="205" x2="340" y2="305" stroke="#1a1a17" stroke-width="26"/>
+  <circle cx="172" cy="172" r="36" fill="none" stroke="#1a1a17" stroke-width="26"/>
+  <circle cx="340" cy="172" r="36" fill="none" stroke="#1a1a17" stroke-width="26"/>
+  <circle cx="172" cy="338" r="36" fill="none" stroke="#1a1a17" stroke-width="26"/>
+  <circle cx="340" cy="338" r="36" fill="none" stroke="#1a1a17" stroke-width="26"/>
+  <circle cx="256" cy="292" r="46" fill="#0d6b56"/>
+</svg>

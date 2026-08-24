@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Mnemma">
+  <!-- Seal ring -->
+  <circle cx="256" cy="256" r="236" fill="none" stroke="#1a1a17" stroke-width="9"/>
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#1a1a17" stroke-width="4.5"/>
+  <!-- Graph edges: verified claim converges on the center node -->
+  <line x1="193" y1="196.2" x2="256" y2="285" stroke="#0d6b56" stroke-width="11" stroke-linecap="round"/>
+  <line x1="319" y1="196.2" x2="256" y2="285" stroke="#0d6b56" stroke-width="11" stroke-linecap="round"/>
+  <!-- M uprights: node-to-node edges -->
+  <line x1="178" y1="201" x2="178" y2="306" stroke="#1a1a17" stroke-width="10"/>
+  <line x1="334" y1="201" x2="334" y2="306" stroke="#1a1a17" stroke-width="10"/>
+  <!-- Open nodes -->
+  <circle cx="178" cy="175" r="26" fill="none" stroke="#1a1a17" stroke-width="10"/>
+  <circle cx="334" cy="175" r="26" fill="none" stroke="#1a1a17" stroke-width="10"/>
+  <circle cx="178" cy="332" r="26" fill="none" stroke="#1a1a17" stroke-width="10"/>
+  <circle cx="334" cy="332" r="26" fill="none" stroke="#1a1a17" stroke-width="10"/>
+  <!-- Center node: the receipt -->
+  <circle cx="256" cy="285" r="28" fill="#0d6b56"/>
+</svg>
