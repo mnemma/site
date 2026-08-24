@@ -1,0 +1,31 @@
+/* reveal.css — MEDIA_PACKAGE_V4 §2. Pair with reveal.js + the inline boot in <head>.
+   KB ease from Pepper.md. One system. Canonical media-pass.
+
+   No-JS + fail-open fold (NO_JS_REVEAL_FOLD_SPEC):
+   - The hidden state is scoped to `.js`, which the inline boot in <head> sets
+     pre-paint. JS disabled → class never lands → [data-reveal] stays visible;
+     a blocked/failed reveal.js can never blank the selling pages.
+   - Reduced-motion is UNSCOPED: visible either way. reveal.js short-circuits
+     reduced-motion by adding .in immediately; the head boot's window.load
+     fail-open backstops a failed reveal.js load. */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0s);
+}
+.js [data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

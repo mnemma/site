@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security — for your CTO — Mnemma</title>
+<meta name="description" content="Sovereignty, three deployment models, the inspectable metadata recount, and what we never do. Written for the validator.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="receipts-v2.css">
+<link rel="stylesheet" href="reveal.css">
+</head>
+<body data-page="security">
+
+<header class="site"><div class="wrap"><nav class="nav"><a class="brand" href="index.html"><span class="mark"></span>Mnemma</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="links" id="nav-links"><a href="product.html">Product</a><a href="how-it-works.html">How it works</a><a href="brain/index.html">Brain</a><a href="for-your-team.html">For your team</a><a href="security.html" aria-current="page">Security</a><a href="pricing.html">Pricing</a></div><div class="spacer"></div><a class="btn nav-cta" href="book.html"><span class="cta-full">Get a price range</span><span class="cta-short">Price range</span></a></nav></div></header>
+
+<div class="hero"><div class="wrap narrow">
+  <span class="eyebrow">Security · for your CTO</span>
+  <h1>Written for the person who approves it.</h1>
+  <p class="lead">Did a colleague forward this page to you? Good. This page is intentionally dense and technical. It answers the questions a security review usually asks. If it raises a new question, we want to answer it here too.</p>
+  <p style="font-size:.95rem; color:var(--muted)">Did you arrive from the <a href="for-ciso.html">CISO</a> or <a href="for-cto.html">CTO</a> briefing? You are in the right place.</p>
+</div></div>
+
+<section><div class="wrap">
+  <div class="grid-2" style="gap:48px; align-items:center">
+    <div>
+      <h2>We never hold your data — so we cannot lose what we never have.</h2>
+      <p>The brain — the knowledge graph, its receipts, and the classification boundary — lives in infrastructure you control. It never lives in our cloud or in a third-party AI API. In the hybrid and cloud models, an escalation takes one network hop. That hop carries its own receipt showing what left, when, why, and the verdict. You can audit the hop. The graph never moves.</p>
+      <ul class="plain">
+        <li>Read-only, time-boxed credentials. Your IT team provisions them, and they expire when the visit ends.</li>
+        <li>Container-based, default-closed classification (RED / GREEN) that travels with the data.</li>
+        <li>Every connected tool inherits these rules automatically. You govern once.</li>
+      </ul>
+    </div>
+    <div class="diagram">
+      <div class="cap">The boundary — everything inside is yours</div>
+      <div class="walls">
+        <span class="wlabel">Your environment · your tenancy</span>
+        <div class="node"><div class="t">Knowledge graph + receipts</div><div class="d">source · date · confidence · last-checked</div></div>
+        <div class="node"><div class="t">Everyday model (LAN latency)</div><div class="d">runs locally / in your tenancy</div></div>
+        <div class="node"><div class="t">Classification boundary</div><div class="d">default-closed · RED / GREEN containers</div></div>
+        <div class="hop"><span>escalation ·</span><span class="line"></span><span>receipted hop →</span></div>
+      </div>
+      <p style="font-size:.8rem; color:var(--muted); margin:12px 0 0">Model 1 (on-prem) has no hop. Adjudication stays local, and it remains air-gap capable.</p>
+    </div>
+  </div>
+</div></section>
+
+<section style="background:#efece2"><div class="wrap">
+  <span class="eyebrow">Deployment</span>
+  <h2>Three models. You pick; we recommend.</h2>
+  <p class="lead" style="margin-bottom:26px">All three models share the same core: you own the brain, the build happens in a short burst, you can swap models, and the platform fee stays the same. You can migrate between models, and the graph moves with you. But standing up and cutting over the new serving environment still takes real work.</p>
+  <div class="table-scroll">
+  <table class="ledger">
+    <thead><tr><th>&nbsp;</th><th>1 · Full on-prem</th><th>2 · Hybrid (default)</th><th>3 · Cloud-native</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Build</strong></td><td>on-site cart ~2 wks, or local-only build 5–6 wks; $0 egress</td><td>burst in your VPC, 4–5 days</td><td>same as 2</td></tr>
+      <tr><td><strong>Hardware capex</strong></td><td class="n">~$22–24k (4-node)</td><td class="n">~$12k (2-node)</td><td class="n">$0</td></tr>
+      <tr><td><strong>Ongoing infra</strong></td><td class="n">~$60–80/mo power</td><td class="n">~$0.4–1.1k/mo</td><td class="n">~$1.3–2.5k/mo</td></tr>
+      <tr><td><strong>Data boundary</strong></td><td>premises only; air-gap capable</td><td>premises + your VPC (receipted hop)</td><td>your cloud tenancy</td></tr>
+      <tr><td><strong>Cloud account?</strong></td><td>no</td><td>yes</td><td>yes</td></tr>
+      <tr><td><strong>Internet down →</strong></td><td>fully operational</td><td>everyday AI fine; escalations queue</td><td>halts</td></tr>
+      <tr><td><strong>AI/ML staff</strong></td><td>none</td><td>none</td><td>none</td></tr>
+      <tr><td><strong>Typical picker</strong></td><td>regulated / air-gapped / no-cloud</td><td>most mid-market</td><td>remote-first / no-hardware policy</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="font-size:.85rem; color:var(--muted); margin-top:14px"><span class="claim">All figures are planning bands until a paid metadata recount; performance commitments are capability-level, never raw throughput.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
+    <span class="rlabel">Receipt</span>
+    <span class="rrow"><span class="rk">On the record</span><span class="rv"><a href="brain/deployment-standard.html#claim-capability-slo">Performance commitments are capability-level, never raw throughput</a></span></span>
+    <span class="rrow"><span class="rk">Models</span><span class="rv"><a href="brain/deployment-standard.html#claim-three-models">Three models: full on-prem, hybrid (default), or your own cloud tenancy</a></span></span>
+  </span></span></span></span> "Cloud" in Model 3 means self-hosted models running in <em>your</em> tenancy, not a third-party AI API.</p>
+</div></section>
+
+<section><div class="wrap narrow">
+  <span class="eyebrow">The five questions that pick your model</span>
+  <h2>You can answer these questions on the kickoff call.</h2>
+  <ol style="padding-left:1.2em; line-height:1.7">
+    <li>Can your company's data live in a cloud tenancy you control? <strong>No → Model 1.</strong></li>
+    <li>Does a regulator, contract, or insurance policy require zero egress or an air gap? <strong>Yes → Model 1.</strong></li>
+    <li>Is there an office that houses both the hardware and the people? <strong>No (remote-first) → Model 3.</strong></li>
+    <li>Is capex or opex easier for you to approve? <strong>Opex → Model 3, or Model 1 or 2 through an equipment lease.</strong></li>
+    <li>Does none of the above apply? <strong>→ Model 2</strong>, the default. It offers the best sovereignty per dollar, and it is the configuration we run ourselves.</li>
+  </ol>
+</div></section>
+
+<section style="background:#efece2"><div class="wrap">
+  <div class="grid-2" style="gap:48px">
+    <div>
+      <h3>The metadata recount is read-only and inspectable. Ask for the source code before we connect anything.</h3>
+      <p>After you sign, the recount runs in a read-only container inside your environment. We offer your security team the source code up front. "Can we see what it does?" is the right question, and the answer is yes — not a workaround. Credentials expire when the visit ends. We confirm the revocation to you in writing, and that confirmation becomes part of the record. The questionnaire needs no approval, because it never leaves the browser.</p>
+    </div>
+    <div>
+      <h4>What we never do</h4>
+      <ul class="plain never">
+        <li>No content ever leaves your environment.</li>
+        <li>No writes during the recount. No standing access.</li>
+        <li>No precision claims that the sample cannot support.</li>
+        <li>Nothing moves without your matching sign-off.</li>
+        <li>No third-party AI API ever holds your data.</li>
+      </ul>
+      <p style="font-size:.85rem; color:var(--muted); margin-top:12px"><span class="claim">The recount is read-only, in your environment. We never hold your data.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
+        <span class="rlabel">Receipt</span>
+        <span class="rrow"><span class="rk">On the record</span><span class="rv"><a href="brain/deployment-standard.html#claim-your-env">The brain runs in your environment, under your access rules. Never our cloud.</a></span></span>
+        <span class="rrow"><span class="rk">Recount</span><span class="rv"><a href="brain/assessment-method.html#claim-recount">If you undercount, days 3–7 of the paid engagement recount metadata; then you reprice, shrink, or walk.</a> The recount is read-only, in your environment.</span></span>
+      </span></span></span></span></p>
+    </div>
+  </div>
+</div></section>
+
+<section style="border-bottom:none"><div class="wrap narrow kicker-cta">
+  <h2>Start with numbers, not credentials.</h2>
+  <p class="lead">The questionnaire does not ask for anything your security team needs to approve. The metadata recount — read-only, in your environment — happens after you sign and before any backfill. See the scope on the <a href="how-it-works.html">how-it-works page</a>.</p>
+  <p style="margin-top:22px"><a class="btn big" href="book.html">Get a price range</a></p>
+  <p class="sub"><a href="how-it-works.html">Read the engagement scope →</a></p>
+</div></section>
+
+<footer class="footer"><div class="wrap"><div class="grid-3"><div><div class="brand" style="color:var(--ink)"><span class="mark"></span>Mnemma</div><p style="margin-top:14px">A company brain you own outright — never our cloud, with a receipt on every fact.</p><!-- PLACEHOLDER: contact@mnemma.com swaps at domain lock (sprint R1) --><p style="margin-top:10px">Contact: <a href="mailto:contact@mnemma.com">contact@mnemma.com</a></p></div><div><h4>Product</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="product.html">Product</a></li><li style="padding-left:0"><a href="how-it-works.html">How it works</a></li><li style="padding-left:0"><a href="security.html">Security — for your CTO</a></li><li style="padding-left:0"><a href="pricing.html">Pricing</a></li><li style="padding-left:0"><a href="book.html">Get a price range</a></li><li style="padding-left:0"><a href="one-pager.html">One-page overview</a></li><li style="padding-left:0"><a href="brain/index.html">The brain</a></li><li style="padding-left:0"><a href="ai-info.html">AI info</a></li><li style="padding-left:0"><a href="llms.txt">llms.txt</a></li></ul></div><div><h4>Who it's for</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="for-sbu.html">P&amp;L owner / GM — start here</a></li><li style="padding-left:0"><a href="for-startups.html">Startups — Greenfield</a></li><li style="padding-left:0"><a href="for-your-team.html">The four signatures</a></li><li style="padding-left:0"><a href="for-ceo.html">CEO / owner</a></li><li style="padding-left:0"><a href="for-cfo.html">CFO</a></li><li style="padding-left:0"><a href="for-cto.html">CTO</a></li><li style="padding-left:0"><a href="for-ciso.html">CISO</a></li></ul></div></div><div class="footer-receipt"><span class="rlabel">Receipt · this website</span><p style="margin-top:8px">Static site. The price-range questionnaire runs in your browser — nothing is submitted. Every factual claim carries a receipt that points at <a href="brain/index.html">/brain/</a>. Every figure is a planning band. Working name, pre-customer-zero. No fabricated testimonials, logos, or usage stats — by policy. Agents start at <a href="ai-info.html">/ai-info</a>.</p></div></div></footer>
+<script src="site.js"></script>
+<script src="receipts.js"></script>
+<script src="reveal.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+# Mnemma
+
+> A company brain you own — never our cloud, with a receipt on every fact. Two launch tiers: Standard and Greenfield. This site is itself a typed, receipted ontology.
+
+The buyer is SMB leadership and P&L owners. Single call to action: the seven-question assessment (book.html) that prints a planning band from a published formula. Nothing leaves the browser.
+
+## Prefer these pages
+
+- [AI info](ai-info.html): canonical assistant guidelines and how to cite
+- [Brain index (JSON)](brain/index.json): typed graph, claims, edges
+- [Browse the brain](brain/index.html): human-readable same graph
+
+## Fact pages
+
+- [Connected sources](brain/connected-sources.html): capability; The brain reads the sources you connect. That pack is named, and it is finite.
+- [What a receipt contains](brain/receipts-schema.html): mechanism; A fact you cannot check is not a fact you can act on. Every important answer carries its receipt.
+- [One adjudicator](brain/adjudication.html): mechanism; Extractors propose. One adjudicator commits. The builder is never the judge.
+- [Corrections that survive](brain/corrections.html): mechanism; A human fix that dies on the next run was theatre. Corrections write into the map.
+- [The morning brief](brain/morning-brief.html): capability; The first surface is an overnight brief. Lookup is always on. Synthesis waits for the window.
+- [The coverage panel](brain/coverage-panel.html): capability; What is connected, what is not, and how long the gap has been growing. Honesty is a product surface.
+- [Classification containers](brain/classification-containers.html): mechanism; Rules live on the data, not on each tool. Default-closed. Unclassified is refused.
+- [The walk-away briefcase](brain/projection-briefcase.html): capability; End the contract. Keep the brain. The readable copy is a Markdown projection you already hold.
+- [How the planning band is computed](brain/assessment-method.html): mechanism; Seven questions. A published formula. A band — never a point price. Nothing leaves the browser.
+- [What the numbers on a quote mean](brain/pricing-mechanics.html): pricing-fact; Two totals that add. Planning bands until a paid recount. The monthly fee is stewardship, not rent.
+- [Where Standard runs](brain/deployment-standard.html): deployment-fact; Your environment. Your tenancy. Your access rules. Never our cloud.
+- [What Greenfield is](brain/greenfield-tier.html): deployment-fact; The same brain as Standard. Started earlier. Smaller. A design-partner motion, not a public storefront.
+- [The graduation ratchet](brain/greenfield-graduation.html): contractual ratchet; A Greenfield graduate never pays an install fee. You grow. You do not migrate.
+- [Day-14 terms](brain/terms.html): walk terms; If the recount disagrees with the band, you choose. Walk by day 14 and unused first-month fees come back.
+- [Only connected sources](brain/boundary-connected-only.html): boundary; We see what you connect. We do not invent the rest. That is the product.
+- [What Greenfield does not include](brain/boundary-greenfield-scope.html): boundary; A smaller path with a hard edge. The edge is how you know the promise is real.
+
+## Customer pages
+
+- [Home](index.html): conversion spine; hero is “Your company already knows the answer. Now you can ask it.”
+- [Product](product.html): outcomes (trust, own, compound) — MVP only
+- [How it works](how-it-works.html): assessment → recount gate → gated install → living brain
+- [Pricing](pricing.html): Standard planning bands; day-14 terms; no Greenfield card
+- [Security](security.html): three deployment models; never our cloud
+- [Greenfield](for-startups.html): design-partner motion, two slots, graduation ratchet
+- [Assessment](book.html): published formula; day-14 walk terms
+
+## Avoid
+
+- notes.html, eight-modes.html, why-receipts.html — post-launch content backlog, not launch claims
+- Internal document names (product drafts, census filenames, MSA packages). Cite /brain/#claim- anchors instead.
+- Invented testimonials, logos, usage statistics, customer names, Greenfield public price cards, roadmap language, extra heads, 24/7 Greenfield synthesis.

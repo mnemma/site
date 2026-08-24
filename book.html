@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get a price range — Mnemma</title>
+<meta name="description" content="Seven questions. A published formula. A planning band — never a point price. No credentials, nothing leaves this browser.">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="receipts-v2.css">
+<link rel="stylesheet" href="reveal.css">
+</head>
+<body data-page="book">
+
+<header class="site"><div class="wrap"><nav class="nav"><a class="brand" href="index.html"><span class="mark"></span>Mnemma</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="links" id="nav-links"><a href="product.html">Product</a><a href="how-it-works.html">How it works</a><a href="brain/index.html">Brain</a><a href="for-your-team.html">For your team</a><a href="security.html">Security</a><a href="pricing.html">Pricing</a></div><div class="spacer"></div><a class="btn nav-cta" href="book.html" aria-current="page"><span class="cta-full">Get a price range</span><span class="cta-short">Price range</span></a></nav></div></header>
+
+<div class="hero estimator-hero"><div class="wrap narrow">
+  <span class="eyebrow">Planning-band worksheet</span>
+  <h1>Seven answers. A planning band. Not a scan.</h1>
+  <p class="lead">This takes about fifteen minutes. We ask for no credentials and no content. Nothing leaves this browser. We run a published formula on the numbers you enter. We give you a tier and a three-line year-one planning band — never a single price.</p>
+  <ul class="plain">
+    <li>Knowledge workers, years of history, and the pack you connect in month one.</li>
+    <li>If you undercount, we find out between day 3 and day 7 of the paid engagement. We run a metadata recount. Then you choose: reprice, shrink the scope, or walk away.</li>
+    <li><span class="claim">If you walk away, we keep the setup fee ($2,000 on the Greenfield path). We refund unused first-month fees by day 14.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
+      <span class="rlabel">Receipt</span>
+      <span class="rrow"><span class="rk">On the record</span><span class="rv"><a href="brain/terms.html#claim-day-14">Unused first-month fees refund if you walk by day 14</a></span></span>
+      <span class="rrow"><span class="rk">Setup</span><span class="rv"><a href="brain/terms.html#claim-setup-kept">The setup already done is kept. It paid for the workshop and the recount.</a></span></span>
+    </span></span></span></span></li>
+  </ul>
+  <p class="estimator-jump"><a href="pricing.html">See the planning bands first →</a></p>
+</div></div>
+
+<section class="estimator-band tight"><div class="wrap">
+  <form id="census-form" class="worksheet-form">
+        <fieldset>
+          <legend>Who</legend>
+          <label class="field">
+            <span>Company</span>
+            <input type="text" name="company" autocomplete="organization" placeholder="Acme Manufacturing">
+          </label>
+          <div class="field-row">
+            <label class="field">
+              <span>Your name</span>
+              <input type="text" name="person" autocomplete="name" placeholder="Jane Okafor">
+            </label>
+            <label class="field">
+              <span>Role</span>
+              <input type="text" name="role" placeholder="Owner / GM / CTO">
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Your team</legend>
+          <div class="field-row">
+            <label class="field">
+              <span>Knowledge workers</span>
+              <input type="number" name="kw" min="1" step="1" required placeholder="not headcount">
+            </label>
+            <label class="field">
+              <span>Years of history to connect</span>
+              <input type="number" name="years" min="0" step="0.1" required placeholder="0 = go-live only">
+            </label>
+          </div>
+          <p class="hint">Count people whose work is documents, email, and decisions — not total headcount. Use 0.5 if your company is six months old. Use 0 to connect from today and leave history unrecorded.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Month-one pack</legend>
+          <div class="checks">
+            <label><input name="gmail" type="checkbox"> Gmail</label>
+            <label><input name="drive" type="checkbox"> Google Drive</label>
+            <label><input name="calendar" type="checkbox"> Google Calendar</label>
+            <label><input name="github" type="checkbox"> GitHub</label>
+          </div>
+          <p class="hint">The starter pack is Gmail and Drive. Calendar and GitHub do not change the planning band at this precision.</p>
+        </fieldset>
+
+        <fieldset>
+          <legend>Scope</legend>
+          <div class="choice">
+            <p class="qline">Do you need Slack, Microsoft 365, a CRM, or on-prem file shares in month one?</p>
+            <div class="radios">
+              <label><input type="radio" name="extras" value="no" required> No</label>
+              <label><input type="radio" name="extras" value="yes"> Yes</label>
+            </div>
+            <label class="field extras-which" hidden>
+              <span>Which tools?</span>
+              <input type="text" name="extras_which" placeholder="Slack, Salesforce, file server…">
+            </label>
+          </div>
+          <div class="choice">
+            <p class="qline">Are you a Google Workspace organization, not a personal Gmail account?</p>
+            <div class="radios">
+              <label><input type="radio" name="workspace" value="yes" required> Yes</label>
+              <label><input type="radio" name="workspace" value="no"> No</label>
+            </div>
+          </div>
+          <div class="choice">
+            <p class="qline">Must your company's data stay in accounts you control?</p>
+            <div class="radios">
+              <label><input type="radio" name="filter" value="yes" required> Yes</label>
+              <label><input type="radio" name="filter" value="no"> No</label>
+            </div>
+          </div>
+          <div class="choice">
+            <p class="qline">Are many of your files scanned paper or image PDFs?</p>
+            <div class="radios">
+              <label><input type="radio" name="paper" value="no" required> No</label>
+              <label><input type="radio" name="paper" value="yes"> Yes</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <button class="btn big estimator-submit" type="submit">See my planning band</button>
+        <p class="hint estimator-hint">We submit nothing. Print or take a screenshot of the worksheet if you want a record.</p>
+      </form>
+</div></section>
+
+<section id="result-section" hidden>
+  <div class="wrap narrow">
+    <div id="out" class="worksheet"></div>
+  </div>
+</section>
+
+<footer class="footer"><div class="wrap"><div class="grid-3"><div><div class="brand" style="color:var(--ink)"><span class="mark"></span>Mnemma</div><p style="margin-top:14px">A company brain you own outright — never our cloud, with a receipt on every fact.</p><!-- PLACEHOLDER: contact@mnemma.com swaps at domain lock (sprint R1) --><p style="margin-top:10px">Contact: <a href="mailto:contact@mnemma.com">contact@mnemma.com</a></p></div><div><h4>Product</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="product.html">Product</a></li><li style="padding-left:0"><a href="how-it-works.html">How it works</a></li><li style="padding-left:0"><a href="security.html">Security — for your CTO</a></li><li style="padding-left:0"><a href="pricing.html">Pricing</a></li><li style="padding-left:0"><a href="book.html">Get a price range</a></li><li style="padding-left:0"><a href="one-pager.html">One-page overview</a></li><li style="padding-left:0"><a href="brain/index.html">The brain</a></li><li style="padding-left:0"><a href="ai-info.html">AI info</a></li><li style="padding-left:0"><a href="llms.txt">llms.txt</a></li></ul></div><div><h4>Who it's for</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="for-sbu.html">P&amp;L owner / GM — start here</a></li><li style="padding-left:0"><a href="for-startups.html">Startups — Greenfield</a></li><li style="padding-left:0"><a href="for-your-team.html">The four signatures</a></li><li style="padding-left:0"><a href="for-ceo.html">CEO / owner</a></li><li style="padding-left:0"><a href="for-cfo.html">CFO</a></li><li style="padding-left:0"><a href="for-cto.html">CTO</a></li><li style="padding-left:0"><a href="for-ciso.html">CISO</a></li></ul></div></div><div class="footer-receipt"><span class="rlabel">Receipt · this website</span><p style="margin-top:8px">Static site. The price-range questionnaire runs in your browser — nothing is submitted. Every factual claim carries a receipt that points at <a href="brain/index.html">/brain/</a>. Every figure is a planning band. Working name, pre-customer-zero. No fabricated testimonials, logos, or usage stats — by policy. Agents start at <a href="ai-info.html">/ai-info</a>.</p></div></div></footer>
+<script src="site.js"></script>
+<script src="receipts.js"></script>
+<script src="reveal.js"></script>
+<script type="module">
+import * as C from './estimator.js';
+
+(function () {
+  var form = document.getElementById('census-form');
+  var extrasWhich = form.querySelector('.extras-which');
+  form.querySelectorAll('input[name="extras"]').forEach(function (el) {
+    el.addEventListener('change', function () {
+      extrasWhich.hidden = form.extras.value !== 'yes';
+    });
+  });
+
+  var params = new URLSearchParams(location.search);
+  var rolePrefill = params.get('role');
+  if (rolePrefill && !form.role.value) form.role.value = rolePrefill;
+
+  // H1: user-initiated mailto. Placeholder address swaps at domain lock (sprint R1).
+  var INQUIRY = 'contact@mnemma.com';
+  function attrLines() {
+    var yes = document.querySelector('input[name="ai_assist"][value="yes"]');
+    var no = document.querySelector('input[name="ai_assist"][value="no"]');
+    var which = document.querySelector('input[name="ai_which"]');
+    if (yes && yes.checked) {
+      var q = which && which.value.trim();
+      return ['', 'AI assistant pointed me here: Yes' + (q ? ' — ' + q : '')];
+    }
+    if (no && no.checked) return ['', 'AI assistant pointed me here: No'];
+    return [];
+  }
+  function worksheetLines(r, d, dated, who, pack, extrasLine) {
+    var lines = [
+      'Mnemma planning-band worksheet. The site submitted nothing; I am sending this.',
+      '',
+      'Date: ' + dated,
+      'Who: ' + who,
+      'Route: ' + r.route + ' — ' + r.title,
+      '',
+      'Attested numbers:',
+      'Knowledge workers: ' + d.kw,
+      'Years connected: ' + d.years,
+      'Month-one pack: ' + pack.join(', '),
+      'Extras in month one: ' + extrasLine,
+      'Google Workspace: ' + (d.workspace ? 'Yes' : 'No'),
+      'Data must stay in accounts we control: ' + (d.filter ? 'Yes' : 'No'),
+      'Scanned paper / image PDFs: ' + (d.paper ? 'Yes' : 'No')
+    ];
+    if (r.uLo != null) {
+      lines.push('Stock unique (planning): ' + C.fmtM(r.uLo) + ' – ' + C.fmtM(r.uHi));
+    }
+    return lines.concat(attrLines());
+  }
+  function bindMailto(r, d, dated, who, pack, extrasLine) {
+    var wrap = document.querySelector('.worksheet-next');
+    if (!wrap) return;
+    wrap.addEventListener('click', function (ev) {
+      var a = ev.target.closest('a[data-mail-kind]');
+      if (!a) return;
+      ev.preventDefault();
+      var body = worksheetLines(r, d, dated, who, pack, extrasLine).join('\n');
+      var subject = a.getAttribute('data-mail-kind') === 'dp'
+        ? 'Mnemma Greenfield design-partner application — ' + (d.company || 'worksheet')
+        : 'Mnemma planning band — ' + r.route + ' — ' + (d.company || 'worksheet');
+      if (a.getAttribute('data-mail-kind') === 'dp') {
+        body += '\n\nI want to apply for a Greenfield design-partner slot.';
+      }
+      location.href = 'mailto:' + INQUIRY +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+    });
+    var yes = document.querySelector('input[name="ai_assist"][value="yes"]');
+    var no = document.querySelector('input[name="ai_assist"][value="no"]');
+    var whichWrap = document.getElementById('ai-which-wrap');
+    function toggleWhich() {
+      if (!whichWrap) return;
+      whichWrap.hidden = !(yes && yes.checked);
+    }
+    if (yes) yes.addEventListener('change', toggleWhich);
+    if (no) no.addEventListener('change', toggleWhich);
+  }
+  function nextStep(r) {
+    var html = '<div class="attr-q">' +
+      '<p class="qline">Did an AI assistant point you here?</p>' +
+      '<p class="hint">Optional. Nothing leaves this browser unless you include it in an email you send.</p>' +
+      '<div class="radios">' +
+        '<label><input type="radio" name="ai_assist" value="no"> No</label>' +
+        '<label><input type="radio" name="ai_assist" value="yes"> Yes</label>' +
+      '</div>' +
+      '<label class="field" hidden id="ai-which-wrap">' +
+        '<span>Which one, and what did you ask?</span>' +
+        '<input type="text" name="ai_which" placeholder="ChatGPT, Perplexity, Claude… and the question">' +
+      '</label>' +
+      '</div>' +
+      '<div class="worksheet-next">' +
+      '<a class="btn" href="#" data-mail-kind="band">Email us this worksheet</a>';
+    if (r.route === 'gf') {
+      html += '<a class="btn ghost" href="#" data-mail-kind="dp">Apply for a design-partner slot</a>';
+    }
+    html += '</div>' +
+      '<p class="hint">You send it. Nothing leaves this browser unless you choose to. Inquiry address is a placeholder until domain lock.</p>';
+    return html;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var fd = new FormData(form);
+    var d = {
+      company: (fd.get('company') || '').trim(),
+      person: (fd.get('person') || '').trim(),
+      role: (fd.get('role') || '').trim(),
+      kw: Number(fd.get('kw')),
+      years: Number(fd.get('years')),
+      gmail: fd.get('gmail') === 'on',
+      drive: fd.get('drive') === 'on',
+      calendar: fd.get('calendar') === 'on',
+      github: fd.get('github') === 'on',
+      extras: fd.get('extras') === 'yes',
+      extrasWhich: (fd.get('extras_which') || '').trim(),
+      workspace: fd.get('workspace') === 'yes',
+      filter: fd.get('filter') === 'yes',
+      paper: fd.get('paper') === 'yes'
+    };
+    var r = C.estimate(d);
+    var lines = C.quote(r.route);
+    var dated = new Date().toISOString().slice(0, 10);
+    var who = [d.company, d.person, d.role].filter(Boolean).join(' · ') || 'Unnamed worksheet';
+    var pack = ['gmail', 'drive', 'calendar', 'github'].filter(function (k) { return d[k]; })
+      .map(function (k) { return k === 'drive' ? 'Drive' : k === 'github' ? 'GitHub' : k[0].toUpperCase() + k.slice(1); });
+    if (!pack.length) pack = ['none named'];
+
+    var stock = '';
+    if (r.uLo != null) {
+      var capRow = (r.route === 'gf' || r.route === 'straddle')
+        ? '<tr><th>Greenfield planning cap</th><td>57M unique <span class="pill">PLANNING</span></td></tr>'
+        : '';
+      var srcLabel = r.srcMod === 1 ? 'both Gmail and Drive'
+        : r.srcMod === 0.6 ? 'one of Gmail or Drive'
+        : 'no Gmail or Drive';
+      stock =
+        '<table class="ledger">' +
+          '<tr><th>Stock unique</th><td class="n">' + C.fmtM(r.uLo) + ' – ' + C.fmtM(r.uHi) + '</td></tr>' +
+          '<tr><th>Stock processed</th><td class="n">' + C.fmtM(r.pLo) + ' – ' + C.fmtM(r.pHi) + '</td></tr>' +
+          capRow +
+          '<tr><th>Sources</th><td>' + srcLabel + ' (×' + r.srcMod + ')</td></tr>' +
+          '<tr><th>Scanned paper</th><td>' + (r.paper === 1.25 ? 'yes — processed ×1.25' : 'no') + '</td></tr>' +
+        '</table>' +
+        '<p class="formula">Unique stock = ' + d.kw + ' knowledge workers × ' + d.years + ' years × [4.1M, 16.2M] × sources ' + r.srcMod + '</p>';
+    }
+
+    var qtable = '';
+    if (lines.length) {
+      qtable = '<table class="ledger">' + lines.map(function (row) {
+        var tag = row.tag ? ' <span class="pill">' + row.tag + '</span>' : '';
+        return '<tr><th>' + row.line + '</th><td>' + row.value + tag + '</td></tr>';
+      }).join('') + '</table>';
+    }
+
+    var alt = '';
+    if (r.route === 'straddle') {
+      var y = r.shrinkYears;
+      var fromToday = C.estimate(Object.assign({}, d, { years: 0 }));
+      alt =
+        '<div class="notice" style="margin:16px 0 0">' +
+          '<span class="rlabel">Straddle — two offers, never a squeeze</span>' +
+          '<p style="margin:8px 0 0">Cutting years until the high end clears 57M unique would mean about <strong>' +
+          (y < 0.05 ? 'less than a month' : y.toFixed(2) + ' years') +
+          '</strong> of connected history. For most teams that is not a sale — it is “connect from today.” ' +
+          'From-today on your other answers routes to <strong>' + fromToday.title + '</strong>.</p>' +
+        '</div>';
+    }
+
+    var extrasLine = d.extras ? ('Yes' + (d.extrasWhich ? ' — ' + d.extrasWhich : '')) : 'No';
+
+    document.getElementById('out').innerHTML =
+      '<article class="card worksheet-card">' +
+        '<span class="eyebrow">' + dated + ' · ' + who + '</span>' +
+        '<p class="route-title route-' + r.route + '">' + r.title + '</p>' +
+        '<p>' + r.why + '</p>' +
+        stock +
+        qtable +
+        alt +
+        '<h4 style="margin-top:22px">Numbers you attested</h4>' +
+        '<table class="ledger">' +
+          '<tr><th>Knowledge workers</th><td>' + d.kw + '</td></tr>' +
+          '<tr><th>Years connected</th><td>' + d.years + '</td></tr>' +
+          '<tr><th>Month-one pack</th><td>' + pack.join(', ') + '</td></tr>' +
+          '<tr><th>Extras in month one</th><td>' + extrasLine + '</td></tr>' +
+          '<tr><th>Google Workspace</th><td>' + (d.workspace ? 'Yes' : 'No') + '</td></tr>' +
+          '<tr><th>Data must stay in accounts you control</th><td>' + (d.filter ? 'Yes' : 'No') + '</td></tr>' +
+          '<tr><th>Scanned paper / image PDFs</th><td>' + (d.paper ? 'Yes' : 'No') + '</td></tr>' +
+        '</table>' +
+        (lines.length ? '<p class="note">' + C.DISCLAIMER + '</p>' : '') +
+        nextStep(r) +
+      '</article>';
+
+    var section = document.getElementById('result-section');
+    section.hidden = false;
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    bindMailto(r, d, dated, who, pack, extrasLine);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,992 @@
+{
+  "version": "1",
+  "generated": "2026-08-20",
+  "namespace": "/brain/",
+  "description": "Mnemma typed fact graph. One concept per page. Customer pages cite #claim- anchors only.",
+  "types": [
+    "capability",
+    "mechanism",
+    "contractual-ratchet",
+    "walk-terms",
+    "boundary",
+    "pricing-fact",
+    "deployment-fact"
+  ],
+  "pages": [
+    {
+      "id": "connected-sources",
+      "path": "/brain/connected-sources.html",
+      "type": "capability",
+      "tier": "both",
+      "title": "Connected sources",
+      "lede": "The brain reads the sources you connect. That pack is named on the quote, and it is finite. Connecting means we read the named sources you approve, inside your account, not ours. We do not see sources you do not connect. Slack, Microsoft 365, a CRM, or on-prem files in month one is a Standard conversation, said before you sign.",
+      "claims": [
+        {
+          "id": "claim-pack",
+          "anchor": "/brain/connected-sources.html#claim-pack",
+          "text": "The starter pack is Gmail, Drive, Calendar, and GitHub.",
+          "appliesToTier": "both",
+          "evidence": "Named connectors only. Nothing else is implied by a connect.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-tenancy",
+          "anchor": "/brain/connected-sources.html#claim-tenancy",
+          "text": "Each connector signs in inside your account, not ours.",
+          "appliesToTier": "both",
+          "evidence": "OAuth lives in your tenant. Credentials are yours to revoke.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-read",
+          "anchor": "/brain/connected-sources.html#claim-read",
+          "text": "Connecting means we read the named sources you approve. We do not see sources you do not connect.",
+          "appliesToTier": "both",
+          "evidence": "The coverage panel is the honesty surface for what is in and what is not.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-month-one-extras",
+          "anchor": "/brain/connected-sources.html#claim-month-one-extras",
+          "text": "Slack, Microsoft 365, a CRM, or on-prem files in month one is a Standard conversation.",
+          "appliesToTier": "both",
+          "evidence": "Beyond-pack sources are a change of path, said before you sign.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [],
+        "boundedBy": [
+          "boundary-connected-only"
+        ],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "receipts-schema",
+      "path": "/brain/receipts-schema.html",
+      "type": "mechanism",
+      "tier": "both",
+      "title": "What a receipt contains",
+      "lede": "A fact you cannot check is not a fact you can act on. Every important answer carries its receipt: source, date, confidence, and last-checked. Those four fields are the minimum. Without them the answer is unverified. The same pattern runs on this site. Click a mark, land on a claim, read the evidence.",
+      "claims": [
+        {
+          "id": "claim-fields",
+          "anchor": "/brain/receipts-schema.html#claim-fields",
+          "text": "Every important fact carries source, date, confidence, and last-checked.",
+          "appliesToTier": "both",
+          "evidence": "Those four fields are the minimum. Without them the answer is unverified.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-checkable",
+          "anchor": "/brain/receipts-schema.html#claim-checkable",
+          "text": "An answer is checkable when you can open its receipt and see where it came from.",
+          "appliesToTier": "both",
+          "evidence": "Trust the answer, or audit it. Either way there is no re-research loop.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-reverify",
+          "anchor": "/brain/receipts-schema.html#claim-reverify",
+          "text": "Facts are re-checked on a schedule set by how critical their freshness is.",
+          "appliesToTier": "both",
+          "evidence": "Re-verification is part of the installed software, not a one-time snapshot.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-site",
+          "anchor": "/brain/receipts-schema.html#claim-site",
+          "text": "This site uses the same receipt pattern on its own claims.",
+          "appliesToTier": "both",
+          "evidence": "Customer pages cite /brain/ anchors. External papers live on the fact page they support.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [
+          "adjudication",
+          "connected-sources"
+        ],
+        "boundedBy": [],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "adjudication",
+      "path": "/brain/adjudication.html",
+      "type": "mechanism",
+      "tier": "both",
+      "title": "One adjudicator",
+      "lede": "Extractors propose. One adjudicator commits. The builder is never the judge. A proposed fact is not a fact you can act on until that commit. Independent crews that extract and judge their own output amplify errors. This site follows the same split: the page that states a claim is not the page that adjudicates it.",
+      "claims": [
+        {
+          "id": "claim-propose-commit",
+          "anchor": "/brain/adjudication.html#claim-propose-commit",
+          "text": "Extractors propose. One adjudicator commits.",
+          "appliesToTier": "both",
+          "evidence": "Two roles, never one. Proposed is not committed.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-builder-not-judge",
+          "anchor": "/brain/adjudication.html#claim-builder-not-judge",
+          "text": "The builder is never the judge.",
+          "appliesToTier": "both",
+          "evidence": "The same process that writes a candidate fact cannot be the process that accepts it.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-wiring",
+          "anchor": "/brain/adjudication.html#claim-wiring",
+          "text": "A published wiring study held prompts, tools, and compute fixed and moved only how agents were connected. Independent crews amplified errors 17.2× versus a single agent; a centralized supervisor held that amplification to 4.4×.",
+          "appliesToTier": "both",
+          "evidence": "Kim et al., Nat Mach Intell 8, 1157–1172 (2026). Numbers as reported; not Mnemma measurements.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-no-crew-vote",
+          "anchor": "/brain/adjudication.html#claim-no-crew-vote",
+          "text": "Proposed facts do not vote themselves into the map.",
+          "appliesToTier": "both",
+          "evidence": "That is the topology the study says contains error amplification.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [],
+        "boundedBy": [],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": [
+          {
+            "label": "Kim et al., Nat Mach Intell 8:1157–1172 (2026)",
+            "url": "https://doi.org/10.1038/s42256-026-01268-y"
+          },
+          {
+            "label": "arXiv 2512.08296",
+            "url": "https://arxiv.org/abs/2512.08296"
+          },
+          {
+            "label": "Google Research write-up of the same study",
+            "url": "https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/"
+          }
+        ]
+      }
+    },
+    {
+      "id": "corrections",
+      "path": "/brain/corrections.html",
+      "type": "mechanism",
+      "tier": "both",
+      "title": "Corrections that survive",
+      "lede": "A human fix that dies on the next run was theatre. Corrections write into the map. If a correction does not survive the next run, it was never a correction. The overnight brief is where you see what changed. The point is not a chat that remembers. It is a map that keeps the fix.",
+      "claims": [
+        {
+          "id": "claim-survive",
+          "anchor": "/brain/corrections.html#claim-survive",
+          "text": "A correction that does not survive the next run was never a correction.",
+          "appliesToTier": "both",
+          "evidence": "Corrections must survive the run. Chat asides do not count.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-five-buckets",
+          "anchor": "/brain/corrections.html#claim-five-buckets",
+          "text": "The brief names five states: new, changed, confirmed, contradicted, old.",
+          "appliesToTier": "both",
+          "evidence": "A brief that cannot say what changed is a newsletter.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-first-class",
+          "anchor": "/brain/corrections.html#claim-first-class",
+          "text": "A human correction is a first-class write into the map, not a chat aside.",
+          "appliesToTier": "both",
+          "evidence": "It writes under the graph's rules, with provenance, or it is discarded as unverified.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [
+          "adjudication"
+        ],
+        "boundedBy": [],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "morning-brief",
+      "path": "/brain/morning-brief.html",
+      "type": "capability",
+      "tier": "both",
+      "title": "The morning brief",
+      "lede": "The first surface is an overnight brief. Lookup is always on. Synthesis waits for the window. New, changed, confirmed, contradicted, or old — those are the five states a brief has to speak. You do not wait for a demo of a chatbot. You wake up to a receipted delta on the map you own.",
+      "claims": [
+        {
+          "id": "claim-first-surface",
+          "anchor": "/brain/morning-brief.html#claim-first-surface",
+          "text": "The first surface is an overnight brief.",
+          "appliesToTier": "both",
+          "evidence": "Day-one product surface on both tiers. Not a catalog of extra heads.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-five-states",
+          "anchor": "/brain/morning-brief.html#claim-five-states",
+          "text": "Every material line on the brief is classified against the map you already own.",
+          "appliesToTier": "both",
+          "evidence": "Five buckets: new, changed, confirmed, contradicted, old.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-delivery",
+          "anchor": "/brain/morning-brief.html#claim-delivery",
+          "text": "Lookup is always on. Synthesis is windowed or overnight.",
+          "appliesToTier": "both",
+          "evidence": "A fact plus its receipt is a read. New thinking waits for the scheduled window.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [
+          "corrections",
+          "receipts-schema"
+        ],
+        "boundedBy": [],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "coverage-panel",
+      "path": "/brain/coverage-panel.html",
+      "type": "capability",
+      "tier": "both",
+      "title": "The coverage panel",
+      "lede": "What is connected, what is not, and how long the gap has been growing. Honesty is a product surface. The coverage panel is how you see the hole instead of being told the graph is complete. We see what you connect. We do not invent the rest. The gap is dated so it cannot hide.",
+      "claims": [
+        {
+          "id": "claim-connected-since",
+          "anchor": "/brain/coverage-panel.html#claim-connected-since",
+          "text": "Every source shows connected-since and current lag.",
+          "appliesToTier": "both",
+          "evidence": "Lag is visible. Deferred backlog is history debt re-accumulating.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-unrecorded",
+          "anchor": "/brain/coverage-panel.html#claim-unrecorded",
+          "text": "An unconnected source shows a growing unrecorded-era counter.",
+          "appliesToTier": "both",
+          "evidence": "Never-connected is not the same as connected-and-late. Both are stated.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-honesty",
+          "anchor": "/brain/coverage-panel.html#claim-honesty",
+          "text": "The coverage panel is a product surface, not a footnote.",
+          "appliesToTier": "both",
+          "evidence": "Coverage honesty is how the brain tells the truth about its own edges.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-acted-on",
+          "anchor": "/brain/coverage-panel.html#claim-acted-on",
+          "text": "An app we changed but do not watch is its own gap: we changed it last Tuesday; we cannot see what it is today.",
+          "appliesToTier": "both",
+          "evidence": "A write records what our agent did, once. It does not watch the app.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [],
+        "boundedBy": [
+          "boundary-connected-only"
+        ],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "classification-containers",
+      "path": "/brain/classification-containers.html",
+      "type": "mechanism",
+      "tier": "both",
+      "title": "Classification containers",
+      "lede": "Rules live on the data, not on each tool. Default-closed. Unclassified is refused. Every source signs a container before it is read. Tools that connect later inherit the same rules. We never hold your data in our cloud, so we cannot lose what we never have.",
+      "claims": [
+        {
+          "id": "claim-default-closed",
+          "anchor": "/brain/classification-containers.html#claim-default-closed",
+          "text": "Classification is container-based and default-closed. Unclassified is refused.",
+          "appliesToTier": "both",
+          "evidence": "Nothing connects without a declared container.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-red-green",
+          "anchor": "/brain/classification-containers.html#claim-red-green",
+          "text": "Data lives in declared RED or GREEN containers. Access is per identity.",
+          "appliesToTier": "both",
+          "evidence": "The wall is on the knowledge, not on the client's promise.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-inherit",
+          "anchor": "/brain/classification-containers.html#claim-inherit",
+          "text": "Every tool that connects inherits those rules. Govern once.",
+          "appliesToTier": "both",
+          "evidence": "Next year's tool does not get a new security novel. It gets the same walls.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-red-path",
+          "anchor": "/brain/classification-containers.html#claim-red-path",
+          "text": "RED serves only to principals whose model path is cleared for RED.",
+          "appliesToTier": "both",
+          "evidence": "Trust is the inference path. The fully air-gapped, zero-egress path is the on-prem model.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [],
+        "boundedBy": [],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "projection-briefcase",
+      "path": "/brain/projection-briefcase.html",
+      "type": "capability",
+      "tier": "both",
+      "title": "The walk-away briefcase",
+      "lede": "End the contract. Keep the brain. The readable copy is a Markdown projection you already hold. Cancel later and you keep the last version we shipped. The briefcase is not a request we fulfill after the fact. It is a projection that already exists in your environment.",
+      "claims": [
+        {
+          "id": "claim-md",
+          "anchor": "/brain/projection-briefcase.html#claim-md",
+          "text": "A readable Markdown projection of the graph lives in repos you control.",
+          "appliesToTier": "both",
+          "evidence": "Human-readable, regenerated, receipted. GREEN and RED stay apart.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-walk-away",
+          "anchor": "/brain/projection-briefcase.html#claim-walk-away",
+          "text": "If you cancel, you keep the projection and a raw export.",
+          "appliesToTier": "both",
+          "evidence": "A small team can use the projection with no Mnemma runtime.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-cancel-keep",
+          "anchor": "/brain/projection-briefcase.html#claim-cancel-keep",
+          "text": "End the contract, keep the brain at the last version we shipped.",
+          "appliesToTier": "both",
+          "evidence": "The install is yours. Renewal is earned every month.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-receipts-travel",
+          "anchor": "/brain/projection-briefcase.html#claim-receipts-travel",
+          "text": "Exports carry receipts.",
+          "appliesToTier": "both",
+          "evidence": "A walk-away copy without evidence is just a dump.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [
+          "receipts-schema"
+        ],
+        "boundedBy": [],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "assessment-method",
+      "path": "/brain/assessment-method.html",
+      "type": "mechanism",
+      "tier": "both",
+      "title": "How the planning band is computed",
+      "lede": "Seven questions. A published formula. A band — never a point price. Nothing leaves the browser. No credentials. Unique stock is knowledge workers times years times a published range times a source modifier. If you undercount, days 3–7 of the paid engagement recount metadata; then you reprice, shrink, or walk.",
+      "claims": [
+        {
+          "id": "claim-seven",
+          "anchor": "/brain/assessment-method.html#claim-seven",
+          "text": "Seven questions, about fifteen minutes, a published formula.",
+          "appliesToTier": "both",
+          "evidence": "Knowledge workers, years, named pack, four yes/no filters.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-browser",
+          "anchor": "/brain/assessment-method.html#claim-browser",
+          "text": "Nothing leaves the browser. No credentials.",
+          "appliesToTier": "both",
+          "evidence": "The questionnaire is not a scan. We do not ask for bytes or admin API access.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-formula",
+          "anchor": "/brain/assessment-method.html#claim-formula",
+          "text": "Unique stock = knowledge workers × years × [4.1M, 16.2M] × source modifier.",
+          "appliesToTier": "both",
+          "evidence": "Source modifier is 1 (Gmail and Drive), 0.6 (one of them), or 0. Processed = unique × 3. Paper ×1.25 on processed.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-band",
+          "anchor": "/brain/assessment-method.html#claim-band",
+          "text": "Output is a tier route plus a three-line year-one planning band — never a point price.",
+          "appliesToTier": "both",
+          "evidence": "Our fee / your tenancy / all-in. Cash at order is stated next to year one, never mashed with it.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-recount",
+          "anchor": "/brain/assessment-method.html#claim-recount",
+          "text": "If you undercount, days 3–7 of the paid engagement recount metadata; then you reprice, shrink, or walk.",
+          "appliesToTier": "both",
+          "evidence": "The recount is read-only, in your environment, after you sign. Gate: 1.5× the band, or the Greenfield cap.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [
+          "pricing-mechanics"
+        ],
+        "boundedBy": [],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "pricing-mechanics",
+      "path": "/brain/pricing-mechanics.html",
+      "type": "pricing-fact",
+      "tier": "both",
+      "title": "What the numbers on a quote mean",
+      "lede": "Two totals that add: cash at order, and year one all-in. Planning bands until a paid recount. The monthly fee is stewardship, not rent. We do not mash those totals into one number. Public figures stay labeled PLANNING until the metadata recount after you sign.",
+      "claims": [
+        {
+          "id": "claim-two-totals",
+          "anchor": "/brain/pricing-mechanics.html#claim-two-totals",
+          "text": "Quotes show two totals that add: cash at order, and year one all-in.",
+          "appliesToTier": "both",
+          "evidence": "Neither number is a typo. They answer different questions.",
+          "since": "2026-08-14"
+        },
+        {
+          "id": "claim-standard-bands",
+          "anchor": "/brain/pricing-mechanics.html#claim-standard-bands",
+          "text": "Worked Standard example: about $42k cash at order, about $78k year one. Planning bands, not a point price.",
+          "appliesToTier": "both",
+          "evidence": "$30k install + ~$12k hybrid hardware; plus ~$3k/mo × 12. Cloud-native hardware is $0.",
+          "since": "2026-08-14"
+        },
+        {
+          "id": "claim-install",
+          "anchor": "/brain/pricing-mechanics.html#claim-install",
+          "text": "The install fee is the burst — reading history into the graph.",
+          "appliesToTier": "both",
+          "evidence": "One-time, for history already on disk. Greenfield skips the install fee when the day-zero census is under the planning cap — existing history is measured at sale, not assumed empty.",
+          "since": "2026-08-14"
+        },
+        {
+          "id": "claim-stewardship",
+          "anchor": "/brain/pricing-mechanics.html#claim-stewardship",
+          "text": "The monthly fee is stewardship of a brain you already own, not rent on the loop.",
+          "appliesToTier": "both",
+          "evidence": "You own the install from day one. The fee buys continued vendor work. Cancel, keep the brain.",
+          "since": "2026-08-14"
+        },
+        {
+          "id": "claim-planning",
+          "anchor": "/brain/pricing-mechanics.html#claim-planning",
+          "text": "All public figures are planning bands until a paid metadata recount.",
+          "appliesToTier": "both",
+          "evidence": "The assessment prints a band from numbers you supply. Measurement comes after you sign.",
+          "since": "2026-08-14"
+        },
+        {
+          "id": "claim-own-asset",
+          "anchor": "/brain/pricing-mechanics.html#claim-own-asset",
+          "text": "Verified, receipted work is designed to write back into a map you keep, even if you cancel. No amortization schedule and no ROI dollar figure is claimed.",
+          "appliesToTier": "both",
+          "evidence": "Write-back is a design property. Customer-zero has not measured the curve.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-category-scan",
+          "anchor": "/brain/pricing-mechanics.html#claim-category-scan",
+          "text": "A two-round competitive scan found no named vendor offering all five of: runs in your environment, you own the knowledge graph, facts carry provenance, products operate on top, and mid-market pricing.",
+          "appliesToTier": "both",
+          "evidence": "The cleanest checkable gap is pricing: the only sovereign alternative we found runs one to two orders of magnitude over mid-market, per its own public disclosures.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [],
+        "boundedBy": [],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "deployment-standard",
+      "path": "/brain/deployment-standard.html",
+      "type": "deployment-fact",
+      "tier": "standard",
+      "title": "Where Standard runs",
+      "lede": "Your environment. Your tenancy. Your access rules. Never our cloud. Standard runs where you already keep the company — on-prem, hybrid, or your own cloud account. We recommend. Your CTO decides. The graph moves with you if you change models. Standing up the new serving environment still takes real work.",
+      "claims": [
+        {
+          "id": "claim-your-env",
+          "anchor": "/brain/deployment-standard.html#claim-your-env",
+          "text": "The brain runs in your environment, under your access rules. Never our cloud.",
+          "appliesToTier": "standard",
+          "evidence": "We never hold your data — so we cannot lose what we never have.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-three-models",
+          "anchor": "/brain/deployment-standard.html#claim-three-models",
+          "text": "Three models: full on-prem, hybrid (default), or your own cloud tenancy.",
+          "appliesToTier": "standard",
+          "evidence": "Hardware bands are planning figures until the paid recount. Cloud in Model 3 means your tenancy.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-you-pick",
+          "anchor": "/brain/deployment-standard.html#claim-you-pick",
+          "text": "You pick the model. We recommend.",
+          "appliesToTier": "standard",
+          "evidence": "Five questions on the security page pick the model on a kickoff call.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-capability-slo",
+          "anchor": "/brain/deployment-standard.html#claim-capability-slo",
+          "text": "Performance commitments are capability-level, never raw throughput.",
+          "appliesToTier": "standard",
+          "evidence": "Concurrent sessions, first-token time at working contexts, recovery objectives — not tokens per second.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-customer-zero",
+          "anchor": "/brain/deployment-standard.html#claim-customer-zero",
+          "text": "We install Mnemma on ourselves first. The same gates we ask you to walk, we walk.",
+          "appliesToTier": "standard",
+          "evidence": "In progress; this page updates as gates pass. Not a completed case study.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [],
+        "boundedBy": [
+          "boundary-connected-only"
+        ],
+        "bounds": [],
+        "appliesToTier": "standard",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "greenfield-tier",
+      "path": "/brain/greenfield-tier.html",
+      "type": "deployment-fact",
+      "tier": "greenfield",
+      "title": "What Greenfield is",
+      "lede": "The same brain as Standard. Started earlier. Smaller. A design-partner motion, not a public storefront. Sources connected from day one skip the burst if the day-zero census is under the cap. Two design-partner slots. No public Greenfield price card. The assessment prints the band if you qualify.",
+      "claims": [
+        {
+          "id": "claim-same-brain",
+          "anchor": "/brain/greenfield-tier.html#claim-same-brain",
+          "text": "Same brain as Standard — started earlier, smaller.",
+          "appliesToTier": "greenfield",
+          "evidence": "Same receipts, same default-closed classification, your tenancy.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-day-zero",
+          "anchor": "/brain/greenfield-tier.html#claim-day-zero",
+          "text": "Sources connected from day zero accrue natively. There is nothing to backfill on those sources.",
+          "appliesToTier": "greenfield",
+          "evidence": "Never “no unrecorded era.” A late-connected source has a gap the coverage panel shows.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-dp",
+          "anchor": "/brain/greenfield-tier.html#claim-dp",
+          "text": "Greenfield is a design-partner motion: two slots. No public price card yet.",
+          "appliesToTier": "greenfield",
+          "evidence": "Planning bands print on the assessment when the numbers fit. They are not a storefront list.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-pack",
+          "anchor": "/brain/greenfield-tier.html#claim-pack",
+          "text": "The starter pack is Gmail, Drive, Calendar, and GitHub. That is the whole pack.",
+          "appliesToTier": "greenfield",
+          "evidence": "Each connector declares its container at registration. Unclassified is refused.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-clock",
+          "anchor": "/brain/greenfield-tier.html#claim-clock",
+          "text": "First receipted fact: on or before 10 business days from signature.",
+          "appliesToTier": "greenfield",
+          "evidence": "Customer clock only. We do not quote our build calendar as your numbers.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-census-gate",
+          "anchor": "/brain/greenfield-tier.html#claim-census-gate",
+          "text": "Existing history is measured at sale. Under the quoted footprint's cap it accrues on the same machine; over the cap this is a Standard install, said before signature.",
+          "appliesToTier": "greenfield",
+          "evidence": "Pre-existing history is not free. Starting now on connected sources is the claim.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [],
+        "boundedBy": [
+          "boundary-greenfield-scope"
+        ],
+        "bounds": [],
+        "appliesToTier": "greenfield",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "greenfield-graduation",
+      "path": "/brain/greenfield-graduation.html",
+      "type": "contractual-ratchet",
+      "tier": "greenfield",
+      "title": "The graduation ratchet",
+      "lede": "A Greenfield graduate never pays an install fee. You grow. You do not migrate. The ratchet is contractual: when the map outgrows the Greenfield path, you step into Standard on the brain you already own. There is no second install to buy, and no new graph to rebuild.",
+      "claims": [
+        {
+          "id": "claim-no-install-fee",
+          "anchor": "/brain/greenfield-graduation.html#claim-no-install-fee",
+          "text": "A Greenfield graduate never pays an install fee.",
+          "appliesToTier": "greenfield",
+          "evidence": "The burst is a tax on starting late. You already started on time.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-ratchet",
+          "anchor": "/brain/greenfield-graduation.html#claim-ratchet",
+          "text": "Trigger, then written notice, then a 60-day window, then the Standard fee. You grow; you do not migrate.",
+          "appliesToTier": "greenfield",
+          "evidence": "Footprint re-sizes at your cost. The install fee does not reappear.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-triggers",
+          "anchor": "/brain/greenfield-graduation.html#claim-triggers",
+          "text": "Graduation fires on seats, capacity, support hours, or scope — first crossed.",
+          "appliesToTier": "greenfield",
+          "evidence": "Seats: more than 50 knowledge workers, sustained. Capacity: the window is exhausted and lag is still late. Support: included hours exceeded in two of any three months. Scope: repeated beyond-pack connectors.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [
+          "greenfield-tier"
+        ],
+        "boundedBy": [
+          "boundary-greenfield-scope"
+        ],
+        "bounds": [],
+        "appliesToTier": "greenfield",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "terms",
+      "path": "/brain/terms.html",
+      "type": "walk-terms",
+      "tier": "both",
+      "title": "Day-14 terms",
+      "lede": "If the recount disagrees with the band, you choose. Walk by day 14 and unused first-month fees come back. The setup already done is kept; it paid for the workshop and the recount. If the recount is 1.5× the planning band or crosses the cap, you reprice, shrink, or walk.",
+      "claims": [
+        {
+          "id": "claim-day-14",
+          "anchor": "/brain/terms.html#claim-day-14",
+          "text": "Unused first-month fees refund if you walk by day 14.",
+          "appliesToTier": "both",
+          "evidence": "Printed on the assessment worksheet. After day 14, month one is earned.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-setup-kept",
+          "anchor": "/brain/terms.html#claim-setup-kept",
+          "text": "The setup already done is kept. It paid for the workshop and the recount.",
+          "appliesToTier": "both",
+          "evidence": "On the Greenfield path that setup is $2,000. Standard's install is the burst, quoted as a planning band.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-reprice",
+          "anchor": "/brain/terms.html#claim-reprice",
+          "text": "If the recount is 1.5× the planning band or crosses the cap, you reprice, shrink, or walk.",
+          "appliesToTier": "both",
+          "evidence": "Undercount becomes a number in week one, not a fight at the end of a backfill.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-cancel-anytime",
+          "anchor": "/brain/terms.html#claim-cancel-anytime",
+          "text": "After go-live you can end the contract and keep the brain.",
+          "appliesToTier": "both",
+          "evidence": "See the walk-away briefcase. Renewal is earned.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [
+          "pricing-mechanics",
+          "projection-briefcase"
+        ],
+        "boundedBy": [],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "boundary-connected-only",
+      "path": "/brain/boundary-connected-only.html",
+      "type": "boundary",
+      "tier": "both",
+      "title": "Only connected sources",
+      "lede": "We see what you connect. We do not invent the rest. That is the product. The brain does not crawl unnamed systems, and it does not fill gaps with a model's guess. The coverage panel is the honesty surface for what is in and what is not. A hole that is dated is still a hole.",
+      "claims": [
+        {
+          "id": "claim-only-connected",
+          "anchor": "/brain/boundary-connected-only.html#claim-only-connected",
+          "text": "We see only sources you connect. That is the design.",
+          "appliesToTier": "both",
+          "evidence": "No silent corpus. No implied omniscience.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-no-magic",
+          "anchor": "/brain/boundary-connected-only.html#claim-no-magic",
+          "text": "We do not invent facts from sources we cannot read.",
+          "appliesToTier": "both",
+          "evidence": "Unverified fluency stays unverified.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-gap-visible",
+          "anchor": "/brain/boundary-connected-only.html#claim-gap-visible",
+          "text": "A source connected later has a gap the coverage panel shows.",
+          "appliesToTier": "both",
+          "evidence": "We do not market receipt age across gaps.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [],
+        "boundedBy": [],
+        "bounds": [
+          "connected-sources",
+          "coverage-panel",
+          "deployment-standard"
+        ],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
+    },
+    {
+      "id": "boundary-greenfield-scope",
+      "path": "/brain/boundary-greenfield-scope.html",
+      "type": "boundary",
+      "tier": "greenfield",
+      "title": "What Greenfield does not include",
+      "lede": "A smaller path with a hard edge. The edge is how you know the promise is real. Greenfield does not include month-one Slack, Microsoft 365, CRM, or on-prem files. It does not include a public price card. It does not include history above the cap. If you need those, the conversation is Standard.",
+      "claims": [
+        {
+          "id": "claim-no-heads",
+          "anchor": "/brain/boundary-greenfield-scope.html#claim-no-heads",
+          "text": "Greenfield does not include a catalog of extra heads or 24/7 synthesis chat.",
+          "appliesToTier": "greenfield",
+          "evidence": "Lookup is always on. Synthesis is windowed. The first surface is the morning brief.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-pack-limit",
+          "anchor": "/brain/boundary-greenfield-scope.html#claim-pack-limit",
+          "text": "Slack, Microsoft 365, CRM, and on-prem files are not this path.",
+          "appliesToTier": "greenfield",
+          "evidence": "That is Standard, or a change order, said up front.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-not-appliance",
+          "anchor": "/brain/boundary-greenfield-scope.html#claim-not-appliance",
+          "text": "This is not a set-and-forget appliance.",
+          "appliesToTier": "greenfield",
+          "evidence": "A small distributed system you can leave with a briefcase — not a box you ignore.",
+          "since": "2026-08-20"
+        },
+        {
+          "id": "claim-size",
+          "anchor": "/brain/boundary-greenfield-scope.html#claim-size",
+          "text": "15–50 knowledge workers, Google Workspace. Outside that is Standard or a later path.",
+          "appliesToTier": "greenfield",
+          "evidence": "Under 15 is off-the-shelf plus a waitlist. Over 50 is Standard. Consumer Gmail waits.",
+          "since": "2026-08-20"
+        }
+      ],
+      "relations": {
+        "dependsOn": [],
+        "boundedBy": [],
+        "bounds": [
+          "greenfield-tier",
+          "greenfield-graduation"
+        ],
+        "appliesToTier": "greenfield",
+        "evidencedBy": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "connected-sources",
+      "rel": "bounded-by",
+      "to": "boundary-connected-only"
+    },
+    {
+      "from": "boundary-connected-only",
+      "rel": "bounds",
+      "to": "connected-sources"
+    },
+    {
+      "from": "receipts-schema",
+      "rel": "depends-on",
+      "to": "adjudication"
+    },
+    {
+      "from": "receipts-schema",
+      "rel": "depends-on",
+      "to": "connected-sources"
+    },
+    {
+      "from": "adjudication",
+      "rel": "evidenced-by",
+      "to": "https://doi.org/10.1038/s42256-026-01268-y",
+      "label": "Kim et al., Nat Mach Intell 8:1157–1172 (2026)"
+    },
+    {
+      "from": "adjudication",
+      "rel": "evidenced-by",
+      "to": "https://arxiv.org/abs/2512.08296",
+      "label": "arXiv 2512.08296"
+    },
+    {
+      "from": "adjudication",
+      "rel": "evidenced-by",
+      "to": "https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/",
+      "label": "Google Research write-up of the same study"
+    },
+    {
+      "from": "corrections",
+      "rel": "depends-on",
+      "to": "adjudication"
+    },
+    {
+      "from": "morning-brief",
+      "rel": "depends-on",
+      "to": "corrections"
+    },
+    {
+      "from": "morning-brief",
+      "rel": "depends-on",
+      "to": "receipts-schema"
+    },
+    {
+      "from": "coverage-panel",
+      "rel": "bounded-by",
+      "to": "boundary-connected-only"
+    },
+    {
+      "from": "boundary-connected-only",
+      "rel": "bounds",
+      "to": "coverage-panel"
+    },
+    {
+      "from": "projection-briefcase",
+      "rel": "depends-on",
+      "to": "receipts-schema"
+    },
+    {
+      "from": "assessment-method",
+      "rel": "depends-on",
+      "to": "pricing-mechanics"
+    },
+    {
+      "from": "deployment-standard",
+      "rel": "bounded-by",
+      "to": "boundary-connected-only"
+    },
+    {
+      "from": "boundary-connected-only",
+      "rel": "bounds",
+      "to": "deployment-standard"
+    },
+    {
+      "from": "greenfield-tier",
+      "rel": "bounded-by",
+      "to": "boundary-greenfield-scope"
+    },
+    {
+      "from": "boundary-greenfield-scope",
+      "rel": "bounds",
+      "to": "greenfield-tier"
+    },
+    {
+      "from": "greenfield-graduation",
+      "rel": "depends-on",
+      "to": "greenfield-tier"
+    },
+    {
+      "from": "greenfield-graduation",
+      "rel": "bounded-by",
+      "to": "boundary-greenfield-scope"
+    },
+    {
+      "from": "boundary-greenfield-scope",
+      "rel": "bounds",
+      "to": "greenfield-graduation"
+    },
+    {
+      "from": "terms",
+      "rel": "depends-on",
+      "to": "pricing-mechanics"
+    },
+    {
+      "from": "terms",
+      "rel": "depends-on",
+      "to": "projection-briefcase"
+    }
+  ]
+}
