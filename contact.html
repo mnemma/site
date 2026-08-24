@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Mnemma</title>
+<meta name="description" content="Send us an inquiry. Four fields, stored in a database we run, read by a human. Or just email contact@mnemma.com.">
+<link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+</head>
+<body data-page="contact">
+
+<header class="site"><div class="wrap"><nav class="nav"><a class="brand" href="index.html"><span class="mark"></span>Mnemma</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="links" id="nav-links"><a href="product.html">Product</a><a href="how-it-works.html">How it works</a><a href="brain/index.html">Brain</a><a href="for-your-team.html">For your team</a><a href="security.html">Security</a><a href="pricing.html">Pricing</a></div><div class="spacer"></div><a class="btn nav-cta" href="book.html"><span class="cta-full">Get a price range</span><span class="cta-short">Price range</span></a></nav></div></header>
+
+<div class="hero"><div class="wrap narrow">
+  <span class="eyebrow">Contact</span>
+  <h1>Talk to us.</h1>
+  <p class="lead">Four fields, read by a human. Or skip the form: <a href="mailto:contact@mnemma.com">contact@mnemma.com</a> reaches the same place.</p>
+</div></div>
+
+<section class="estimator-band tight"><div class="wrap narrow">
+  <form id="contact-form" class="worksheet-form">
+    <fieldset>
+      <legend>Who</legend>
+      <div class="field-row">
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" name="name" autocomplete="name" required maxlength="200" placeholder="Jane Okafor">
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="jane@acmefab.com">
+        </label>
+      </div>
+      <label class="field">
+        <span>Company <em style="font-style:normal;opacity:.6">(optional)</em></span>
+        <input type="text" name="company" autocomplete="organization" maxlength="200" placeholder="Acme Manufacturing">
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>What's on your mind</legend>
+      <label class="field">
+        <span>Message</span>
+        <textarea name="message" required maxlength="5000" rows="6" placeholder="What you're weighing, what you'd want the brain to answer, or just where to start."></textarea>
+      </label>
+    </fieldset>
+    <div aria-hidden="true" style="position:absolute;left:-9999px;height:0;overflow:hidden">
+      <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+    </div>
+    <button class="btn" type="submit" id="contact-submit">Send inquiry</button>
+    <p id="contact-status" role="status" aria-live="polite" style="margin-top:12px"></p>
+    <noscript><p class="notice" style="margin-top:12px">This form needs JavaScript. Without it, email <a href="mailto:contact@mnemma.com">contact@mnemma.com</a> — same inbox, same humans.</p></noscript>
+  </form>
+
+  <div class="notice" style="margin-top:22px"><span class="rlabel">Receipt · this form</span>
+    Submitting sends exactly what you typed — name, email, company, message — plus the page you came from, to a small service we run on Cloudflare. It lands in a private database in our account and is read by a human. No analytics, no trackers, no cookies. Capped at five submissions an hour per visitor; past that, email us.
+  </div>
+</div></section>
+
+<footer class="footer"><div class="wrap"><div class="grid-3"><div><div class="brand" style="color:var(--ink)"><span class="mark"></span>Mnemma</div><p style="margin-top:14px">A company brain you own outright — never our cloud, with a receipt on every fact.</p><p style="margin-top:10px">Contact: <a href="mailto:contact@mnemma.com">contact@mnemma.com</a></p></div><div><h4>Product</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="product.html">Product</a></li><li style="padding-left:0"><a href="how-it-works.html">How it works</a></li><li style="padding-left:0"><a href="security.html">Security — for your CTO</a></li><li style="padding-left:0"><a href="pricing.html">Pricing</a></li><li style="padding-left:0"><a href="book.html">Get a price range</a></li><li style="padding-left:0"><a href="one-pager.html">One-page overview</a></li><li style="padding-left:0"><a href="brain/index.html">The brain</a></li><li style="padding-left:0"><a href="ai-info.html">AI info</a></li><li style="padding-left:0"><a href="llms.txt">llms.txt</a></li></ul></div><div><h4>Who it's for</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="for-sbu.html">P&amp;L owner / GM — start here</a></li><li style="padding-left:0"><a href="for-startups.html">Startups — Greenfield</a></li><li style="padding-left:0"><a href="for-your-team.html">The four signatures</a></li><li style="padding-left:0"><a href="for-ceo.html">CEO / owner</a></li><li style="padding-left:0"><a href="for-cfo.html">CFO</a></li><li style="padding-left:0"><a href="for-cto.html">CTO</a></li><li style="padding-left:0"><a href="for-ciso.html">CISO</a></li></ul></div></div><div class="footer-receipt"><span class="rlabel">Receipt · this page</span><p style="margin-top:8px">Static site. This contact form is the one thing on it that submits anywhere: the fields above go to a service we run and nothing else is collected. Every factual claim on this site carries a receipt that points at <a href="brain/index.html">/brain/</a>. Working name, pre-customer-zero. No fabricated testimonials, logos, or usage stats — by policy. Agents start at <a href="ai-info.html">/ai-info</a>.</p></div></div></footer>
+<script src="site.js"></script>
+<script>
+(function () {
+  var ENDPOINT = 'https://mnemma-inquiries.mnemma-inquiries.workers.dev/inquiry';
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('contact-status');
+  var btn = document.getElementById('contact-submit');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = Object.fromEntries(new FormData(form).entries());
+    data.source_page = document.referrer || location.pathname;
+    btn.disabled = true;
+    status.textContent = 'Sending…';
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, body: j }; }); })
+      .then(function (res) {
+        if (res.ok && res.body.ok) {
+          form.reset();
+          status.textContent = 'Sent. A human reads these — you’ll hear back at the address you gave.';
+        } else {
+          btn.disabled = false;
+          status.textContent = (res.body && res.body.error ? res.body.error + '. ' : '') + 'If it keeps failing, email contact@mnemma.com.';
+        }
+      })
+      .catch(function () {
+        btn.disabled = false;
+        status.textContent = 'Could not reach the inquiry service — email contact@mnemma.com instead.';
+      });
+  });
+})();
+</script>
+</body>
+</html>
