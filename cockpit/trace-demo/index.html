@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>In-session trace — demo (MOCK)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap');
+  :root{--paper:#f7f5ef;--ink:#1a1a17;--muted:#6f6b60;--accent:#0d6b56;--accent-ink:#0a5644;--mk-bad:#8a3b2e;--line:#dcd8cc;--gold:#6b5a34;--gold-bg:#f0e9d8;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;padding:48px 24px;}
+  .wrap{max-width:880px;margin:0 auto;}
+  h1{font-family:Fraunces,serif;font-weight:600;font-size:1.6rem;margin:0 0 6px;}
+  .mockbanner{display:inline-block;font-family:"Spline Sans Mono",monospace;font-size:.78rem;color:var(--gold);
+    background:var(--gold-bg);border:1px solid var(--gold);border-radius:999px;padding:4px 14px;margin:10px 0 4px;}
+  .sub{color:var(--muted);font-size:.92rem;max-width:64ch;line-height:1.55;}
+  .mono{font-family:"Spline Sans Mono",monospace;font-size:.85em;}
+  .seq{margin-top:34px;display:flex;flex-direction:column;gap:0;}
+  .step{display:flex;gap:18px;padding:20px 0;border-top:1px solid var(--line);}
+  .step:last-child{border-bottom:1px solid var(--line);}
+  .num{font-family:"Spline Sans Mono",monospace;color:var(--muted);font-size:.8rem;padding-top:4px;min-width:26px;}
+  .tool{font-family:"Spline Sans Mono",monospace;font-weight:500;font-size:1rem;color:var(--accent-ink);min-width:150px;padding-top:2px;}
+  .tool.bad{color:var(--mk-bad);}
+  .what .d{font-size:.95rem;margin:0 0 6px;}
+  .what .why{color:var(--muted);font-size:.85rem;line-height:1.5;max-width:56ch;}
+  .ids{font-family:"Spline Sans Mono",monospace;font-size:.72rem;color:var(--accent);margin-top:6px;word-break:break-all;}
+  footer{margin-top:40px;color:var(--muted);font-size:.8rem;line-height:1.6;}
+  a{color:var(--accent-ink);}
+</style>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+</head>
+<body>
+<div class="wrap">
+  <h1>In-session trace</h1>
+  <div class="mockbanner">DEMO — REPLAYED SESSION, SYNTHETIC COMPANY</div>
+  <p class="sub">One inference loop against the brain, replayed step by step using <em>fact ids from the demo graph</em>. This is what the live stream will show for every session once <span class="mono">/mcp/events</span> clears its ack and the container bounce lands — at which point this page's banner comes off. Until then: the shape is real, the sequence is scripted.</p>
+
+  <div class="seq" id="seq"></div>
+
+  <footer>
+    Governing contract — bearer-gated, GREEN events only, counts not statement bodies, args as hash+length.
+    &nbsp;·&nbsp; <a href="/">← back to the cockpit</a>
+  </footer>
+</div>
+<script>
+(async () => {
+  let D = { facts: [] };
+  try { D = await (await fetch('../cockpit-data.json')).json(); } catch (e) {}
+  const sample = (D.facts || []).slice(0, 3);
+  const steps = [
+    { t: 'initialize', d: 'Session opens as projector-demo.', why: 'Every session runs as a named identity with a fixed scope. This one can read GREEN and nothing else — the whole trace inherits that boundary.', ids: [] },
+    { t: 'query_facts', d: '"supplier spend" → ' + Math.min(3, sample.length) + ' facts · omitted_by_acl: 0', why: 'The loop asks the fact layer first — typed, adjudicated, cheap. The omitted count says how many matching facts the ACL hid: zero here, and the number is always shown, never smoothed over.', ids: sample.map(f => f.fact_id) },
+    { t: 'get_receipt', d: sample[0] ? '"' + sample[0].statement.slice(0, 60) + '…"' : '—', why: 'Depth on demand: the receipt dereferences to the exact source and span the claim came from, plus who adjudicated it and when. Deterministic follow, not a similarity guess.', ids: sample[0] ? [sample[0].fact_id] : [] },
+    { t: 'propose_fact', d: 'REFUSED — projector-demo has no propose right', why: 'The access model demonstrating itself: a read identity asking to write gets a clean refusal with a reason. Extractors propose; this identity projects.', ids: [], bad: true },
+    { t: 'adjudicate', d: 'not an MCP tool — CLI only, by design', why: 'Commit power is not on the network surface at all. The single adjudicator gate lives behind the operator\'s own CLI — the builder is never the judge, and the judge is never remote.', ids: [], bad: true },
+  ];
+  const seq = document.getElementById('seq');
+  steps.forEach((s, i) => {
+    const el = document.createElement('div'); el.className = 'step';
+    el.innerHTML = '<div class="num">0' + (i + 1) + '</div>'
+      + '<div class="tool' + (s.bad ? ' bad' : '') + '">' + s.t + '</div>'
+      + '<div class="what"><p class="d">' + s.d + '</p><div class="why">' + s.why + '</div>'
+      + (s.ids.length ? '<div class="ids">' + s.ids.join('<br>') + '</div>' : '') + '</div>';
+    seq.appendChild(el);
+  });
+})();
+</script>
+</body>
+</html>

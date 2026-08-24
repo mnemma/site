@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brain cockpit — Mnemma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+/* Paper-editorial tokens . Data-mark colors are the
+   validated chart steps (COCKPIT_DESIGN_V1 C-4), not raw brand tokens. */
+:root{
+  --paper:#f7f5ef; --paper-2:#fbfaf6; --band:#efece2; --ink:#1a1a17; --ink-soft:#40403a;
+  --muted:#6a6860; --rule:#ddd7c9; --rule-soft:#e8e3d7; --accent:#0d6b56; --accent-ink:#0a5343;
+  --tint:#e9f1ec; --red:#9a3b2f;
+  --mk-fact:#0f8a6d; --mk-pend:#a87b28; --mk-bad:#a03d2e;   /* validated data marks */
+}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 16.5px/1.55 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:Fraunces,Charter,Georgia,serif;font-weight:500;margin:0}
+.mono{font-family:"Spline Sans Mono",ui-monospace,monospace}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+header.bar{border-bottom:1px solid var(--rule);background:var(--paper-2)}
+header.bar .wrap{display:flex;align-items:center;gap:14px;padding:14px 24px}
+.badge{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:.06em;
+  padding:3px 10px;border:1px solid var(--rule);border-radius:999px;color:var(--muted)}
+.badge.live{border-color:var(--accent);color:var(--accent-ink);background:var(--tint)}
+.badge.preview{border-color:#c79a3f;color:#6b5a34;background:#fbf3e6}
+.spacer{flex:1}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0}
+.tile{background:var(--paper-2);border:1px solid var(--rule);border-radius:8px;padding:14px 16px}
+.tile .n{font-family:Fraunces,Georgia,serif;font-size:1.9rem;line-height:1.1}
+.tile .k{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);margin-top:4px}
+.tile.na .n{font-size:1.05rem;color:var(--muted);font-family:"Spline Sans Mono",ui-monospace,monospace;padding-top:8px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start}
+@media(max-width:980px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--paper-2);border:1px solid var(--rule);border-radius:8px}
+.panel.graph{position:relative;overflow:hidden}
+.panel.graph::before{
+  content:"";position:absolute;left:-6%;right:-6%;top:-18%;height:92%;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 62% at 50% 38%,
+    color-mix(in srgb, var(--accent) 10%, transparent) 0%,
+    color-mix(in srgb, var(--accent) 4%, transparent) 42%,
+    transparent 74%)}
+.panel.graph > *{position:relative;z-index:1}
+.panel .cap{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--rule-soft);
+  display:flex;gap:10px;align-items:center}
+canvas#graph{display:block;width:100%;height:560px;cursor:grab;background:transparent}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:10px 14px;border-bottom:1px solid var(--rule-soft)}
+.chip-note{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;color:var(--muted);font-style:italic;align-self:center}
+.chip{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;padding:3px 10px;
+  border:1px solid var(--rule);border-radius:999px;background:var(--paper);cursor:pointer;color:var(--ink-soft)}
+.chip.on{border-color:var(--accent);background:var(--tint);color:var(--accent-ink)}
+#inspector{padding:14px;min-height:200px}
+#inspector.has-fact{border-left:3px solid var(--accent);background:var(--tint);padding:14px 16px}
+#inspector .st{font-family:Fraunces,Charter,Georgia,serif;font-size:1.05rem;line-height:1.35;margin-bottom:10px}
+.rtab{width:100%;border-collapse:collapse;font-size:.82rem}
+.rtab td{padding:5px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+.rtab td:first-child{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.7rem;
+  text-transform:uppercase;letter-spacing:.06em;color:var(--muted);width:96px;padding-right:8px}
+.chain{margin:12px 0 0;padding:0;list-style:none;font-size:.8rem}
+.chain li{padding:6px 0 6px 14px;border-left:2px solid color-mix(in srgb, var(--accent) 35%, var(--rule))}
+.chain li b{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--accent-ink)}
+.bars{padding:14px}
+.bar-row{display:flex;align-items:center;gap:10px;margin:7px 0}
+.bar-row .lbl{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;color:var(--ink-soft);width:min(46%,280px);
+  line-height:1.3;white-space:normal;overflow:visible;word-break:break-word}
+.bar-row .track{flex:1;height:14px;background:var(--paper);border:1px solid var(--rule-soft);border-radius:4px;overflow:hidden}
+.bar-row .fill{height:100%;border-radius:3px 0 0 3px}
+.bar-row .val{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.74rem;width:34px;text-align:right}
+.empty{padding:16px;color:var(--muted);font-size:.85rem}
+.strip{display:flex;gap:6px;overflow-x:auto;padding:14px}
+.ev{min-width:120px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);padding:8px 10px;cursor:pointer}
+.ev.on{border-color:var(--accent);background:var(--tint)}
+.ev .t{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.66rem;letter-spacing:.05em;text-transform:uppercase}
+.ev .d{font-size:.74rem;color:var(--ink-soft);margin-top:3px}
+.mockmark{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.7rem;color:#6b5a34;
+  background:#fbf3e6;border:1px solid #c79a3f;border-radius:4px;padding:2px 8px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;padding:10px 14px;font-size:.74rem;color:var(--ink-soft);
+  border-top:1px solid var(--rule-soft)}
+.legend .sw{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+footer{margin:26px 0 40px;color:var(--muted);font-size:.8rem}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--paper);padding:6px 10px;
+  border-radius:6px;font-size:.76rem;max-width:340px;display:none;z-index:9}
+#newdata{position:fixed;top:14px;right:18px;z-index:10;font-family:"Spline Sans Mono",ui-monospace,monospace;
+  font-size:.74rem;letter-spacing:.04em;padding:7px 14px;border-radius:999px;cursor:pointer;
+  background:var(--accent);color:#fff;border:1px solid var(--accent-ink);box-shadow:0 2px 8px rgba(26,26,23,.18)}
+section{margin:22px 0}
+noscript p{padding:20px;background:var(--band)}
+</style>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+</head>
+<body>
+<div id="tip"></div>
+<header class="bar"><div class="wrap">
+  <h1 style="font-size:1.25rem;font-weight:600">Brain cockpit</h1>
+  <span id="prov" class="badge">loading…</span>
+  <span class="badge">read-only · projector-demo</span>
+  <span class="spacer"></span>
+  <span id="taken" class="mono" style="font-size:.72rem;color:var(--muted)"></span>
+</div></header>
+
+<div class="wrap">
+<noscript><p>The cockpit canvas needs JavaScript. The underlying data is plain JSON: <a href="cockpit-data.json">cockpit-data.json</a>.</p></noscript>
+
+<div class="tiles" id="tiles"></div>
+
+<div class="grid">
+  <div class="panel graph">
+    <div class="cap">The graph — every mark is a product concept<span class="spacer"></span><span id="gcount" class="mono"></span></div>
+    <div class="chips" id="chips"></div>
+    <canvas id="graph"></canvas>
+    <div class="legend" id="legend"></div>
+  </div>
+  <div class="panel">
+    <div class="cap">Receipt</div>
+    <div id="inspector"><p class="empty">Click a fact node. Its receipt — source, confidence, dates, and the full adjudication chain — renders here. Trust the answer, or audit it in one click.</p></div>
+  </div>
+</div>
+
+<section class="panel">
+  <div class="cap">In-session trace <span class="mockmark">MOCK</span>
+    <span class="spacer"></span><span class="mono" style="font-size:.68rem;color:var(--muted)"><a href="trace-demo.html" style="color:var(--accent-ink)">standalone demo page →</a></span></div>
+  <div class="strip" id="strip" style="display:none"></div>
+</section>
+
+<div class="grid">
+  <section class="panel">
+    <div class="cap">Freshness — last_checked age</div>
+    <div class="bars" id="stale"></div>
+  </section>
+  <section class="panel">
+    <div class="cap">Per-identity activity</div>
+    <div class="bars" id="idents"></div>
+  </section>
+</div>
+
+<footer>Projection surface per the cockpit serving contract — it reads, it never writes.
+Entity spine &amp; typed edges appear when the ack-gated <span class="mono">query_graph</span> read tool lands; until then their absence is the honest state, not a gap.</footer>
+</div>
+
+<script>
+(async function () {
+  const D = await fetch('cockpit-data.json').then(r => r.json()).catch(() => null);
+  if (!D) { document.getElementById('tiles').innerHTML = '<div class="tile na"><div class="n">cockpit-data.json missing — run snapshot.mjs or fetch-live.mjs</div></div>'; return; }
+  const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- provenance ----
+  const prov = document.getElementById('prov');
+  if (D.provenance === 'live-mcp-query-graph') { prov.textContent = 'LIVE · query_graph · :8791'; prov.className = 'badge live'; }
+  else if (D.provenance === 'live-mcp') { prov.textContent = 'LIVE · query_facts + get_receipt · :8791'; prov.className = 'badge live'; }
+  else { prov.textContent = 'DEMO · synthetic company, real mechanics'; prov.className = 'badge preview'; }
+  document.getElementById('taken').textContent = D.graph + ' · ' + D.taken_at;
+
+  // No silent caps — the red-team finding that earned this banner (BRAIN_CONTENT_REDTEAM F1):
+  // if query_graph returns truncated:true, every count below is a floor, and the page says so.
+  if (D.stats && D.stats.truncated === true) {
+    const warn = document.createElement('div');
+    warn.style.cssText = 'background:#fbf3e6;border:1px solid #c79a3f;color:#6b5a34;padding:10px 24px;' +
+      'font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.78rem;letter-spacing:.03em';
+    warn.textContent = 'TRUNCATED — the graph exceeds this response page; every count on this page is a floor, not the total. Raise the fetch limit or wait for pagination.';
+    document.body.insertBefore(warn, document.querySelector('.wrap'));
+  }
+
+  // ---- tiles (n/a is a designed state, never a guess) ----
+  const S = D.stats, na = 'n/a (projector-demo)';
+  const tiles = [
+    ['Committed facts', S.committed],
+    ['Superseded (corrections trail)', S.superseded ?? 'none exposed yet'],
+    ['Sources', S.sources],
+    ['Entities', S.entities ?? 'awaits query_graph'],
+    ['Open proposals', S.open_proposals ?? na],
+    ['Omitted by ACL', S.omitted_outside_scope ?? na],
+  ];
+  document.getElementById('tiles').innerHTML = tiles.map(([k, v]) =>
+    `<div class="tile ${typeof v === 'number' ? '' : 'na'}"><div class="n">${v}</div><div class="k">${k}</div></div>`).join('');
+
+  // ---- graph model ----
+  const nodes = [], byId = new Map();
+  const add = (id, o) => { if (!byId.has(id)) { byId.set(id, nodes.length); nodes.push({ id, ...o }); } return byId.get(id); };
+  const seeded = i => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+  (D.facts || []).forEach(f => add(f.fact_id, { t: 'fact', label: f.statement, f }));
+  (D.sources || []).forEach(s => add('src:' + s.uri, { t: 'source', label: s.uri, s }));
+  (D.adjudications || []).forEach(a => add('adj:' + a.adjudication_id, { t: 'adj', label: 'commit · ' + a.by, a }));
+  (D.entities || []).forEach(e => add('ent:' + e.name, { t: 'entity', label: e.name + (e.type ? ' · ' + e.type : ''), e }));
+  const links = (D.edges || []).filter(e => byId.has(e.from) && byId.has(e.to))
+    .map(e => ({ rel: e.rel, a: byId.get(e.from), b: byId.get(e.to), meta: e }));
+  nodes.forEach((n, i) => { n.x = (seeded(i) - .5) * 900; n.y = (seeded(i + 99) - .5) * 480; n.deg = 0; });
+  links.forEach(l => { nodes[l.a].deg++; nodes[l.b].deg++; });
+
+  // force relaxation, precomputed (REDUCED gets the same final layout, no animation either way)
+  for (let it = 0; it < 260; it++) {
+    const k = 0.82;
+    for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
+      const a = nodes[i], b = nodes[j];
+      let dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy + 0.01, d = Math.sqrt(d2);
+      const rep = 1600 / d2; dx /= d; dy /= d;
+      a.x += dx * rep * k; a.y += dy * rep * k; b.x -= dx * rep * k; b.y -= dy * rep * k;
+    }
+    for (const l of links) {
+      const a = nodes[l.a], b = nodes[l.b];
+      let dx = b.x - a.x, dy = b.y - a.y; const d = Math.sqrt(dx * dx + dy * dy) + 0.01;
+      const want = l.rel === 'ABOUT' ? 120 : 78, f = (d - want) / d * 0.05;
+      a.x += dx * f; a.y += dy * f; b.x -= dx * f; b.y -= dy * f;
+    }
+    for (const n of nodes) { n.x *= 0.998; n.y *= 0.998; }
+  }
+
+  // ---- render ----
+  const cv = document.getElementById('graph'), ctx = cv.getContext('2d');
+  const css = getComputedStyle(document.documentElement);
+  const C = t => css.getPropertyValue(t).trim();
+  let vw, vh, DPR, panX = 0, panY = 0, zoom = 1, hover = null, selected = null, fitted = false;
+  const filters = { kinds: new Set(), about: (D.entities || []).length > 0, status: new Set() };
+  function fit() {
+    let minx = Infinity, maxx = -Infinity, miny = Infinity, maxy = -Infinity;
+    for (const n of nodes) {
+      if (n.x < minx) minx = n.x; if (n.x > maxx) maxx = n.x;
+      if (n.y < miny) miny = n.y; if (n.y > maxy) maxy = n.y;
+    }
+    const pad = 48, bw = Math.max(maxx - minx, 40), bh = Math.max(maxy - miny, 40);
+    zoom = Math.min((vw - 2 * pad) / bw, (vh - 2 * pad) / bh, 1.2);
+    panX = -(minx + maxx) / 2;
+    panY = -(miny + maxy) / 2;
+  }
+  function resize() {
+    DPR = Math.min(devicePixelRatio || 1, 2);
+    vw = cv.clientWidth; vh = cv.clientHeight;
+    cv.width = vw * DPR; cv.height = vh * DPR;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    if (!fitted && vw && vh) { fit(); fitted = true; }
+    draw();
+  }
+  const sx = n => vw / 2 + (n.x + panX) * zoom, sy = n => vh / 2 + (n.y + panY) * zoom;
+  // Facts with a live inbound CONTRADICTS/SUPERSEDES — feeds the choice-at-risk ring.
+  const atRisk = new Set();
+  for (const l of links) if (l.rel === 'CONTRADICTS' || l.rel === 'SUPERSEDES') atRisk.add(nodes[l.b].id);
+  const visible = n => {
+    if (n.t === 'entity' && !filters.about) return false;
+    if (n.t === 'fact') {
+      if (filters.kinds.size && !filters.kinds.has(n.f.kind || 'untyped')) return false;
+      if (filters.status.size && !filters.status.has(n.f.status)) return false;
+    }
+    return true;
+  };
+  function draw() {
+    ctx.clearRect(0, 0, vw, vh);
+    for (const l of links) {
+      const a = nodes[l.a], b = nodes[l.b];
+      if (!visible(a) || !visible(b)) continue;
+      if (l.rel === 'ABOUT' && !filters.about) continue;
+      ctx.beginPath(); ctx.moveTo(sx(a), sy(a)); ctx.lineTo(sx(b), sy(b));
+      ctx.setLineDash(l.rel === 'ADJUDICATED_BY' ? [3, 3] : l.rel === 'PROPOSED_AS' ? [1, 3] : []);
+      ctx.lineWidth = l.rel === 'DERIVED_FROM' ? 1.4 : 1;
+      ctx.strokeStyle = l.rel === 'SUPERSEDES' ? C('--mk-bad')
+        : l.rel === 'ABOUT' ? 'rgba(26,26,23,.16)'
+        : ['SUPPORTS','CONTRADICTS','GATED_BY','DECIDES','ADDRESSES','EMBODIES','CONSTRAINS','RESTS_ON','CASCADES_TO'].includes(l.rel) ? C('--accent')
+        : C('--rule');
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    for (const n of nodes) {
+      if (!visible(n)) continue;
+      const x = sx(n), y = sy(n);
+      const glow = n === hover || n === selected;
+      if (n.t === 'fact') {
+        const r = Math.min(5 + n.deg * 0.9, 12);
+        ctx.beginPath(); ctx.arc(x, y, r * zoom, 0, Math.PI * 2);
+        if (n.f.status === 'superseded') { ctx.strokeStyle = C('--mk-fact'); ctx.lineWidth = 2; ctx.stroke(); }
+        else { ctx.fillStyle = C('--mk-fact'); ctx.fill(); }
+        // choice-at-risk lens (derived from inbound
+        // CONTRADICTS/SUPERSEDES, deliberately NOT a fact status): a decision with a live
+        // inbound contradiction gets a thin red ring. Renders the moment such an edge exists.
+        if (n.f.kind === 'decision' && atRisk.has(n.id)) {
+          ctx.beginPath(); ctx.arc(x, y, (r + 3) * zoom, 0, Math.PI * 2);
+          ctx.strokeStyle = C('--mk-bad'); ctx.lineWidth = 1.5; ctx.stroke();
+        }
+        if (glow) { ctx.beginPath(); ctx.arc(x, y, (r + 4) * zoom, 0, Math.PI * 2); ctx.strokeStyle = C('--accent-ink'); ctx.lineWidth = 1.5; ctx.stroke(); }
+      } else if (n.t === 'source') {
+        ctx.fillStyle = C('--paper-2'); ctx.strokeStyle = C('--rule'); ctx.lineWidth = 1.4;
+        const w = 14 * zoom, h = 10 * zoom;
+        ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 2); ctx.fill(); ctx.stroke();
+      } else if (n.t === 'adj') {
+        ctx.fillStyle = C('--ink');
+        ctx.beginPath(); ctx.moveTo(x, y - 5 * zoom); ctx.lineTo(x + 5 * zoom, y); ctx.lineTo(x, y + 5 * zoom); ctx.lineTo(x - 5 * zoom, y); ctx.fill();
+      } else {
+        ctx.strokeStyle = 'rgba(26,26,23,.45)'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.arc(x, y, 4 * zoom, 0, Math.PI * 2); ctx.stroke();
+      }
+    }
+  }
+  // pan/zoom/hover/click
+  let drag = null;
+  cv.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, px: panX, py: panY }; cv.setPointerCapture(e.pointerId); });
+  cv.addEventListener('pointermove', e => {
+    if (drag) { panX = drag.px + (e.clientX - drag.x) / zoom; panY = drag.py + (e.clientY - drag.y) / zoom; draw(); return; }
+    const r = cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+    hover = null;
+    for (const n of nodes) if (visible(n) && (sx(n) - mx) ** 2 + (sy(n) - my) ** 2 < 140) { hover = n; break; }
+    const tip = document.getElementById('tip');
+    if (hover) { tip.style.display = 'block'; tip.style.left = e.clientX + 14 + 'px'; tip.style.top = e.clientY + 10 + 'px';
+      tip.textContent = hover.t === 'fact' ? (hover.f.kind ? '[' + hover.f.kind + '] ' : '') + hover.f.statement : hover.label; }
+    else tip.style.display = 'none';
+    cv.style.cursor = hover ? 'pointer' : 'grab'; draw();
+  });
+  cv.addEventListener('pointerup', e => { drag = null; if (hover && hover.t === 'fact') { selected = hover; inspect(hover.f); draw(); } });
+  cv.addEventListener('wheel', e => { e.preventDefault(); zoom = Math.min(3, Math.max(.4, zoom * (e.deltaY < 0 ? 1.1 : 0.9))); draw(); }, { passive: false });
+  addEventListener('resize', resize);
+
+  // ---- receipt inspector (the site's receipt anatomy, live) ----
+  function inspect(f) {
+    const adj = (D.adjudications || []).filter(a => a.fact_id === f.fact_id);
+    const chain = [
+      { b: 'extracted', d: 'extractor ' + f.extractor_id, at: f.date },
+      { b: 'ingested', d: 'source ' + (f.source_ref || f.source), at: f.date },
+      ...adj.map(a => ({ b: 'adjudicated', d: a.verdict + ' by ' + a.by, at: a.at })),
+    ];
+    const box = document.getElementById('inspector');
+    box.classList.add('has-fact');
+    box.innerHTML =
+      '<div class="st">' + f.statement + '</div>' +
+      (f.kind ? '<span class="badge">' + f.kind + '</span> ' : '') +
+      '<span class="badge">' + f.status + '</span>' +
+      '<table class="rtab" style="margin-top:10px">' +
+      '<tr><td>Source</td><td>' + f.source + '</td></tr>' +
+      '<tr><td>Confidence</td><td>' + f.confidence + '</td></tr>' +
+      '<tr><td>As of</td><td>' + String(f.date).slice(0, 10) + '</td></tr>' +
+      '<tr><td>Last checked</td><td>' + String(f.last_checked).slice(0, 10) + '</td></tr>' +
+      '<tr><td>Container</td><td>' + f.container + '</td></tr></table>' +
+      '<ul class="chain">' + chain.map(c => '<li><b>' + c.b + '</b> · ' + c.d + '<br><span class="mono" style="font-size:.68rem;color:var(--muted)">' + String(c.at).slice(0, 19) + '</span></li>').join('') + '</ul>';
+  }
+
+  // ---- chips (skip a lone "untyped" — kinds land with staged typed adjudication) ----
+  const kinds = [...new Set((D.facts || []).map(f => f.kind || 'untyped'))];
+  const chipbar = document.getElementById('chips');
+  const mkChip = (label, on, cb) => { const c = document.createElement('button'); c.className = 'chip' + (on ? ' on' : ''); c.textContent = label;
+    c.onclick = () => { cb(c); draw(); }; chipbar.appendChild(c); };
+  const typed = kinds.filter(k => k !== 'untyped');
+  if (typed.length) typed.forEach(k => mkChip(k, false, c => { c.classList.toggle('on'); c.classList.contains('on') ? filters.kinds.add(k) : filters.kinds.delete(k); }));
+  else {
+    const note = document.createElement('span'); note.className = 'chip-note';
+    note.textContent = 'kind chips appear when typed facts land';
+    chipbar.appendChild(note);
+  }
+  if ((D.entities || []).length) mkChip('entity spine', true, c => { c.classList.toggle('on'); filters.about = c.classList.contains('on'); });
+  document.getElementById('gcount').textContent = nodes.length + ' nodes · ' + links.length + ' edges';
+  document.getElementById('legend').innerHTML =
+    '<span><span class="sw" style="background:var(--mk-fact)"></span>committed fact</span>' +
+    '<span><span class="sw" style="border:2px solid var(--mk-fact)"></span>superseded — retired, never deleted' + ((D.stats.superseded ?? 0) === 0 ? ' <em>(none yet — appears when a correction lands)</em>' : '') + '</span>' +
+    '<span><span class="sw" style="background:var(--paper-2);border:1px solid var(--rule);border-radius:2px"></span>source</span>' +
+    '<span><span class="sw" style="background:var(--ink);border-radius:0;transform:rotate(45deg)"></span>adjudication</span>' +
+    ((D.entities || []).length ? '<span><span class="sw" style="border:1px solid var(--ink-soft)"></span>entity</span>' : '<span><em>entity spine awaits query_graph (ack-gated)</em></span>') +
+    '<span><span class="sw" style="border:2px solid var(--mk-bad);background:var(--mk-fact)"></span>decision at risk — inbound contradiction' + (atRisk.size === 0 ? ' <em>(none yet — appears when one lands)</em>' : '') + '</span>' +
+    '<span><em>RESTS_ON / CASCADES_TO cascade trails render on arrival (v0.4 ontology — empty is the honest state)</em></span>';
+
+  // ---- freshness bars (sequential ramp, dark = fresh) ----
+  const RAMP = ['#0f8a6d', '#5da689', '#8ec0ab', '#bcd9cd', '#e9f1ec'];
+  const BUCKETS = ['< 1 day', '1–7 days', '7–30 days', '30–90 days', '> 90 days'];
+  const now = Date.now(), counts = [0, 0, 0, 0, 0];
+  for (const f of D.facts || []) {
+    const age = (now - Date.parse(f.last_checked)) / 864e5;
+    counts[age < 1 ? 0 : age < 7 ? 1 : age < 30 ? 2 : age < 90 ? 3 : 4]++;
+  }
+  const mx = Math.max(...counts, 1);
+  document.getElementById('stale').innerHTML = counts.map((n, i) =>
+    '<div class="bar-row"><span class="lbl">' + BUCKETS[i] + '</span><span class="track"><span class="fill" style="width:' + (n / mx * 100) + '%;background:' + RAMP[i] + '"></span></span><span class="val">' + n + '</span></div>').join('') +
+    (counts[0] + counts[1] === (D.facts || []).length ? '<p class="empty" style="padding:8px 0 0">All facts recently checked — the distribution spreads as the brain ages. Empty tail is the honest state.</p>' : '');
+
+  // ---- per-identity bars (fixed order, direct labels, one hue) ----
+  const idents = Object.entries(D.stats.per_identity_extracted || {}).sort((a, b) => a[0].localeCompare(b[0]));
+  const shortIdent = id => { const t = String(id).split('/').pop(); return t || id; };
+  document.getElementById('idents').innerHTML = idents.length ? idents.map(([id, n]) =>
+    '<div class="bar-row"><span class="lbl" title="' + id.replace(/"/g, '&quot;') + '">' + shortIdent(id) + '</span><span class="track"><span class="fill" style="width:' + (n / Math.max(...idents.map(x => x[1])) * 100) + '%;background:var(--mk-fact)"></span></span><span class="val">' + n + '</span></div>').join('')
+    + '<p class="empty" style="padding:8px 0 0">extracted-by counts · adjudicated-by: ' + Object.entries(D.stats.per_identity_adjudicated || {}).map(([k, v]) => shortIdent(k) + ' × ' + v).join(', ') + '</p>'
+    : '<p class="empty">No identity activity in scope.</p>';
+
+  // ---- MOCK trace filmstrip: replayed session built from REAL fact ids; never claims live ----
+  const strip = document.getElementById('strip');
+  const sample = (D.facts || []).slice(0, 3);
+  const evs = [
+    { t: 'initialize', d: 'projector-demo', ids: [] },
+    { t: 'query_facts', d: '"supplier spend" → ' + Math.min(3, sample.length) + ' facts · omitted_by_acl: 0', ids: sample.map(f => f.fact_id) },
+    { t: 'get_receipt', d: sample[0] ? sample[0].statement.slice(0, 34) + '…' : '—', ids: sample[0] ? [sample[0].fact_id] : [] },
+    { t: 'propose_fact', d: 'REFUSED — projector-demo has no propose right', ids: [], bad: true },
+    { t: 'adjudicate', d: 'not an MCP tool — CLI only, by design', ids: [], bad: true },
+  ];
+  evs.forEach(ev => {
+    const el = document.createElement('div'); el.className = 'ev';
+    el.innerHTML = '<div class="t" style="color:' + (ev.bad ? 'var(--mk-bad)' : 'var(--accent-ink)') + '">' + ev.t + '</div><div class="d">' + ev.d + '</div>';
+    el.onclick = () => {
+      strip.querySelectorAll('.ev').forEach(x => x.classList.remove('on')); el.classList.add('on');
+      selected = null; hover = null;
+      nodes.forEach(n => { if (n.t === 'fact' && ev.ids.includes(n.id)) { selected = n; } });
+      draw();
+      if (ev.ids.length === 1) { const n = nodes[byId.get(ev.ids[0])]; if (n) inspect(n.f); }
+    };
+    strip.appendChild(el);
+  });
+
+  resize();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fitted = false; resize(); });
+
+  // v0.2: new-data pill — poll taken_at every 30s; when a re-pull lands (watch mode or
+  // manual), offer a refresh instead of silently re-rendering under the reader.
+  const takenAt = D.taken_at;
+  setInterval(async () => {
+    try {
+      const j = await fetch('cockpit-data.json', { cache: 'no-store' }).then((r) => r.json());
+      if (j.taken_at && j.taken_at !== takenAt && !document.getElementById('newdata')) {
+        const b = document.createElement('button');
+        b.id = 'newdata';
+        b.textContent = 'new data — refresh';
+        b.onclick = () => location.reload();
+        document.body.appendChild(b);
+      }
+    } catch { /* server briefly away — try again next poll */ }
+  }, 30000);
+})();
+</script>
+</body>
+</html>

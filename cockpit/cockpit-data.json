@@ -1,0 +1,1270 @@
+{
+ "capabilities": {
+  "surface": "brain-cockpit-demo",
+  "version": "demo-1",
+  "read_only": true,
+  "container_scope": [
+   "GREEN"
+  ],
+  "path": "synthetic-demo-dataset",
+  "tools_seen": [
+   "query_facts",
+   "query_graph",
+   "get_receipt"
+  ],
+  "contract": "demo: fictional company, real mechanics"
+ },
+ "provenance": "demo-synthetic",
+ "taken_at": "2026-08-24T15:30:00.000Z",
+ "graph": "calder_fabrication_demo",
+ "facts": [
+  {
+   "fact_id": "00000001-de30-4000-9000-000000010000",
+   "statement": "Nortech Marine accepted quote Q-2214 (marine console brackets, 5052 aluminum, 400 units) at $18.40/unit on 2026-08-19.",
+   "kind": null,
+   "subject": "nortech-marine",
+   "object": "Q-2214 accepted $18.40/unit",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-19T09:07:00.000Z",
+   "last_checked": "2026-08-23T10:11:00.000Z",
+   "extractor_id": "calder-email-connector",
+   "source": "email://sales@calderfab.example/thread-8841",
+   "source_ref": "email://sales@calderfab.example/thread-8841#msg 14",
+   "display_name": "Nortech Marine accepted quote Q-2214 (marine console brackets, 5052 aluminum, 400 units) a"
+  },
+  {
+   "fact_id": "00000003-de30-4000-9000-000000030000",
+   "statement": "Apex Steel Supply lead time on 5052 aluminum sheet moved from 6 days to 11 days effective 2026-08-22.",
+   "kind": null,
+   "subject": "apex-steel-supply",
+   "object": "5052 lead time 6d -> 11d",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-22T09:21:00.000Z",
+   "last_checked": "2026-08-23T10:33:00.000Z",
+   "extractor_id": "calder-intake/connector",
+   "source": "email://ap@calderfab.example/thread-9120",
+   "source_ref": "email://ap@calderfab.example/thread-9120#para 2",
+   "display_name": "Apex Steel Supply lead time on 5052 aluminum sheet moved from 6 days to 11 days effective "
+  },
+  {
+   "fact_id": "00000005-de30-4000-9000-000000050000",
+   "statement": "Quoted turnaround for jobs over 200 units is 12 business days; sales committed Nortech to 10 on Q-2214.",
+   "kind": null,
+   "subject": "quote-turnaround",
+   "object": "12bd standard vs 10bd committed",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-19T09:35:00.000Z",
+   "last_checked": "2026-08-23T10:55:00.000Z",
+   "extractor_id": "calder-slack-connector",
+   "source": "email://sales@calderfab.example/thread-8841",
+   "source_ref": "email://sales@calderfab.example/thread-8841#msg 9",
+   "display_name": "Quoted turnaround for jobs over 200 units is 12 business days; sales committed Nortech to "
+  },
+  {
+   "fact_id": "00000007-de30-4000-9000-000000070000",
+   "statement": "Press brake #2 is scheduled down for tooling calibration 2026-08-28 to 2026-08-29.",
+   "kind": null,
+   "subject": "press-brake-2",
+   "object": "down 08-28..29",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-20T09:49:00.000Z",
+   "last_checked": "2026-08-23T10:17:00.000Z",
+   "extractor_id": "calder-email-connector",
+   "source": "calendar://ops/maintenance-window",
+   "source_ref": "calendar://ops/maintenance-window#event",
+   "display_name": "Press brake #2 is scheduled down for tooling calibration 2026-08-28 to 2026-08-29."
+  },
+  {
+   "fact_id": "00000009-de30-4000-9000-000000090000",
+   "statement": "Bellamy HVAC net-30 terms were extended to net-45 for Q3 after their July payment slipped twice.",
+   "kind": null,
+   "subject": "bellamy-hvac",
+   "object": "net-30 -> net-45 Q3",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "med",
+   "date": "2026-08-18T09:03:00.000Z",
+   "last_checked": "2026-08-23T10:39:00.000Z",
+   "extractor_id": "calder-intake/connector",
+   "source": "drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "drive://calder/QUOTES_LOG.xlsx#row 118",
+   "display_name": "Bellamy HVAC net-30 terms were extended to net-45 for Q3 after their July payment slipped "
+  },
+  {
+   "fact_id": "0000000b-de30-4000-9000-0000000b0000",
+   "statement": "Powder line changeover from white to custom RAL colors costs 40 minutes; batching RAL jobs on Thursdays was adopted 2026-08-14.",
+   "kind": null,
+   "subject": "powder-line",
+   "object": "RAL batching Thursdays",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-20T09:17:00.000Z",
+   "last_checked": "2026-08-23T10:01:00.000Z",
+   "extractor_id": "calder-slack-connector",
+   "source": "slack://calder/#ops/2026-08-20",
+   "source_ref": "slack://calder/#ops/2026-08-20#thread 3",
+   "display_name": "Powder line changeover from white to custom RAL colors costs 40 minutes; batching RAL jobs"
+  },
+  {
+   "fact_id": "0000000d-de30-4000-9000-0000000d0000",
+   "statement": "The shop price floor is 22% contribution margin; quotes below it need owner sign-off.",
+   "kind": null,
+   "subject": "price-floor-policy",
+   "object": "22% CM floor",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-18T09:31:00.000Z",
+   "last_checked": "2026-08-23T10:23:00.000Z",
+   "extractor_id": "calder-email-connector",
+   "source": "drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "drive://calder/QUOTES_LOG.xlsx#header note",
+   "display_name": "The shop price floor is 22% contribution margin; quotes below it need owner sign-off."
+  },
+  {
+   "fact_id": "0000000f-de30-4000-9000-0000000f0000",
+   "statement": "RidgeLine Trailers asked for a standing blanket PO: 120 hitch plates/month starting October.",
+   "kind": null,
+   "subject": "ridgeline-trailers",
+   "object": "blanket PO 120/mo Oct",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "med",
+   "date": "2026-08-21T09:45:00.000Z",
+   "last_checked": "2026-08-23T10:45:00.000Z",
+   "extractor_id": "calder-intake/connector",
+   "source": "email://sales@calderfab.example/thread-8841",
+   "source_ref": "email://sales@calderfab.example/thread-8841#msg 22",
+   "display_name": "RidgeLine Trailers asked for a standing blanket PO: 120 hitch plates/month starting Octobe"
+  },
+  {
+   "fact_id": "00000011-de30-4000-9000-000000110000",
+   "statement": "Fiber laser #1 assist-gas consumption rose 9% month-over-month in July; nozzle wear suspected.",
+   "kind": null,
+   "subject": "fiber-laser-1",
+   "object": "assist gas +9% MoM",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "med",
+   "date": "2026-08-20T09:59:00.000Z",
+   "last_checked": "2026-08-23T10:07:00.000Z",
+   "extractor_id": "calder-slack-connector",
+   "source": "slack://calder/#ops/2026-08-20",
+   "source_ref": "slack://calder/#ops/2026-08-20#thread 7",
+   "display_name": "Fiber laser #1 assist-gas consumption rose 9% month-over-month in July; nozzle wear suspec"
+  },
+  {
+   "fact_id": "00000013-de30-4000-9000-000000130000",
+   "statement": "Coil-Tech Coatings holds Friday capacity for Calder overflow powder jobs through September.",
+   "kind": null,
+   "subject": "coil-tech-coatings",
+   "object": "Friday overflow through Sep",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-19T09:13:00.000Z",
+   "last_checked": "2026-08-23T10:29:00.000Z",
+   "extractor_id": "calder-email-connector",
+   "source": "drive://calder/SUPPLIER_SCORECARD.md",
+   "source_ref": "drive://calder/SUPPLIER_SCORECARD.md#sec 2",
+   "display_name": "Coil-Tech Coatings holds Friday capacity for Calder overflow powder jobs through September"
+  },
+  {
+   "fact_id": "00000015-de30-4000-9000-000000150000",
+   "statement": "Q-2214 material cost basis assumed $2.62/lb for 5052; Apex surcharge notice puts September delivery at $2.91/lb.",
+   "kind": null,
+   "subject": "nortech-marine",
+   "object": "basis $2.62 vs $2.91 Sep",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-22T09:27:00.000Z",
+   "last_checked": "2026-08-23T10:51:00.000Z",
+   "extractor_id": "calder-intake/connector",
+   "source": "email://ap@calderfab.example/thread-9120",
+   "source_ref": "email://ap@calderfab.example/thread-9120#para 3",
+   "display_name": "Q-2214 material cost basis assumed $2.62/lb for 5052; Apex surcharge notice puts September"
+  },
+  {
+   "fact_id": "00000017-de30-4000-9000-000000170000",
+   "statement": "Bellamy HVAC plenum order B-1187 (220 units) is quoted but unsigned for 11 days as of 2026-08-22.",
+   "kind": null,
+   "subject": "bellamy-hvac",
+   "object": "B-1187 unsigned 11d",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-22T09:41:00.000Z",
+   "last_checked": "2026-08-23T10:13:00.000Z",
+   "extractor_id": "calder-slack-connector",
+   "source": "drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "drive://calder/QUOTES_LOG.xlsx#row 131",
+   "display_name": "Bellamy HVAC plenum order B-1187 (220 units) is quoted but unsigned for 11 days as of 2026"
+  },
+  {
+   "fact_id": "00000019-de30-4000-9000-000000190000",
+   "statement": "Weekend laser shifts were ruled out for Q3; overtime cap holds at 8 hours/week per operator.",
+   "kind": null,
+   "subject": "q3-capacity",
+   "object": "no weekend shifts Q3",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-21T09:55:00.000Z",
+   "last_checked": "2026-08-23T10:35:00.000Z",
+   "extractor_id": "calder-email-connector",
+   "source": "slack://calder/#ops/2026-08-20",
+   "source_ref": "slack://calder/#ops/2026-08-20#thread 12",
+   "display_name": "Weekend laser shifts were ruled out for Q3; overtime cap holds at 8 hours/week per operato"
+  },
+  {
+   "fact_id": "0000001b-de30-4000-9000-0000001b0000",
+   "statement": "Scrap rate on 5052 jobs ran 4.1% in July against a 3% target; worst runs trace to nested parts under 40mm.",
+   "kind": null,
+   "subject": "5052-aluminum",
+   "object": "scrap 4.1% vs 3% target",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "med",
+   "date": "2026-08-18T09:09:00.000Z",
+   "last_checked": "2026-08-23T10:57:00.000Z",
+   "extractor_id": "calder-intake/connector",
+   "source": "drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "drive://calder/QUOTES_LOG.xlsx#tab scrap",
+   "display_name": "Scrap rate on 5052 jobs ran 4.1% in July against a 3% target; worst runs trace to nested p"
+  },
+  {
+   "fact_id": "0000001d-de30-4000-9000-0000001d0000",
+   "statement": "Apex Steel invoices have carried a 3% fuel surcharge since 2026-08-01; it was not in the Q-2214 cost basis.",
+   "kind": null,
+   "subject": "apex-steel-supply",
+   "object": "3% surcharge since 08-01",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-22T09:23:00.000Z",
+   "last_checked": "2026-08-23T10:19:00.000Z",
+   "extractor_id": "calder-slack-connector",
+   "source": "email://ap@calderfab.example/thread-9120",
+   "source_ref": "email://ap@calderfab.example/thread-9120#para 5",
+   "display_name": "Apex Steel invoices have carried a 3% fuel surcharge since 2026-08-01; it was not in the Q"
+  },
+  {
+   "fact_id": "0000001f-de30-4000-9000-0000001f0000",
+   "statement": "Nortech Marine is Calder’s largest 2026 account at 31% of YTD revenue.",
+   "kind": null,
+   "subject": "nortech-marine",
+   "object": "31% of YTD revenue",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-18T09:37:00.000Z",
+   "last_checked": "2026-08-23T10:41:00.000Z",
+   "extractor_id": "calder-email-connector",
+   "source": "drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "drive://calder/QUOTES_LOG.xlsx#tab summary",
+   "display_name": "Nortech Marine is Calder’s largest 2026 account at 31% of YTD revenue."
+  },
+  {
+   "fact_id": "00000021-de30-4000-9000-000000210000",
+   "statement": "The quoting spreadsheet applies 2025 powder pricing; Coil-Tech’s 2026 rate card raised custom RAL 6%.",
+   "kind": null,
+   "subject": "quote-turnaround",
+   "object": "quotes use stale 2025 powder rates",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "med",
+   "date": "2026-08-19T09:51:00.000Z",
+   "last_checked": "2026-08-23T10:03:00.000Z",
+   "extractor_id": "calder-intake/connector",
+   "source": "drive://calder/SUPPLIER_SCORECARD.md",
+   "source_ref": "drive://calder/SUPPLIER_SCORECARD.md#sec 4",
+   "display_name": "The quoting spreadsheet applies 2025 powder pricing; Coil-Tech’s 2026 rate card raised cus"
+  },
+  {
+   "fact_id": "00000023-de30-4000-9000-000000230000",
+   "statement": "Press brake #2 calibration was moved up a week after part-angle drift on the RidgeLine hitch-plate run.",
+   "kind": null,
+   "subject": "press-brake-2",
+   "object": "calibration pulled forward",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-20T09:05:00.000Z",
+   "last_checked": "2026-08-23T10:25:00.000Z",
+   "extractor_id": "calder-slack-connector",
+   "source": "slack://calder/#ops/2026-08-20",
+   "source_ref": "slack://calder/#ops/2026-08-20#thread 15",
+   "display_name": "Press brake #2 calibration was moved up a week after part-angle drift on the RidgeLine hit"
+  },
+  {
+   "fact_id": "00000025-de30-4000-9000-000000250000",
+   "statement": "Hiring: one brake operator req is open; two candidates at offer stage as of 2026-08-21.",
+   "kind": null,
+   "subject": "q3-capacity",
+   "object": "1 req, 2 offers out",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "med",
+   "date": "2026-08-21T09:19:00.000Z",
+   "last_checked": "2026-08-23T10:47:00.000Z",
+   "extractor_id": "calder-email-connector",
+   "source": "slack://calder/#ops/2026-08-20",
+   "source_ref": "slack://calder/#ops/2026-08-20#thread 18",
+   "display_name": "Hiring: one brake operator req is open; two candidates at offer stage as of 2026-08-21."
+  },
+  {
+   "fact_id": "00000027-de30-4000-9000-000000270000",
+   "statement": "Blanket-PO pricing for RidgeLine must clear the 22% floor at the September aluminum basis, not the August one.",
+   "kind": null,
+   "subject": "price-floor-policy",
+   "object": "floor check at Sep basis",
+   "status": "committed",
+   "container": "GREEN",
+   "confidence": "high",
+   "date": "2026-08-22T09:33:00.000Z",
+   "last_checked": "2026-08-23T10:09:00.000Z",
+   "extractor_id": "calder-intake/connector",
+   "source": "drive://calder/SUPPLIER_SCORECARD.md",
+   "source_ref": "drive://calder/SUPPLIER_SCORECARD.md#sec 5",
+   "display_name": "Blanket-PO pricing for RidgeLine must clear the 22% floor at the September aluminum basis,"
+  },
+  {
+   "fact_id": "00000029-de30-4000-9000-000000290000",
+   "statement": "Apex Steel Supply lead time on 5052 aluminum sheet is 6 days.",
+   "kind": null,
+   "subject": "apex-steel-supply",
+   "object": "superseded",
+   "status": "superseded",
+   "container": "GREEN",
+   "confidence": "med",
+   "date": "2026-08-12T09:47:00.000Z",
+   "last_checked": "2026-08-23T10:31:00.000Z",
+   "extractor_id": "calder-intake/connector",
+   "source": "drive://calder/SUPPLIER_SCORECARD.md",
+   "source_ref": "drive://calder/SUPPLIER_SCORECARD.md#sec 1",
+   "display_name": "Apex Steel Supply lead time on 5052 aluminum sheet is 6 days."
+  },
+  {
+   "fact_id": "0000002b-de30-4000-9000-0000002b0000",
+   "statement": "Powder line changeover cost is 25 minutes per color change.",
+   "kind": null,
+   "subject": "powder-line",
+   "object": "superseded",
+   "status": "superseded",
+   "container": "GREEN",
+   "confidence": "med",
+   "date": "2026-08-12T09:01:00.000Z",
+   "last_checked": "2026-08-23T10:53:00.000Z",
+   "extractor_id": "calder-intake/connector",
+   "source": "slack://calder/#ops/2026-08-20",
+   "source_ref": "slack://calder/#ops/2026-08-20#thread 1",
+   "display_name": "Powder line changeover cost is 25 minutes per color change."
+  },
+  {
+   "fact_id": "0000002d-de30-4000-9000-0000002d0000",
+   "statement": "Bellamy HVAC terms are net-30.",
+   "kind": null,
+   "subject": "bellamy-hvac",
+   "object": "superseded",
+   "status": "superseded",
+   "container": "GREEN",
+   "confidence": "med",
+   "date": "2026-08-12T09:15:00.000Z",
+   "last_checked": "2026-08-23T10:15:00.000Z",
+   "extractor_id": "calder-intake/connector",
+   "source": "drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "drive://calder/QUOTES_LOG.xlsx#row 96",
+   "display_name": "Bellamy HVAC terms are net-30."
+  }
+ ],
+ "sources": [
+  {
+   "uri": "drive://calder/QUOTES_LOG.xlsx",
+   "ingested_at": "2026-08-18T06:10:00.000Z",
+   "display_name": "drive://calder/QUOTES_LOG.xlsx"
+  },
+  {
+   "uri": "email://sales@calderfab.example/thread-8841",
+   "ingested_at": "2026-08-19T07:02:00.000Z",
+   "display_name": "email: Nortech Marine re-quote thread"
+  },
+  {
+   "uri": "drive://calder/SUPPLIER_SCORECARD.md",
+   "ingested_at": "2026-08-19T07:40:00.000Z",
+   "display_name": "drive://calder/SUPPLIER_SCORECARD.md"
+  },
+  {
+   "uri": "calendar://ops/maintenance-window",
+   "ingested_at": "2026-08-20T05:55:00.000Z",
+   "display_name": "calendar: ops maintenance window"
+  },
+  {
+   "uri": "slack://calder/#ops/2026-08-20",
+   "ingested_at": "2026-08-20T16:24:00.000Z",
+   "display_name": "slack: #ops 2026-08-20"
+  },
+  {
+   "uri": "email://ap@calderfab.example/thread-9120",
+   "ingested_at": "2026-08-22T08:15:00.000Z",
+   "display_name": "email: Apex Steel surcharge notice"
+  }
+ ],
+ "adjudications": [
+  {
+   "fact_id": "00000001-de30-4000-9000-000000010000",
+   "adjudication_id": "00000002-de30-4000-9000-000000020000",
+   "at": "2026-08-19T11:26:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000003-de30-4000-9000-000000030000",
+   "adjudication_id": "00000004-de30-4000-9000-000000040000",
+   "at": "2026-08-22T11:52:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000005-de30-4000-9000-000000050000",
+   "adjudication_id": "00000006-de30-4000-9000-000000060000",
+   "at": "2026-08-19T11:18:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000007-de30-4000-9000-000000070000",
+   "adjudication_id": "00000008-de30-4000-9000-000000080000",
+   "at": "2026-08-20T11:44:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000009-de30-4000-9000-000000090000",
+   "adjudication_id": "0000000a-de30-4000-9000-0000000a0000",
+   "at": "2026-08-18T11:10:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "0000000b-de30-4000-9000-0000000b0000",
+   "adjudication_id": "0000000c-de30-4000-9000-0000000c0000",
+   "at": "2026-08-20T11:36:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "0000000d-de30-4000-9000-0000000d0000",
+   "adjudication_id": "0000000e-de30-4000-9000-0000000e0000",
+   "at": "2026-08-18T11:02:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "0000000f-de30-4000-9000-0000000f0000",
+   "adjudication_id": "00000010-de30-4000-9000-000000100000",
+   "at": "2026-08-21T11:28:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000011-de30-4000-9000-000000110000",
+   "adjudication_id": "00000012-de30-4000-9000-000000120000",
+   "at": "2026-08-20T11:54:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000013-de30-4000-9000-000000130000",
+   "adjudication_id": "00000014-de30-4000-9000-000000140000",
+   "at": "2026-08-19T11:20:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000015-de30-4000-9000-000000150000",
+   "adjudication_id": "00000016-de30-4000-9000-000000160000",
+   "at": "2026-08-22T11:46:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000017-de30-4000-9000-000000170000",
+   "adjudication_id": "00000018-de30-4000-9000-000000180000",
+   "at": "2026-08-22T11:12:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000019-de30-4000-9000-000000190000",
+   "adjudication_id": "0000001a-de30-4000-9000-0000001a0000",
+   "at": "2026-08-21T11:38:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "0000001b-de30-4000-9000-0000001b0000",
+   "adjudication_id": "0000001c-de30-4000-9000-0000001c0000",
+   "at": "2026-08-18T11:04:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "0000001d-de30-4000-9000-0000001d0000",
+   "adjudication_id": "0000001e-de30-4000-9000-0000001e0000",
+   "at": "2026-08-22T11:30:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "0000001f-de30-4000-9000-0000001f0000",
+   "adjudication_id": "00000020-de30-4000-9000-000000200000",
+   "at": "2026-08-18T11:56:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000021-de30-4000-9000-000000210000",
+   "adjudication_id": "00000022-de30-4000-9000-000000220000",
+   "at": "2026-08-19T11:22:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000023-de30-4000-9000-000000230000",
+   "adjudication_id": "00000024-de30-4000-9000-000000240000",
+   "at": "2026-08-20T11:48:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000025-de30-4000-9000-000000250000",
+   "adjudication_id": "00000026-de30-4000-9000-000000260000",
+   "at": "2026-08-21T11:14:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000027-de30-4000-9000-000000270000",
+   "adjudication_id": "00000028-de30-4000-9000-000000280000",
+   "at": "2026-08-22T11:40:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "00000029-de30-4000-9000-000000290000",
+   "adjudication_id": "0000002a-de30-4000-9000-0000002a0000",
+   "at": "2026-08-12T11:06:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "0000002b-de30-4000-9000-0000002b0000",
+   "adjudication_id": "0000002c-de30-4000-9000-0000002c0000",
+   "at": "2026-08-12T11:32:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  },
+  {
+   "fact_id": "0000002d-de30-4000-9000-0000002d0000",
+   "adjudication_id": "0000002e-de30-4000-9000-0000002e0000",
+   "at": "2026-08-12T11:58:00.000Z",
+   "by": "adjudicator",
+   "verdict": "commit"
+  }
+ ],
+ "entities": [
+  {
+   "name": "nortech-marine",
+   "type": "customer"
+  },
+  {
+   "name": "bellamy-hvac",
+   "type": "customer"
+  },
+  {
+   "name": "ridgeline-trailers",
+   "type": "customer"
+  },
+  {
+   "name": "apex-steel-supply",
+   "type": "supplier"
+  },
+  {
+   "name": "coil-tech-coatings",
+   "type": "supplier"
+  },
+  {
+   "name": "fiber-laser-1",
+   "type": "machine"
+  },
+  {
+   "name": "press-brake-2",
+   "type": "machine"
+  },
+  {
+   "name": "powder-line",
+   "type": "machine"
+  },
+  {
+   "name": "quote-turnaround",
+   "type": "process"
+  },
+  {
+   "name": "price-floor-policy",
+   "type": "policy"
+  },
+  {
+   "name": "5052-aluminum",
+   "type": "material"
+  },
+  {
+   "name": "q3-capacity",
+   "type": "opportunity"
+  }
+ ],
+ "edges": [
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000001-de30-4000-9000-000000010000",
+   "to": "src:email://sales@calderfab.example/thread-8841",
+   "source_ref": "",
+   "span": "msg 14"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000001-de30-4000-9000-000000010000",
+   "to": "adj:00000002-de30-4000-9000-000000020000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000001-de30-4000-9000-000000010000",
+   "to": "ent:nortech-marine",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000001-de30-4000-9000-000000010000",
+   "to": "ent:5052-aluminum",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000003-de30-4000-9000-000000030000",
+   "to": "src:email://ap@calderfab.example/thread-9120",
+   "source_ref": "",
+   "span": "para 2"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000003-de30-4000-9000-000000030000",
+   "to": "adj:00000004-de30-4000-9000-000000040000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000003-de30-4000-9000-000000030000",
+   "to": "ent:apex-steel-supply",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000003-de30-4000-9000-000000030000",
+   "to": "ent:5052-aluminum",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000005-de30-4000-9000-000000050000",
+   "to": "src:email://sales@calderfab.example/thread-8841",
+   "source_ref": "",
+   "span": "msg 9"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000005-de30-4000-9000-000000050000",
+   "to": "adj:00000006-de30-4000-9000-000000060000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000005-de30-4000-9000-000000050000",
+   "to": "ent:quote-turnaround",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000005-de30-4000-9000-000000050000",
+   "to": "ent:nortech-marine",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000007-de30-4000-9000-000000070000",
+   "to": "src:calendar://ops/maintenance-window",
+   "source_ref": "",
+   "span": "event"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000007-de30-4000-9000-000000070000",
+   "to": "adj:00000008-de30-4000-9000-000000080000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000007-de30-4000-9000-000000070000",
+   "to": "ent:press-brake-2",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000009-de30-4000-9000-000000090000",
+   "to": "src:drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "",
+   "span": "row 118"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000009-de30-4000-9000-000000090000",
+   "to": "adj:0000000a-de30-4000-9000-0000000a0000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000009-de30-4000-9000-000000090000",
+   "to": "ent:bellamy-hvac",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "0000000b-de30-4000-9000-0000000b0000",
+   "to": "src:slack://calder/#ops/2026-08-20",
+   "source_ref": "",
+   "span": "thread 3"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "0000000b-de30-4000-9000-0000000b0000",
+   "to": "adj:0000000c-de30-4000-9000-0000000c0000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000000b-de30-4000-9000-0000000b0000",
+   "to": "ent:powder-line",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000000b-de30-4000-9000-0000000b0000",
+   "to": "ent:coil-tech-coatings",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "0000000d-de30-4000-9000-0000000d0000",
+   "to": "src:drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "",
+   "span": "header note"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "0000000d-de30-4000-9000-0000000d0000",
+   "to": "adj:0000000e-de30-4000-9000-0000000e0000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000000d-de30-4000-9000-0000000d0000",
+   "to": "ent:price-floor-policy",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "0000000f-de30-4000-9000-0000000f0000",
+   "to": "src:email://sales@calderfab.example/thread-8841",
+   "source_ref": "",
+   "span": "msg 22"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "0000000f-de30-4000-9000-0000000f0000",
+   "to": "adj:00000010-de30-4000-9000-000000100000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000000f-de30-4000-9000-0000000f0000",
+   "to": "ent:ridgeline-trailers",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000000f-de30-4000-9000-0000000f0000",
+   "to": "ent:q3-capacity",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000011-de30-4000-9000-000000110000",
+   "to": "src:slack://calder/#ops/2026-08-20",
+   "source_ref": "",
+   "span": "thread 7"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000011-de30-4000-9000-000000110000",
+   "to": "adj:00000012-de30-4000-9000-000000120000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000011-de30-4000-9000-000000110000",
+   "to": "ent:fiber-laser-1",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000013-de30-4000-9000-000000130000",
+   "to": "src:drive://calder/SUPPLIER_SCORECARD.md",
+   "source_ref": "",
+   "span": "sec 2"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000013-de30-4000-9000-000000130000",
+   "to": "adj:00000014-de30-4000-9000-000000140000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000013-de30-4000-9000-000000130000",
+   "to": "ent:coil-tech-coatings",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000013-de30-4000-9000-000000130000",
+   "to": "ent:powder-line",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000015-de30-4000-9000-000000150000",
+   "to": "src:email://ap@calderfab.example/thread-9120",
+   "source_ref": "",
+   "span": "para 3"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000015-de30-4000-9000-000000150000",
+   "to": "adj:00000016-de30-4000-9000-000000160000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000015-de30-4000-9000-000000150000",
+   "to": "ent:nortech-marine",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000015-de30-4000-9000-000000150000",
+   "to": "ent:apex-steel-supply",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000015-de30-4000-9000-000000150000",
+   "to": "ent:5052-aluminum",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000017-de30-4000-9000-000000170000",
+   "to": "src:drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "",
+   "span": "row 131"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000017-de30-4000-9000-000000170000",
+   "to": "adj:00000018-de30-4000-9000-000000180000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000017-de30-4000-9000-000000170000",
+   "to": "ent:bellamy-hvac",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000019-de30-4000-9000-000000190000",
+   "to": "src:slack://calder/#ops/2026-08-20",
+   "source_ref": "",
+   "span": "thread 12"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000019-de30-4000-9000-000000190000",
+   "to": "adj:0000001a-de30-4000-9000-0000001a0000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000019-de30-4000-9000-000000190000",
+   "to": "ent:q3-capacity",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000019-de30-4000-9000-000000190000",
+   "to": "ent:fiber-laser-1",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "0000001b-de30-4000-9000-0000001b0000",
+   "to": "src:drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "",
+   "span": "tab scrap"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "0000001b-de30-4000-9000-0000001b0000",
+   "to": "adj:0000001c-de30-4000-9000-0000001c0000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000001b-de30-4000-9000-0000001b0000",
+   "to": "ent:5052-aluminum",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000001b-de30-4000-9000-0000001b0000",
+   "to": "ent:fiber-laser-1",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "0000001d-de30-4000-9000-0000001d0000",
+   "to": "src:email://ap@calderfab.example/thread-9120",
+   "source_ref": "",
+   "span": "para 5"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "0000001d-de30-4000-9000-0000001d0000",
+   "to": "adj:0000001e-de30-4000-9000-0000001e0000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000001d-de30-4000-9000-0000001d0000",
+   "to": "ent:apex-steel-supply",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000001d-de30-4000-9000-0000001d0000",
+   "to": "ent:nortech-marine",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "0000001f-de30-4000-9000-0000001f0000",
+   "to": "src:drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "",
+   "span": "tab summary"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "0000001f-de30-4000-9000-0000001f0000",
+   "to": "adj:00000020-de30-4000-9000-000000200000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000001f-de30-4000-9000-0000001f0000",
+   "to": "ent:nortech-marine",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000021-de30-4000-9000-000000210000",
+   "to": "src:drive://calder/SUPPLIER_SCORECARD.md",
+   "source_ref": "",
+   "span": "sec 4"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000021-de30-4000-9000-000000210000",
+   "to": "adj:00000022-de30-4000-9000-000000220000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000021-de30-4000-9000-000000210000",
+   "to": "ent:quote-turnaround",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000021-de30-4000-9000-000000210000",
+   "to": "ent:coil-tech-coatings",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000023-de30-4000-9000-000000230000",
+   "to": "src:slack://calder/#ops/2026-08-20",
+   "source_ref": "",
+   "span": "thread 15"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000023-de30-4000-9000-000000230000",
+   "to": "adj:00000024-de30-4000-9000-000000240000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000023-de30-4000-9000-000000230000",
+   "to": "ent:press-brake-2",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000023-de30-4000-9000-000000230000",
+   "to": "ent:ridgeline-trailers",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000025-de30-4000-9000-000000250000",
+   "to": "src:slack://calder/#ops/2026-08-20",
+   "source_ref": "",
+   "span": "thread 18"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000025-de30-4000-9000-000000250000",
+   "to": "adj:00000026-de30-4000-9000-000000260000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000025-de30-4000-9000-000000250000",
+   "to": "ent:q3-capacity",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000027-de30-4000-9000-000000270000",
+   "to": "src:drive://calder/SUPPLIER_SCORECARD.md",
+   "source_ref": "",
+   "span": "sec 5"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000027-de30-4000-9000-000000270000",
+   "to": "adj:00000028-de30-4000-9000-000000280000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000027-de30-4000-9000-000000270000",
+   "to": "ent:price-floor-policy",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000027-de30-4000-9000-000000270000",
+   "to": "ent:ridgeline-trailers",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000027-de30-4000-9000-000000270000",
+   "to": "ent:apex-steel-supply",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "00000029-de30-4000-9000-000000290000",
+   "to": "src:drive://calder/SUPPLIER_SCORECARD.md",
+   "source_ref": "",
+   "span": "sec 1"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "00000029-de30-4000-9000-000000290000",
+   "to": "adj:0000002a-de30-4000-9000-0000002a0000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000029-de30-4000-9000-000000290000",
+   "to": "ent:apex-steel-supply",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "00000029-de30-4000-9000-000000290000",
+   "to": "ent:5052-aluminum",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "SUPERSEDES",
+   "from": "00000001-de30-4000-9000-000000010000",
+   "to": "00000029-de30-4000-9000-000000290000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "0000002b-de30-4000-9000-0000002b0000",
+   "to": "src:slack://calder/#ops/2026-08-20",
+   "source_ref": "",
+   "span": "thread 1"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "0000002b-de30-4000-9000-0000002b0000",
+   "to": "adj:0000002c-de30-4000-9000-0000002c0000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000002b-de30-4000-9000-0000002b0000",
+   "to": "ent:powder-line",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "SUPERSEDES",
+   "from": "0000000b-de30-4000-9000-0000000b0000",
+   "to": "0000002b-de30-4000-9000-0000002b0000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "DERIVED_FROM",
+   "from": "0000002d-de30-4000-9000-0000002d0000",
+   "to": "src:drive://calder/QUOTES_LOG.xlsx",
+   "source_ref": "",
+   "span": "row 96"
+  },
+  {
+   "rel": "ADJUDICATED_BY",
+   "from": "0000002d-de30-4000-9000-0000002d0000",
+   "to": "adj:0000002e-de30-4000-9000-0000002e0000",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "ABOUT",
+   "from": "0000002d-de30-4000-9000-0000002d0000",
+   "to": "ent:bellamy-hvac",
+   "source_ref": "",
+   "span": ""
+  },
+  {
+   "rel": "SUPERSEDES",
+   "from": "00000009-de30-4000-9000-000000090000",
+   "to": "0000002d-de30-4000-9000-0000002d0000",
+   "source_ref": "",
+   "span": ""
+  }
+ ],
+ "stats": {
+  "committed": 20,
+  "superseded": 3,
+  "open_proposals": 0,
+  "omitted_outside_scope": 0,
+  "truncated": false,
+  "sources": 6,
+  "entities": 12,
+  "per_identity_extracted": {
+   "calder-email-connector": 7,
+   "calder-intake/connector": 10,
+   "calder-slack-connector": 6
+  },
+  "per_identity_adjudicated": {
+   "adjudicator": 23
+  }
+ }
+}

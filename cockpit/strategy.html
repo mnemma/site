@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategy — Mnemma brain cockpit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+/* Paper-editorial tokens  data-mark chart steps per COCKPIT_DESIGN_V1 C-4.
+   Risk semantics per COCKPIT_STRATEGY_PANEL_V1 + v0.4 rulings: derived at render, never stored. */
+:root{
+  --paper:#f7f5ef; --paper-2:#fbfaf6; --ink:#1a1a17; --ink-soft:#40403a; --muted:#6a6860;
+  --rule:#ddd7c9; --rule-soft:#e8e3d7; --accent:#0d6b56; --accent-ink:#0a5343; --tint:#e9f1ec;
+  --mk-fact:#0f8a6d; --mk-pend:#a87b28; --mk-bad:#a03d2e;
+}
+*{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 16px/1.55 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Fraunces,Charter,Georgia,serif;font-weight:500;margin:0}
+.mono{font-family:"Spline Sans Mono",ui-monospace,monospace}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px}
+header.bar{border-bottom:1px solid var(--rule);background:var(--paper-2)}
+header.bar .wrap{display:flex;align-items:center;gap:14px;padding:14px 24px}
+.badge{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:.06em;
+  padding:3px 10px;border:1px solid var(--rule);border-radius:999px;color:var(--muted)}
+.badge.live{border-color:var(--accent);color:var(--accent-ink);background:var(--tint)}
+.spacer{flex:1}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:22px 0}
+.tile{background:var(--paper-2);border:1px solid var(--rule);border-radius:8px;padding:14px 16px}
+.tile .n{font-family:Fraunces,Georgia,serif;font-size:1.9rem;line-height:1.1}
+.tile .k{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);margin-top:4px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:18px;align-items:start;margin-bottom:40px}
+@media(max-width:1000px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--paper-2);border:1px solid var(--rule);border-radius:8px}
+.panel .cap{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.72rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--rule-soft);
+  display:flex;gap:10px;align-items:center}
+.notice{margin:14px;padding:12px 16px;background:#fbf3e6;border:1px solid #c79a3f;border-radius:6px;
+  color:#6b5a34;font-size:.85rem}
+.tierlist{padding:6px 0}
+.tier{padding:6px 14px}
+.tier .tlabel{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.68rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);margin:8px 0 4px}
+.dec{display:flex;gap:10px;align-items:baseline;padding:9px 10px;border:1px solid transparent;
+  border-radius:6px;cursor:pointer;margin:2px 0}
+.dec:hover{background:var(--paper)}
+.dec.sel{border-color:var(--accent);background:var(--tint)}
+.dec .dot{width:10px;height:10px;border-radius:50%;background:var(--mk-fact);flex:none;position:relative;top:1px}
+.dec.risk-direct .dot{box-shadow:0 0 0 2.5px var(--mk-bad)}
+.dec.risk-inherited .dot{box-shadow:0 0 0 2.5px var(--mk-pend)}
+.dec .st{font-size:.9rem;line-height:1.4}
+.pill{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.64rem;letter-spacing:.05em;
+  padding:1px 8px;border:1px solid var(--rule);border-radius:999px;color:var(--muted);flex:none}
+.pill.locked{border-color:var(--accent);color:var(--accent-ink)}
+.pill.risk{border-color:var(--mk-bad);color:var(--mk-bad)}
+.pill.inh{border-color:var(--mk-pend);color:var(--mk-pend)}
+#inspect{padding:14px;min-height:180px;font-size:.9rem}
+#inspect .st{font-family:Fraunces,Georgia,serif;font-size:1.05rem;line-height:1.4;margin-bottom:10px}
+#inspect h4{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.7rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);margin:16px 0 6px;font-weight:500}
+.fitem{padding:7px 0 7px 12px;border-left:2px solid color-mix(in srgb,var(--accent) 35%,var(--rule));
+  font-size:.84rem;margin:4px 0}
+.fitem.badleft{border-left-color:var(--mk-bad)}
+.fitem .rc{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:.7rem;color:var(--muted);margin-top:3px;word-break:break-all}
+.empty{padding:14px;color:var(--muted);font-size:.85rem;font-style:italic}
+footer{margin:26px 0 40px;color:var(--muted);font-size:.8rem}
+a{color:var(--accent-ink)}
+</style>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+</head>
+<body>
+<header class="bar"><div class="wrap">
+  <h1 style="font-size:1.25rem;font-weight:600">Strategy</h1>
+  <span id="prov" class="badge">loading…</span>
+  <span class="badge">read-only · projector-demo · derived at render, never stored</span>
+  <span class="spacer"></span>
+  <span class="mono" style="font-size:.72rem;color:var(--muted)"><a href="index.html">← cockpit</a></span>
+</div></header>
+
+<div class="wrap">
+<noscript><p>Needs JavaScript; the data is plain JSON: <a href="cockpit-data.json">cockpit-data.json</a>.</p></noscript>
+<div class="tiles" id="tiles"></div>
+<div class="grid">
+  <div class="panel">
+    <div class="cap">The cascade — decisions by level<span class="spacer"></span><span id="ccount" class="mono"></span></div>
+    <div id="cascade" class="tierlist"></div>
+  </div>
+  <div class="panel">
+    <div class="cap">Selected decision — its ground</div>
+    <div id="inspect"><p class="empty">Click a decision. Its RESTS_ON foundations, inbound risk, and downstream CASCADES_TO exposure render here — every line with its receipt.</p></div>
+  </div>
+</div>
+<footer>Per the strategy-panel contract — risk is red (direct inbound contradiction on the decision or a foundation) or amber (inherited from an upstream decision), computed client-side over the edges query_graph already returns. No aggregate score, no stored status, no write surface.</footer>
+</div>
+
+<script>
+(async function () {
+  const D = await fetch('cockpit-data.json', { cache: 'no-store' }).then(r => r.json()).catch(() => null);
+  if (!D) { document.getElementById('tiles').innerHTML = '<div class="tile"><div class="n mono" style="font-size:1rem">cockpit-data.json missing — run fetch-live.mjs</div></div>'; return; }
+  document.getElementById('prov').textContent = (D.provenance || '').startsWith('live') ? 'LIVE · ' + D.graph + ' · ' + D.taken_at.slice(0, 16) + 'Z' : 'PREVIEW';
+  document.getElementById('prov').className = 'badge live';
+
+  const strip = id => String(id == null ? '' : id).replace(/^fact:/, '');
+  const facts = new Map((D.facts || []).map(f => [strip(f.fact_id), f]));
+  const decisions = (D.facts || []).filter(f => f.kind === 'decision' && f.status === 'committed');
+
+  // Edge maps — RESTS_ON / CASCADES_TO flow through the same query_graph edges when v0.4 lands.
+  const restsOn = new Map(), cascadesTo = new Map(), cascadesFrom = new Map(), inboundRisk = new Map();
+  for (const e of D.edges || []) {
+    const from = strip(e.from), to = strip(e.to);
+    if (e.rel === 'RESTS_ON') { (restsOn.get(from) || restsOn.set(from, []).get(from)).push(to); }
+    else if (e.rel === 'CASCADES_TO') {
+      (cascadesTo.get(from) || cascadesTo.set(from, []).get(from)).push(to);
+      (cascadesFrom.get(to) || cascadesFrom.set(to, []).get(to)).push(from);
+    }
+    else if (e.rel === 'CONTRADICTS' || e.rel === 'SUPERSEDES') {
+      (inboundRisk.get(to) || inboundRisk.set(to, []).get(to)).push({ rel: e.rel, from });
+    }
+  }
+
+  // Risk derivation (never stored): direct = inbound on the decision or any RESTS_ON foundation;
+  // inherited = any CASCADES_TO ancestor is direct-red. One DAG pass; cycles guarded by visited-set
+  // (the write path rejects cycles — a cycle here would be a data error, surfaced not drawn).
+  const direct = new Set();
+  for (const d of decisions) {
+    const id = strip(d.fact_id);
+    if (inboundRisk.has(id)) { direct.add(id); continue; }
+    for (const f of restsOn.get(id) || []) if (inboundRisk.has(f)) { direct.add(id); break; }
+  }
+  const inherited = new Set();
+  const upRed = (id, seen) => {
+    if (seen.has(id)) return false;               // cycle guard = data-error tolerance
+    seen.add(id);
+    for (const up of cascadesFrom.get(id) || []) {
+      if (direct.has(up) || upRed(up, seen)) return true;
+    }
+    return false;
+  };
+  for (const d of decisions) {
+    const id = strip(d.fact_id);
+    if (!direct.has(id) && upRed(id, new Set())) inherited.add(id);
+  }
+  const foundationsContradicted = new Set();
+  for (const [, targets] of restsOn) for (const t of targets) if (inboundRisk.has(t)) foundationsContradicted.add(t);
+
+  // Tiles
+  document.getElementById('tiles').innerHTML = [
+    ['Decisions', decisions.length],
+    ['At risk — direct', direct.size],
+    ['At risk — inherited', inherited.size],
+    ['Foundations contradicted', foundationsContradicted.size],
+    ['Cascade edges', (cascadesTo.size ? [...cascadesTo.values()].flat().length : 0) + (restsOn.size ? [...restsOn.values()].flat().length : 0)],
+  ].map(([k, v]) => `<div class="tile"><div class="n">${v}</div><div class="k">${k}</div></div>`).join('');
+
+  // Tiers by cascade_level (v0.4 prop; absent today -> single honest tier)
+  const byLevel = new Map();
+  for (const d of decisions) {
+    const lv = (d.cascade_level ?? d.receipt?.cascade_level ?? null);
+    const key = lv == null ? 'unleveled' : String(lv);
+    (byLevel.get(key) || byLevel.set(key, []).get(key)).push(d);
+  }
+  const cascadeEl = document.getElementById('cascade');
+  const hasCascade = [...byLevel.keys()].some(k => k !== 'unleveled') || cascadesTo.size > 0;
+  if (!hasCascade) {
+    cascadeEl.insertAdjacentHTML('afterbegin',
+      '<div class="notice"><b>No cascade minted yet.</b> The first one is the company\'s own strategy — it mints the moment the aspiration is spoken and the v0.4 write-path lands. Until then, this is the live <b>decisions register</b>: every committed decision, its lifecycle, and its receipt. Cascade levels, RESTS_ON foundations, and inherited-risk rendering are armed and light up on arrival — empty is the honest state, not a gap.</div>');
+  }
+  const levels = [...byLevel.keys()].sort((a, b) => (a === 'unleveled') - (b === 'unleveled') || Number(a) - Number(b));
+  let selected = null;
+  for (const lv of levels) {
+    const tier = document.createElement('div'); tier.className = 'tier';
+    tier.innerHTML = `<div class="tlabel">${lv === 'unleveled' ? (hasCascade ? 'unleveled' : 'committed decisions (' + byLevel.get(lv).length + ')') : 'level ' + lv}</div>`;
+    for (const d of byLevel.get(lv).sort((x, y) => String(y.date || '').localeCompare(String(x.date || '')))) {
+      const id = strip(d.fact_id);
+      const el = document.createElement('div');
+      el.className = 'dec' + (direct.has(id) ? ' risk-direct' : inherited.has(id) ? ' risk-inherited' : '');
+      el.innerHTML = `<span class="dot"></span><span class="st">${esc(d.statement).slice(0, 160)}</span>` +
+        (d.lifecycle ? `<span class="pill ${d.lifecycle === 'locked' ? 'locked' : ''}">${esc(d.lifecycle)}</span>` : '') +
+        (direct.has(id) ? '<span class="pill risk">at risk</span>' : inherited.has(id) ? '<span class="pill inh">inherited</span>' : '');
+      el.onclick = () => { document.querySelectorAll('.dec.sel').forEach(x => x.classList.remove('sel')); el.classList.add('sel'); selected = id; inspect(d); };
+      tier.appendChild(el);
+    }
+    cascadeEl.appendChild(tier);
+  }
+  document.getElementById('ccount').textContent = decisions.length + ' decisions';
+
+  function esc(s) { return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function receiptLine(f) {
+    return `fact:${strip(f.fact_id).slice(0, 8)}… · ${esc(f.source || '')} · ${String(f.date || '').slice(0, 10)} · ${esc(f.confidence || '')}`;
+  }
+  function inspect(d) {
+    const id = strip(d.fact_id);
+    let html = `<div class="st">${esc(d.statement)}</div><div class="fitem"><div class="rc">${receiptLine(d)}</div></div>`;
+    const founds = restsOn.get(id) || [];
+    html += `<h4>Rests on (${founds.length})${founds.length > 7 ? ' <span class="pill inh">broad footing</span>' : ''}</h4>`;
+    html += founds.length ? founds.map(fid => {
+      const f = facts.get(fid);
+      const bad = inboundRisk.has(fid);
+      return f ? `<div class="fitem${bad ? ' badleft' : ''}">${esc(f.statement).slice(0, 140)}${bad ? ' <span class="pill risk">contradicted</span>' : ''}<div class="rc">${receiptLine(f)}</div></div>`
+               : `<div class="fitem"><div class="rc">fact:${fid} (outside read scope)</div></div>`;
+    }).join('') : '<p class="empty">No RESTS_ON foundations recorded — arrives with the v0.4 write-path.</p>';
+    const risks = inboundRisk.get(id) || [];
+    html += `<h4>Inbound risk (${risks.length})</h4>`;
+    html += risks.length ? risks.map(r => {
+      const f = facts.get(r.from);
+      return `<div class="fitem badleft">${r.rel} ← ${f ? esc(f.statement).slice(0, 120) : 'fact:' + r.from}${f ? `<div class="rc">${receiptLine(f)}</div>` : ''}</div>`;
+    }).join('') : '<p class="empty">None — no committed fact contradicts this decision.</p>';
+    const down = cascadesTo.get(id) || [];
+    html += `<h4>Cascades to (${down.length})</h4>`;
+    html += down.length ? down.map(cid => {
+      const f = facts.get(cid);
+      return `<div class="fitem">${f ? esc(f.statement).slice(0, 120) : 'fact:' + cid}</div>`;
+    }).join('') : '<p class="empty">No downstream choices recorded yet.</p>';
+    document.getElementById('inspect').innerHTML = html;
+  }
+})();
+</script>
+</body>
+</html>

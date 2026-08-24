@@ -1,0 +1,3 @@
+{"received_at":"2026-08-24T15:28:00.000Z","sse_event":"hello","sse_id":"1","identity":"projector-demo","tail_seq":1}
+{"received_at":"2026-08-24T15:29:00.000Z","sse_event":"query","sse_id":"2","event_id":"0000002f-de30-4000-9000-0000002f0000","ts":"2026-08-24T15:29:00.000Z","kind":"query","identity":"projector-demo","container":null,"tool":"query_graph","args_digest":{"h":"demo0000demo0000","len":64}}
+{"received_at":"2026-08-24T15:29:00.000Z","sse_event":"query","sse_id":"3","event_id":"00000030-de30-4000-9000-000000300000","ts":"2026-08-24T15:29:00.000Z","kind":"query","identity":"projector-demo","container":null,"tool":"get_receipt","args_digest":{"h":"demo1111demo1111","len":48}}
