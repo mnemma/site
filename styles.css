@@ -74,10 +74,9 @@ header.site {
 .brand { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; letter-spacing: -.01em; color: var(--ink); display: flex; align-items: center; gap: 10px; }
 .brand:hover { text-decoration: none; }
 .brand .mark {
-  width: 22px; height: 22px; border: 2px solid var(--ink); border-radius: 3px;
-  position: relative; flex: none;
+  width: 25px; height: 25px; flex: none;
+  background: url("img/favicon.svg") center/contain no-repeat;
 }
-.brand .mark::after { content: ""; position: absolute; inset: 4px; border-left: 2px solid var(--accent); }
 .nav .links { display: flex; gap: 22px; margin-left: 28px; }
 .nav .links a { color: var(--ink-soft); font-size: .92rem; font-weight: 500; }
 .nav .links a:hover { color: var(--ink); text-decoration: none; }
