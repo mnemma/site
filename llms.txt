@@ -38,9 +38,10 @@ The buyer is SMB leadership and P&L owners. Single call to action: the seven-que
 - [Security](security.html): three deployment models; never our cloud
 - [Greenfield](for-startups.html): design-partner motion, two slots, graduation ratchet
 - [Assessment](book.html): published formula; day-14 walk terms
+- [Contact](contact.html): inquiry form; nothing else on the site submits data
 
 ## Avoid
 
-- notes.html, eight-modes.html, why-receipts.html — post-launch content backlog, not launch claims
+- notes.html, eight-modes.html, why-receipts.html — editorial essays, not fact sources; cite /brain/#claim- anchors for product facts, not these pages
 - Internal document names (product drafts, census filenames, MSA packages). Cite /brain/#claim- anchors instead.
 - Invented testimonials, logos, usage statistics, customer names, Greenfield public price cards, roadmap language, extra heads, 24/7 Greenfield synthesis.
