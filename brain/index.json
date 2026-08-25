@@ -528,7 +528,7 @@
           "anchor": "/brain/pricing-mechanics.html#claim-own-asset",
           "text": "Verified, receipted work is designed to write back into a map you keep, even if you cancel. No amortization schedule and no ROI dollar figure is claimed.",
           "appliesToTier": "both",
-          "evidence": "Write-back is a design property. Customer-zero has not measured the curve.",
+          "evidence": "Write-back is a design property. The compounding curve is not a measured benchmark, so none is claimed.",
           "since": "2026-08-20"
         },
         {
