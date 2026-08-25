@@ -55,7 +55,7 @@ export function render(container) {
     viewBox: '0 0 ' + W + ' ' + H,
     role: 'img',
     'aria-label': 'Chart: year-one planning band by team size. From ' + t.minKw +
-      ' knowledge workers up, the worked Standard band is about $42,000 cash at order and about $78,000 year one; the assessment prints the band for your numbers. Under ' + t.minKw + ' is a waitlist. Between ' +
+      ' knowledge workers up, the worked Standard band is about $42,000 cash at order and about $78,000 year one; we quote from your numbers. Under ' + t.minKw + ' is a waitlist. Between ' +
       t.minKw + ' and ' + t.gfMax + ' knowledge workers, a brand-new company may fit the Greenfield design-partner path; its bands print on the assessment.'
   });
   svg.style.width = '100%';
@@ -83,7 +83,7 @@ export function render(container) {
   });
 
   // The story, said once, on the plot
-  svg.appendChild(el('text', { x: x((t.minKw + X_MAX) / 2), y: y(YEAR_ONE) - 30, 'text-anchor': 'middle', 'font-size': 13.5, fill: 'var(--ink-soft)' }, 'Worked mid-market band — the assessment prints yours.'));
+  svg.appendChild(el('text', { x: x((t.minKw + X_MAX) / 2), y: y(YEAR_ONE) - 30, 'text-anchor': 'middle', 'font-size': 13.5, fill: 'var(--ink-soft)' }, 'Worked mid-market band — we quote from your numbers.'));
   svg.appendChild(el('text', { x: x((t.minKw + X_MAX) / 2), y: y(YEAR_ONE) - 12, 'text-anchor': 'middle', 'font-size': 13.5, fill: 'var(--muted)' }, 'A purchase you own — not a per-seat rent.'));
 
   // x axis + ticks
@@ -120,7 +120,7 @@ export function render(container) {
     if (r.route === 'reject') {
       html = '<strong>' + kw + ' knowledge workers</strong><br>' + r.title + ' We can add you to the waitlist.';
     } else {
-      html = '<strong>' + kw + ' knowledge workers — Standard install</strong><br>Worked mid-market band: ~$42,000 cash at order · ~$78,000 year one. The assessment prints the band for your numbers.';
+      html = '<strong>' + kw + ' knowledge workers — Standard install</strong><br>Worked mid-market band: ~$42,000 cash at order · ~$78,000 year one. We quote from your numbers.';
       if (probe(kw, 0).route === 'gf') {
         html += '<br><span class="tip-gf">Brand-new company? The Greenfield design-partner window may fit — bands print on the assessment.</span>';
       }
