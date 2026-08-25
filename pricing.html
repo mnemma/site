@@ -48,6 +48,41 @@
   <p style="margin-top:26px">Hardware is <strong>yours</strong>. You buy it at order time against a capability commitment — it is not a line item we mark up. It costs roughly ~$12k for the hybrid default (2-node), ~$22–24k for fully on-prem (4-node), or $0 if you run cloud-native in your own tenancy.</p>
 </div></section>
 
+<!-- FLAT-BAND CHART -->
+<section><div class="wrap">
+  <span class="eyebrow">Where you land</span>
+  <h2 data-reveal>A rough idea, before the form.</h2>
+  <p class="lead"><span class="claim">Price does not scale with your headcount. From 15 knowledge workers to 150-plus, the Standard band is the same: about $42,000 cash at order, about $78,000 year one.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
+    <span class="rlabel">Receipt</span>
+    <span class="rrow"><span class="rk">Bands</span><span class="rv"><a href="brain/pricing-mechanics.html#claim-standard-bands">Worked Standard example: about $42k cash at order, about $78k year one. Planning bands, not a point price.</a></span></span>
+    <span class="rrow"><span class="rk">Method</span><span class="rv"><a href="brain/assessment-method.html#claim-formula">Unique stock = knowledge workers × years × [4.1M, 16.2M] × source modifier</a> — the chart is drawn by the same published formula the assessment runs.</span></span>
+  </span></span></span></span> What your size changes is <em>which path you enter</em> — not the number.</p>
+
+  <figure class="chart-wrap" id="price-chart" aria-describedby="price-chart-caption">
+    <figcaption id="price-chart-caption">Planning band by team size, drawn from the published formula. Hover or tap a team size for the band at that point.</figcaption>
+  </figure>
+
+  <p style="margin-top:18px"><span class="claim">15–50 knowledge workers with almost nothing to read in yet? That is the Greenfield design-partner window — a smaller start with no public price card; planning bands print on the assessment when the numbers fit.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
+    <span class="rlabel">Receipt</span>
+    <span class="rrow"><span class="rk">On the record</span><span class="rv"><a href="brain/greenfield-tier.html#claim-dp">Greenfield is a design-partner motion: two slots. No public price card yet.</a></span></span>
+    <span class="rrow"><span class="rk">Edge</span><span class="rv"><a href="brain/boundary-greenfield-scope.html#claim-size">15–50 knowledge workers, Google Workspace. Outside that is Standard or a later path.</a></span></span>
+  </span></span></span></span></p>
+
+  <details class="chart-table">
+    <summary>View this chart as a table</summary>
+    <table>
+      <thead><tr><th>Team size</th><th>Path</th><th>Planning band</th></tr></thead>
+      <tbody>
+        <tr><td>Under 15 knowledge workers</td><td>Waitlist</td><td>Not a 2026 engagement</td></tr>
+        <tr><td>15–50, brand-new company</td><td>Greenfield design partner</td><td>Bands print on the assessment</td></tr>
+        <tr><td>15–50, history to read in</td><td>Standard</td><td>~$42k at order · ~$78k year one</td></tr>
+        <tr><td>50–150+</td><td>Standard</td><td>~$42k at order · ~$78k year one</td></tr>
+      </tbody>
+    </table>
+  </details>
+  <noscript><p class="hint">The interactive chart needs JavaScript; the table above carries the same numbers.</p></noscript>
+</div></section>
+
 <!-- TWO TABLES THAT ADD -->
 <section style="background:#efece2"><div class="wrap">
   <span class="eyebrow">Worked example · $50M-revenue company · Hybrid (Model 2)</span>
@@ -164,5 +199,6 @@
 <script src="site.js"></script>
 <script src="receipts.js"></script>
 <script src="reveal.js"></script>
+<script type="module" src="pricing-chart.js"></script>
 </body>
 </html>

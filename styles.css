@@ -758,3 +758,25 @@ a.hop[data-rel="bounds"] {
 }
 .attr-q .qline { margin-bottom: 6px; }
 
+
+/* Pricing flat-band chart */
+.chart-wrap { position: relative; margin: 26px 0 0; }
+.chart-wrap figcaption { font-size: .82rem; color: var(--muted); margin-top: 10px; }
+.chart-tip {
+  position: absolute;
+  max-width: 280px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: .82rem;
+  line-height: 1.5;
+  padding: 10px 12px;
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 5;
+}
+.chart-tip .tip-gf { color: #bfe0d2; }
+.chart-table { margin-top: 14px; font-size: .9rem; }
+.chart-table summary { color: var(--muted); cursor: pointer; }
+.chart-table table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.chart-table th, .chart-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule-soft); }
+.chart-table th { font-size: .8rem; color: var(--muted); font-weight: 600; }
