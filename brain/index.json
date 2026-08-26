@@ -508,6 +508,14 @@
           "since": "2026-08-26"
         },
         {
+          "id": "claim-size-illustration",
+          "anchor": "/brain/pricing-mechanics.html#claim-size-illustration",
+          "text": "The company-size chart is illustrative. Only the $50M column prints the published worked band; larger columns are planning estimates that scale the $30k install pro-rata from the ~17B corpus it was sized at, plus about $12k hybrid-default hardware and about $36k first-year stewardship. They are tagged planning estimates, never the assessment's output — the measured census sets every real quote.",
+          "appliesToTier": "standard",
+          "evidence": "Bracket assumptions: ~150 knowledge workers per $50M of revenue and 6 years of history — labelled, not the gate. Install = $30k while the implied corpus is within the worked envelope, then $30k scaled pro-rata from the ~17.01B sized corpus (≈$51k at $100M, ≈$129k at $250M), rounded to $1k; hardware at the ~$12k hybrid default; ~$36k first-year stewardship. These figures never enter the assessment — a leaner-history company reads lower by tokens, and the measured census sets the quote.",
+          "since": "2026-08-26"
+        },
+        {
           "id": "claim-install",
           "anchor": "/brain/pricing-mechanics.html#claim-install",
           "text": "The install fee is the burst — reading history into the graph.",

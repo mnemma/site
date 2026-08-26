@@ -1,31 +1,75 @@
-/* Mnemma pricing chart — the worked band and its ceiling.
-   X-axis is census-uHi (attested planning stock) — the exact statistic
-   quote(route, stock) gates on, imported as QUOTED_ABOVE so the boundary can
-   never drift from the assessment. Left of the ceiling the published worked
-   band applies (cash at order / year one); strictly right of it the install is
-   quoted from the census. A ceiling, not a slope.
-   The two plotted dollars and the boundary are all imported from estimator.js —
-   no number lives twice. Pure SVG + one HTML tooltip. No network. */
+/* Mnemma pricing chart — an ILLUSTRATIVE estimate by company size.
+   X-axis is annual revenue in $50M steps across the $50M–$250M segment Standard
+   serves; larger is always a custom quote. Each bracket carries the corpus it
+   implies (knowledge workers × years × content per person) so a reader whose
+   business is leaner than its revenue can self-select by tokens instead.
+
+   This chart is a PICTURE, not the quote. Only the $50M column prints published
+   dollars — it is the one bracket whose implied corpus sits within the worked
+   mid-market envelope (census planning stock <= QUOTED_ABOVE, imported). Every
+   larger column is a PLANNING ESTIMATE from a stated rule, drawn dashed and
+   labelled on the column — never the output of the assessment. The assessment
+   (book.html / estimator.js) is untouched and quotes from your measured census.
+
+   Single source of truth: the published worked-band dollars and the envelope
+   boundary are imported from estimator.js and never copied here. The scaling
+   rule below is an ILLUSTRATION constant that lives only in this file — it must
+   never enter estimator.js or book.html. Pure SVG + one HTML tooltip. No network. */
 
 import {
   QUOTED_ABOVE, WORKED_CASH_AT_ORDER, WORKED_YEAR_ONE,
-  CAP_UNIQUE, fmtStock, fmtUsd, ceilingKwAt
+  fmtUsd, fmtStock
 } from './estimator.js';
 
 var NS = 'http://www.w3.org/2000/svg';
 
+/* ---- Illustration constants (this file only — never estimator.js/book.html) ----
+   Rule B, blessed by zach 2026-08-26 (thread 60394f1f):
+   install estimate = max($30k floor, $30k × corpus / 17.01B sized anchor),
+   rounded to $1k; hardware ~$12k and first-year stewardship ~$36k unchanged.
+   The $30k install was sized at the ~$50M SMB whose attested census is ~17.01B,
+   so that anchor — not the print ceiling — sets the per-token slope. */
+var KW_PER_50M   = 150;      // ~150 knowledge workers per $50M revenue (calibration anchor)
+var YEARS        = 6;        // labelled history assumption — never a gate
+var COEF_HI      = 16.2e6;   // census-uHi content-per-person coefficient (matches estimator UNIQUE_HI)
+var SIZED_ANCHOR = 17.01e9;  // corpus the $30k install was sized at ($50M SMB) — the Rule B denominator
+var BASE_INSTALL = 30000;    // published install floor
+var HW           = 12000;    // hybrid-default hardware (2-node), shown at the default
+var STEW_Y1      = 36000;    // first-year stewardship (~$3k/mo × 12)
+
+var REVS = [50, 100, 150, 200, 250];
+
+function k1(v) { return Math.round(v / 1000) * 1000; }
+
+// Build the ladder. A column is "published" only while its implied corpus stays
+// within the worked envelope (the imported QUOTED_ABOVE ceiling); there it prints
+// the imported worked-band dollars. Above the envelope it is a planning estimate
+// from Rule B — dashed, tagged, never a quote.
+export function ladder() {
+  return REVS.map(function (rev, i) {
+    var kw = KW_PER_50M * (i + 1);
+    var stock = kw * YEARS * COEF_HI;
+    var published = stock <= QUOTED_ABOVE;
+    if (published) {
+      return { rev: rev, kw: kw, stock: stock, published: true,
+               cash: WORKED_CASH_AT_ORDER, y1: WORKED_YEAR_ONE };
+    }
+    var install = k1(Math.max(BASE_INSTALL, BASE_INSTALL * stock / SIZED_ANCHOR));
+    return { rev: rev, kw: kw, stock: stock, published: false,
+             install: install, cash: install + HW, y1: install + HW + STEW_Y1 };
+  });
+}
+
 export function render(container) {
-  var W = 960, H = 400;
-  var M = { l: 78, r: 210, t: 40, b: 92 };
+  var rows = ladder();
+  var W = 1000, H = 480;
+  var M = { l: 84, r: 40, t: 52, b: 118 };
   var pw = W - M.l - M.r, ph = H - M.t - M.b;
-  var X_MAX = 40e9;   // census-uHi, linear 0→40B (§3c axis spec)
-  var Y_MAX = 90000;  // dollars
-  var x = function (v) { return M.l + (v / X_MAX) * pw; };
+  var Y_MAX = 200000;   // headroom above the ~$177k top line so its label clears the column tag
+  var STRIP = 104;                        // right strip: beyond the $50–250M segment
+  var slot = (pw - STRIP) / rows.length;
+  var x0 = function (i) { return M.l + i * slot; };
   var y = function (usd) { return M.t + ph - (usd / Y_MAX) * ph; };
-  var CX = x(QUOTED_ABOVE);   // the one marked interior boundary, from the import
-  var kwAt6 = ceilingKwAt(6);
-  var GAP = 4;                 // hatch starts strictly PAST the ceiling, never on it
-  var plotR = W - M.r;
 
   function el(name, attrs, text) {
     var n = document.createElementNS(NS, name);
@@ -38,126 +82,121 @@ export function render(container) {
     viewBox: '0 0 ' + W + ' ' + H,
     role: 'img',
     'aria-label':
-      'Chart: the worked mid-market band against attested planning stock (the census statistic). ' +
-      'Up to about ' + fmtStock(QUOTED_ABOVE) + ' census planning stock — roughly ' + kwAt6 +
-      ' knowledge workers with several years of history — the published worked band applies: about ' +
-      fmtUsd(WORKED_CASH_AT_ORDER) + ' cash at order and about ' + fmtUsd(WORKED_YEAR_ONE) +
-      ' year one. Above that envelope the worked band stops applying and the install is quoted from your census.'
+      'Illustrative estimate by company size across the $50M to $250M segment. ' +
+      'The $50M column shows the published worked band: about ' + fmtUsd(WORKED_CASH_AT_ORDER) +
+      ' cash at order and about ' + fmtUsd(WORKED_YEAR_ONE) + ' year one. Larger columns are ' +
+      'planning estimates that scale with the corpus we would read, tagged as estimates and ' +
+      'never a quote. Above $250M is always a custom quote. Your measured census sets your actual number.'
   });
   svg.style.width = '100%';
   svg.style.height = 'auto';
   svg.style.display = 'block';
   svg.style.fontFamily = 'var(--sans)';
 
-  // Hatch texture for the quoted zone (identity by label + texture, not hue).
+  // Hatch texture for the custom (beyond-segment) zone — identity by label + texture, not hue.
   var defs = el('defs', {});
-  var pat = el('pattern', { id: 'quoted-hatch', width: 8, height: 8, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' });
+  var pat = el('pattern', { id: 'custom-hatch', width: 8, height: 8, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' });
   pat.appendChild(el('rect', { width: 8, height: 8, fill: 'var(--rule-soft)', opacity: 0.4 }));
   pat.appendChild(el('line', { x1: 0, y1: 0, x2: 0, y2: 8, stroke: 'var(--muted)', 'stroke-width': 1, opacity: 0.5 }));
   defs.appendChild(pat);
   svg.appendChild(defs);
 
-  // Gridlines + y ticks (hairline, recessive)
-  [0, 30000, 60000, 90000].forEach(function (v) {
-    svg.appendChild(el('line', { x1: M.l, y1: y(v), x2: plotR, y2: y(v), stroke: 'var(--rule-soft)', 'stroke-width': 1 }));
+  // Gridlines + y ticks (hairline, recessive).
+  [0, 30000, 60000, 90000, 120000, 150000, 180000].forEach(function (v) {
+    svg.appendChild(el('line', { x1: M.l, y1: y(v), x2: W - M.r, y2: y(v), stroke: 'var(--rule-soft)', 'stroke-width': 1 }));
     svg.appendChild(el('text', { x: M.l - 10, y: y(v) + 4, 'text-anchor': 'end', 'font-size': 12, fill: 'var(--muted)' }, v === 0 ? '$0' : '$' + (v / 1000) + 'k'));
   });
-
-  // Quoted zone: hatched, STRICTLY right of the ceiling (starts past the line, never on it).
-  var hx = CX + GAP;
-  svg.appendChild(el('rect', { x: hx, y: M.t, width: plotR - hx, height: ph, fill: 'url(#quoted-hatch)' }));
-  svg.appendChild(el('text', { x: (hx + plotR) / 2, y: M.t + 20, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--muted)' }, 'quoted —'));
-  svg.appendChild(el('text', { x: (hx + plotR) / 2, y: M.t + 35, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--muted)' }, 'larger install'));
-
-  // The two flat worked-band lines, drawn ONLY up to the ceiling.
-  [{ v: WORKED_YEAR_ONE, label: '~' + fmtUsd(WORKED_YEAR_ONE) + ' year one' },
-   { v: WORKED_CASH_AT_ORDER, label: '~' + fmtUsd(WORKED_CASH_AT_ORDER) + ' cash at order' }].forEach(function (s) {
-    svg.appendChild(el('line', { x1: x(0), y1: y(s.v), x2: CX, y2: y(s.v), stroke: 'var(--accent)', 'stroke-width': 2, 'stroke-linecap': 'round' }));
-    svg.appendChild(el('circle', { cx: CX, cy: y(s.v), r: 4.5, fill: 'var(--accent)', stroke: 'var(--paper)', 'stroke-width': 2 }));
-    svg.appendChild(el('text', { x: x(0) + 10, y: y(s.v) - 8, 'font-size': 12.5, fill: 'var(--ink-soft)' }, s.label));
-  });
-
-  // The story, said once, on the worked region.
-  svg.appendChild(el('text', { x: (x(0) + CX) / 2, y: y(WORKED_YEAR_ONE) - 28, 'text-anchor': 'middle', 'font-size': 13, fill: 'var(--muted)' }, 'Worked mid-market band — we quote from your numbers.'));
-
-  // Ceiling line + honest "stops applying" caption (a ceiling, not an upward slope).
-  svg.appendChild(el('line', { x1: CX, y1: M.t, x2: CX, y2: M.t + ph, stroke: 'var(--ink-soft)', 'stroke-width': 1.5 }));
-  svg.appendChild(el('text', { x: CX, y: M.t - 12, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--ink-soft)' }, 'the worked band stops applying above the mid-market envelope'));
-
-  // x axis
-  svg.appendChild(el('line', { x1: M.l, y1: M.t + ph, x2: plotR, y2: M.t + ph, stroke: 'var(--rule)', 'stroke-width': 1 }));
-  // Neutral decade ticks for scale — NOT boundaries. The unblessed lower S1/S2 edge
-  // is not drawn at all; the only marked interior boundary is the ceiling.
-  [0, 10e9, 20e9, 30e9, 40e9].forEach(function (v) {
-    svg.appendChild(el('text', { x: x(v), y: M.t + ph + 18, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--muted)' }, v === 0 ? '0' : fmtStock(v)));
-  });
-  // The ceiling boundary tick — the one marked interior boundary (from the import).
-  svg.appendChild(el('line', { x1: CX, y1: M.t + ph, x2: CX, y2: M.t + ph + 6, stroke: 'var(--ink-soft)', 'stroke-width': 1.5 }));
-  svg.appendChild(el('text', { x: CX, y: M.t + ph + 18, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--ink-soft)', 'font-weight': 600 }, fmtStock(QUOTED_ABOVE)));
-
-  // Axis title + secondary team-size scale (years assumption lives here, never in geometry).
-  svg.appendChild(el('text', { x: M.l + pw / 2, y: M.t + ph + 42, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--muted)' }, 'attested planning stock — the census statistic we quote from (knowledge workers × years of history × content per person)'));
-  svg.appendChild(el('text', { x: M.l + pw / 2, y: M.t + ph + 60, 'text-anchor': 'middle', 'font-size': 11.5, fill: 'var(--muted)' }, '≈ team size at 6 years of history: ' + kwAt6 + ' knowledge workers ↔ ' + fmtStock(QUOTED_ABOVE) + ' — the years assumption lives in this label, not the gate'));
-
-  // Greenfield planning cap: a hairline near the origin (57M is 0.14% of the axis —
-  // never a visible window). The existing GF copy block on the page carries the rest.
-  var gx = x(CAP_UNIQUE);
-  svg.appendChild(el('line', { x1: gx, y1: M.t, x2: gx, y2: M.t + ph, stroke: 'var(--rule)', 'stroke-width': 1, 'stroke-dasharray': '2 3', opacity: 0.75 }));
-  svg.appendChild(el('text', { x: gx + 5, y: M.t + 13, 'text-anchor': 'start', 'font-size': 10.5, fill: 'var(--muted)' }, 'Greenfield planning cap (' + fmtStock(CAP_UNIQUE) + ') — near the origin at this scale'));
-
-  // Hover layer: crosshair + tooltip, read in census-uHi space (the gate's own units).
-  var cross = el('line', { y1: M.t, y2: M.t + ph, stroke: 'var(--rule)', 'stroke-width': 1, opacity: 0 });
-  svg.appendChild(cross);
-  var hit = el('rect', { x: M.l, y: M.t, width: pw, height: ph, fill: 'transparent' });
-  svg.appendChild(hit);
 
   var tip = document.createElement('div');
   tip.className = 'chart-tip';
   tip.setAttribute('hidden', '');
   container.appendChild(tip);
 
-  function moveTip(evt) {
-    var rect = svg.getBoundingClientRect();
-    var px = (evt.clientX - rect.left) * (W / rect.width);
-    var uHi = Math.min(X_MAX, Math.max(0, (px - M.l) / pw * X_MAX));
-    var cxp = x(uHi);
-    cross.setAttribute('x1', cxp); cross.setAttribute('x2', cxp);
-    cross.setAttribute('opacity', 1);
-    var html;
-    if (uHi > QUOTED_ABOVE) {
-      html = '<strong>' + fmtStock(uHi) + ' attested planning stock</strong><br>' +
-        'Above the mid-market envelope (~' + fmtStock(QUOTED_ABOVE) + '). The worked band stops applying — the install is quoted from your census.';
-    } else {
-      html = '<strong>' + fmtStock(uHi) + ' attested planning stock</strong><br>' +
-        'Within the worked mid-market band: ~' + fmtUsd(WORKED_CASH_AT_ORDER) + ' cash at order · ~' + fmtUsd(WORKED_YEAR_ONE) + ' year one. We quote from your numbers.';
-    }
-    tip.innerHTML = html;
+  function showTip(evt, r) {
+    var lines = r.published
+      ? '<strong>$' + r.rev + 'M — published worked band</strong><br>' +
+        '~' + fmtUsd(r.cash) + ' cash at order · ~' + fmtUsd(r.y1) + ' year one. ' +
+        'Implied corpus ~' + fmtStock(r.stock) + ', within the worked mid-market envelope.'
+      : '<strong>$' + r.rev + 'M — planning estimate, not your quote</strong><br>' +
+        'Implied corpus ~' + fmtStock(r.stock) + '. Install ~' + fmtUsd(r.install) +
+        ' + ~' + fmtUsd(HW) + ' hardware = ~' + fmtUsd(r.cash) + ' cash · ~' + fmtUsd(r.y1) +
+        ' year one. Your measured census sets the real number.';
+    tip.innerHTML = lines;
     tip.removeAttribute('hidden');
     var cw = container.getBoundingClientRect();
     var left = evt.clientX - cw.left + 14;
-    if (left > cw.width - 290) left = cw.width - 290;
+    if (left > cw.width - 300) left = cw.width - 300;
     tip.style.left = left + 'px';
     tip.style.top = (evt.clientY - cw.top + 16) + 'px';
   }
-  function hideTip() { tip.setAttribute('hidden', ''); cross.setAttribute('opacity', 0); }
-  // Pointer events cover mouse hover AND touch taps/drags (Dev audit fix).
-  hit.addEventListener('pointermove', moveTip);
-  hit.addEventListener('pointerdown', moveTip);
-  hit.addEventListener('pointerleave', hideTip);
-  hit.addEventListener('pointercancel', hideTip);
-  // A tap sticks the tooltip (no pointerleave on touch) — tap anywhere else dismisses.
+  function hideTip() { tip.setAttribute('hidden', ''); }
+
+  rows.forEach(function (r, i) {
+    var xa = x0(i) + 10, xb = x0(i) + slot - 10, xm = (xa + xb) / 2;
+
+    // Planning columns carry the tag ON the column (Substrate hard requirement) + dashed lines.
+    if (!r.published) {
+      svg.appendChild(el('text', { x: xm, y: M.t - 22, 'text-anchor': 'middle', 'font-size': 10.5, fill: 'var(--muted)', 'letter-spacing': '.06em' }, 'PLANNING ESTIMATE'));
+      svg.appendChild(el('text', { x: xm, y: M.t - 9, 'text-anchor': 'middle', 'font-size': 10.5, fill: 'var(--muted)', 'letter-spacing': '.06em' }, 'NOT YOUR QUOTE'));
+    } else {
+      svg.appendChild(el('text', { x: xm, y: M.t - 15, 'text-anchor': 'middle', 'font-size': 10.5, fill: 'var(--accent-ink)', 'letter-spacing': '.06em' }, 'PUBLISHED BAND'));
+    }
+
+    [{ v: r.y1, lab: 'year one' }, { v: r.cash, lab: 'cash at order' }].forEach(function (ln) {
+      svg.appendChild(el('line', {
+        x1: xa, y1: y(ln.v), x2: xb, y2: y(ln.v),
+        stroke: 'var(--accent)', 'stroke-width': 2, 'stroke-linecap': 'round',
+        'stroke-dasharray': r.published ? 'none' : '6 5',
+        opacity: r.published ? 1 : 0.9
+      }));
+      svg.appendChild(el('text', { x: xm, y: y(ln.v) - 7, 'text-anchor': 'middle', 'font-size': 12.5, fill: 'var(--ink-soft)' },
+        '~' + fmtUsd(ln.v) + (i === 0 ? ' ' + ln.lab : '')));
+    });
+
+    // Column labels: revenue + implied corpus subtitle (read by tokens, not revenue).
+    svg.appendChild(el('text', { x: xm, y: H - M.b + 30, 'text-anchor': 'middle', 'font-size': 14, fill: 'var(--ink)', 'font-weight': 600 }, '$' + r.rev + 'M'));
+    svg.appendChild(el('text', { x: xm, y: H - M.b + 49, 'text-anchor': 'middle', 'font-size': 11, fill: 'var(--muted)' }, '~' + r.kw + ' KW · ~' + fmtStock(r.stock) + ' tokens'));
+
+    // Hover hit area over the whole column.
+    var hit = el('rect', { x: x0(i), y: M.t, width: slot, height: ph, fill: 'transparent' });
+    hit.addEventListener('pointermove', function (e) { showTip(e, r); });
+    hit.addEventListener('pointerdown', function (e) { showTip(e, r); });
+    hit.addEventListener('pointerleave', hideTip);
+    hit.addEventListener('pointercancel', hideTip);
+    svg.appendChild(hit);
+  });
+
+  // Beyond-segment strip: Standard serves $50–250M; larger is always a custom quote.
+  var sx = M.l + rows.length * slot + 8, sw = W - M.r - sx;
+  svg.appendChild(el('rect', { x: sx, y: M.t, width: sw, height: ph, fill: 'url(#custom-hatch)' }));
+  svg.appendChild(el('text', { x: sx + sw / 2, y: y(84000) - 8, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--muted)' }, 'beyond'));
+  svg.appendChild(el('text', { x: sx + sw / 2, y: y(84000) + 8, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--muted)' }, '$250M —'));
+  svg.appendChild(el('text', { x: sx + sw / 2, y: y(84000) + 24, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--muted)' }, 'custom quote'));
+  svg.appendChild(el('text', { x: sx + sw / 2, y: H - M.b + 30, 'text-anchor': 'middle', 'font-size': 14, fill: 'var(--ink)', 'font-weight': 600 }, '$250M+'));
+
+  // x axis
+  svg.appendChild(el('line', { x1: M.l, y1: M.t + ph, x2: W - M.r, y2: M.t + ph, stroke: 'var(--rule)', 'stroke-width': 1 }));
+  svg.appendChild(el('text', { x: M.l + (pw - STRIP) / 2, y: H - M.b + 68, 'text-anchor': 'middle', 'font-size': 12, fill: 'var(--muted)' }, 'annual revenue — the segment Standard serves'));
+
+  // Honest caption: labelled assumptions, read-by-tokens escape hatch, and the plain limit.
+  svg.appendChild(el('text', { x: M.l, y: H - 24, 'font-size': 11.5, fill: 'var(--muted)' },
+    'Illustrative: ~150 knowledge workers per $50M and 6 years of history, labelled — not the gate. Leaner corpus? Read by tokens; the measured census sets the quote.'));
+  svg.appendChild(el('text', { x: M.l, y: H - 8, 'font-size': 11.5, fill: 'var(--muted)' },
+    'Only the $50M column is the published band. Dashed columns are planning estimates from a stated rule — never your actual quote.'));
+
+  container.insertBefore(svg, container.firstChild);
+
+  // Dismiss a stuck touch tooltip on tap-away.
   document.addEventListener('pointerdown', function (evt) {
     if (!svg.contains(evt.target)) hideTip();
   });
 
-  container.insertBefore(svg, container.firstChild);
-
-  // On small screens the in-chart text is tiny; lean on the table (Dev audit note).
+  // On small screens the in-chart text is tiny; lean on the table.
   if (window.matchMedia && window.matchMedia('(max-width: 600px)').matches) {
     var tbl = document.querySelector('.chart-table');
     if (tbl) tbl.setAttribute('open', '');
   }
 }
 
-var mount = document.getElementById('price-chart');
+var mount = (typeof document !== 'undefined') ? document.getElementById('price-chart') : null;
 if (mount) render(mount);
