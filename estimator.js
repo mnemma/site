@@ -14,11 +14,50 @@ export const UNIQUE_LO = 4.1e6;
 export const UNIQUE_HI = 16.2e6;
 export const CAP_UNIQUE = 57e6;
 
+// Quoted-above ceiling (proposal §3c/§4, blessed 2026-08-26).
+// Standard prints the already-published worked band while census-uHi <= QUOTED_ABOVE;
+// above it the install is quoted from the census, not printed. Single source of truth —
+// pricing-chart.js and book.html import THIS constant; never copy the number.
+// Gate is stock (census-uHi), not headcount: 600 KW x 2y = 19.4B still prints the
+// worked band; 600 KW x 5y = 48.6B goes quoted.
+export const QUOTED_ABOVE = 25e9;
+
+// Worked mid-market example — the already-published Standard band
+// (receipt: /brain/pricing-mechanics#claim-standard-bands). Single source of the
+// two plotted dollars: quote() prints them and pricing-chart.js imports them, so
+// the chart no longer keeps its own copy of 42000/78000.
+export const WORKED_CASH_AT_ORDER = 42000;
+export const WORKED_YEAR_ONE = 78000;
+
+export function fmtUsd(n) {
+  return '$' + Math.round(Number(n) || 0).toLocaleString('en-US');
+}
+
 export function fmtM(n) {
   if (!isFinite(n)) return '—';
   if (n === 0) return '0';
   var m = n / 1e6;
   return (m >= 100 ? Math.round(m).toString() : m.toFixed(1)) + 'M';
+}
+
+// Format a census-stock figure for copy (billions above 1B, else millions).
+// Every "~25B" label in quote()/book.html/pricing-chart.js derives from QUOTED_ABOVE
+// through this — no literal ceiling number lives outside the QUOTED_ABOVE export.
+export function fmtStock(n) {
+  if (!isFinite(n)) return '—';
+  if (n >= 1e9) {
+    var b = n / 1e9;
+    return (b === Math.round(b) ? b.toString() : b.toFixed(1)) + 'B';
+  }
+  return fmtM(n);
+}
+
+// Legibility only: the team size the ceiling corresponds to at a stated history depth.
+// Years live in the label, never in the gate (the gate is census-uHi). Rounded to 5.
+export function ceilingKwAt(years) {
+  var y = Number(years) || 0;
+  if (!y) return 0;
+  return Math.round(QUOTED_ABOVE / (y * UNIQUE_HI) / 5) * 5;
 }
 
 export function sourcesModifier(d) {
@@ -139,7 +178,7 @@ export function estimate(d) {
 
 export const compute = estimate;
 
-export function quote(route) {
+export function quote(route, stock) {
   if (route === 'gf') {
     return [
       { line: '1. Our fee', value: '$2,000 setup + $1,500 × 12 = $20,000', tag: '' },
@@ -149,10 +188,19 @@ export function quote(route) {
     ];
   }
   if (route === 'std' || route === 'straddle') {
+    // Ceiling: above the mid-market worked example, the worked band stops applying.
+    // We quote the install from the census rather than printing $30k/$42k/$78k.
+    if (stock && stock.uHi > QUOTED_ABOVE) {
+      return [
+        { line: '1. Install', value: 'Quoted from your census — this is above the mid-market worked example (~' + fmtStock(QUOTED_ABOVE) + ' census planning stock). The published worked band stops applying; we scope the install from your numbers.', tag: 'QUOTED' },
+        { line: '2. Stewardship', value: 'from ~$3,000/mo', tag: 'PLANNING' },
+        { line: '3. Hardware + burst', value: 'Deployment-model dependent — hardware, burst compute in your tenancy, and ongoing cloud/VPC are scoped with the install at this size, not the mid-market worked-example figure.', tag: 'PLANNING' }
+      ];
+    }
     return [
       { line: '1. Our fee', value: '$30,000 install + $3,000 × 12 = $66,000', tag: '' },
       { line: '2. Your tenancy', value: '~$12k hardware + burst compute in your tenancy $3–8k + ongoing cloud/VPC', tag: 'PLANNING' },
-      { line: '3. Year-one all-in', value: '~$78,000 (cash-at-order $42,000 — never blended into year-one)', tag: '' }
+      { line: '3. Year-one all-in', value: '~' + fmtUsd(WORKED_YEAR_ONE) + ' (cash-at-order ' + fmtUsd(WORKED_CASH_AT_ORDER) + ' — never blended into year-one)', tag: '' }
     ];
   }
   return [];
@@ -161,7 +209,8 @@ export function quote(route) {
 export const DISCLAIMER =
   'This is a planning band from numbers you supplied, not a measurement. ' +
   'After we connect the named pack we will recount metadata. ' +
-  'If the recount is more than 1.5× this band or crosses the Greenfield cap, ' +
+  'If the recount is more than 1.5× this band, crosses the Greenfield cap, ' +
+  'or restates your planning stock above the mid-market envelope (~' + fmtStock(QUOTED_ABOVE) + ' census planning stock — where the worked band stops applying and the install is quoted), ' +
   'you choose: reprice, shrink what we connect, or walk. ' +
   'We keep the setup you already paid for ($2,000 on the Greenfield path). We refund unused first-month fees if you walk by day 14. ' +
   'It assumes your company looks like our published model.';

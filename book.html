@@ -176,7 +176,7 @@ import * as C from './estimator.js';
       'Scanned paper / image PDFs: ' + (d.paper ? 'Yes' : 'No')
     ];
     if (r.uLo != null) {
-      lines.push('Stock unique (planning): ' + C.fmtM(r.uLo) + ' – ' + C.fmtM(r.uHi));
+      lines.push('Attested planning stock: ' + C.fmtM(r.uLo) + ' – ' + C.fmtM(r.uHi));
     }
     return lines.concat(attrLines());
   }
@@ -251,7 +251,10 @@ import * as C from './estimator.js';
       paper: fd.get('paper') === 'yes'
     };
     var r = C.estimate(d);
-    var lines = C.quote(r.route);
+    var lines = C.quote(r.route, r);
+    // Read the gate off quote()'s own output — the QUOTED tag — rather than
+    // re-deriving `uHi > QUOTED_ABOVE` here. One comparison, one place (estimator).
+    var quotedAbove = lines.some(function (l) { return l.tag === 'QUOTED'; });
     var dated = new Date().toISOString().slice(0, 10);
     var who = [d.company, d.person, d.role].filter(Boolean).join(' · ') || 'Unnamed worksheet';
     var pack = ['gmail', 'drive', 'calendar', 'github'].filter(function (k) { return d[k]; })
@@ -268,13 +271,13 @@ import * as C from './estimator.js';
         : 'no Gmail or Drive';
       stock =
         '<table class="ledger">' +
-          '<tr><th>Stock unique</th><td class="n">' + C.fmtM(r.uLo) + ' – ' + C.fmtM(r.uHi) + '</td></tr>' +
+          '<tr><th>Attested planning stock</th><td class="n">' + C.fmtM(r.uLo) + ' – ' + C.fmtM(r.uHi) + '</td></tr>' +
           '<tr><th>Stock processed</th><td class="n">' + C.fmtM(r.pLo) + ' – ' + C.fmtM(r.pHi) + '</td></tr>' +
           capRow +
           '<tr><th>Sources</th><td>' + srcLabel + ' (×' + r.srcMod + ')</td></tr>' +
           '<tr><th>Scanned paper</th><td>' + (r.paper === 1.25 ? 'yes — processed ×1.25' : 'no') + '</td></tr>' +
         '</table>' +
-        '<p class="formula">Unique stock = ' + d.kw + ' knowledge workers × ' + d.years + ' years × [4.1M, 16.2M] × sources ' + r.srcMod + '</p>';
+        '<p class="formula">Attested planning stock = ' + d.kw + ' knowledge workers × ' + d.years + ' years × [4.1M, 16.2M] × sources ' + r.srcMod + '</p>';
     }
 
     var qtable = '';
@@ -299,6 +302,17 @@ import * as C from './estimator.js';
         '</div>';
     }
 
+    var ceilingNote = '';
+    if (quotedAbove) {
+      ceilingNote =
+        '<div class="notice" style="margin:16px 0 0">' +
+          '<span class="rlabel">Above the worked example — quoted, not $30k</span>' +
+          '<p style="margin:8px 0 0">Your attested planning stock is above the mid-market worked example ' +
+          '(~' + C.fmtStock(C.QUOTED_ABOVE) + ' census planning stock — around ' + C.ceilingKwAt(6) + ' knowledge workers with several years of history). ' +
+          'The published worked band stops applying above that envelope; we scope the install from your census rather than printing the mid-market number.</p>' +
+        '</div>';
+    }
+
     var extrasLine = d.extras ? ('Yes' + (d.extrasWhich ? ' — ' + d.extrasWhich : '')) : 'No';
 
     document.getElementById('out').innerHTML =
@@ -308,6 +322,7 @@ import * as C from './estimator.js';
         '<p>' + r.why + '</p>' +
         stock +
         qtable +
+        ceilingNote +
         alt +
         '<h4 style="margin-top:22px">Numbers you attested</h4>' +
         '<table class="ledger">' +
