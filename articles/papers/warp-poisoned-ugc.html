@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A 13-word comment can become a cited source — Mnemma Articles</title>
+<meta name="description" content="Cornell Tech showed that a deep-research agent which treats retrieved user-generated content as evidence will cite a short promotional comment as a source. Poisoned reports look clean. Fluency filters miss it.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../receipts-v2.css">
+<link rel="stylesheet" href="../../reveal.css">
+  <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+</head>
+<body data-page="articles">
+
+<div class="backlog-banner">This page is in the post-launch roll-out queue. It is not part of the launch site.</div>
+<header class="site"><div class="wrap"><nav class="nav"><a class="brand" href="../../index.html"><span class="mark"></span>Mnemma</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="links" id="nav-links"><a href="../../product.html">Product</a><a href="../../how-it-works.html">How it works</a><a href="../../brain/index.html">Brain</a><a href="../../for-your-team.html">For your team</a><a href="../../security.html">Security</a><a href="../../pricing.html">Pricing</a></div><div class="spacer"></div><a class="btn nav-cta" href="../../book.html"><span class="cta-full">Get a price range</span><span class="cta-short">Price range</span></a></nav></div></header>
+
+<div class="hero"><div class="wrap narrow">
+  <span class="eyebrow">Articles · Papers · 02</span>
+  <h1>A 13-word comment can become a cited source.</h1>
+  <p class="lead" style="margin-top:18px">If an agent treats whatever it retrieved as evidence, a short promotional comment can walk into the report as a source. You cannot inspect your way out. The poisoned report looks like the clean one.</p>
+</div></div>
+
+<section><div class="wrap narrow">
+  <span class="eyebrow">Citation</span>
+  <h2>WARP — Web Agent Retrieval Poisoning</h2>
+  <p>Zhang, Tingwei; Triedman, Harold; Shmatikov, Vitaly. <em>Deep-Research Agents Can Be Poisoned via User-Generated Content.</em> arXiv 2605.24245 [cs.CR], 22 May 2026. Cornell Tech.</p>
+  <p>They name the attack WARP — Web Agent Retrieval Poisoning.</p>
+  <ul class="plain">
+    <li>Abstract: <a href="https://arxiv.org/abs/2605.24245">https://arxiv.org/abs/2605.24245</a></li>
+    <li>HTML: <a href="https://arxiv.org/html/2605.24245v1">https://arxiv.org/html/2605.24245v1</a></li>
+    <li>PDF: <a href="https://arxiv.org/pdf/2605.24245">https://arxiv.org/pdf/2605.24245</a></li>
+  </ul>
+</div></section>
+
+<section><div class="wrap narrow">
+  <span class="eyebrow">Why it is on this site</span>
+  <h2>Fluent poison looks clean. There is no working filter.</h2>
+  <p>WARP is the negative control for our rule that every claim carries a receipt. A deep-research agent that treats retrieved user-generated content as evidence will cite a short, 13-word promotional comment as a source. This comment appears as a source in 38–51% of cases once it is in the retrieved data.</p>
+  <p><span class="claim">Co-STORM cites a poisoned source 100% of the time it retrieves that source. No gate stops the source between retrieval and the knowledge base. Poisoned reports look clean. Fluency filtering does not catch this problem; it points in the wrong direction.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body"><span class="rlabel">Receipt</span><span class="rrow"><span class="rk">Source</span><span class="rv">Zhang, Triedman, Shmatikov, <a href="https://arxiv.org/abs/2605.24245">arXiv 2605.24245</a>. Numbers from the v1 HTML: ~13-word SERP-snippet poison; 38–51% mention once exposed; Co-STORM 100% citation once retrieved (§7.2 / §7.5).</span></span><span class="rrow"><span class="rk">Defenses tested</span><span class="rv">Source blocking, input filtering, output filtering. The paper reports none of these work without degrading output quality.</span></span><span class="rrow"><span class="rk">Not in the paper</span><span class="rv">Provenance, receipts, and write-time. Those are our read, later on this page.</span></span></span></span></span></span></p>
+  <p>The paper tested source blocking, input filtering, and output filtering. None of those defenses work without throwing away real user-generated content or hurting quality. There is no working filter on the page.</p>
+</div></section>
+
+<section><div class="wrap narrow">
+  <span class="eyebrow">Load-bearing numbers</span>
+  <h2>Conditional on exposure. Not a guaranteed hit rate.</h2>
+  <div class="table-scroll"><table class="ledger">
+    <thead><tr><th>Number</th><th>What it is</th><th>Label</th></tr></thead>
+    <tbody>
+      <tr><td class="n">~13 words</td><td>Length of the promotional SERP-snippet poison</td><td>Paper, abstract</td></tr>
+      <tr><td class="n">38–51%</td><td>Mention rate once the poisoned URL is retrieved (SERP-snippet setting)</td><td>Paper, abstract</td></tr>
+      <tr><td class="n">100%</td><td>Co-STORM citation rate once it retrieves the poisoned source</td><td>Paper, §7.2 / §7.5</td></tr>
+      <tr><td class="n">0%</td><td>Mention / citation given no exposure</td><td>Paper: bottleneck is exposure, not persuasion</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section style="background:#efece2"><div class="wrap narrow">
+  <span class="eyebrow">Our read</span>
+  <h2>A citation chip is not a receipt.</h2>
+  <p>A fact you cannot check is not a fact you can act on. WARP is what happens when retrieval is allowed to become memory without a receipt.</p>
+  <p>The systems in the study integrate retrieved text into the answer. Once the poisoned URL is fetched, Co-STORM cites it every time. Fluency filters point the wrong way: the poison is written to persuade, so it reads cleaner than organic comments. Output-level comparison cannot tell a poisoned report from a clean twin. You cannot “spot-check the prose” and catch this.</p>
+  <p>That is why a citation chip is not a receipt. A chip that opens a page hopes the claim lives somewhere on it. Claim-level provenance is narrower: this sentence, this source, this date, this confidence, this last-checked. Open it. Trust it, or audit it. No third hunt.</p>
+  <p>We take the paper as a failure mode, not as an endorsement. It does not mention company brains, local inference, adjudication, provenance, receipts, or write-time. It shows what an unreceipted synthesis loop will do with user-generated content, and that the filters it tested do not stop that loop without throwing away real UGC. Our read: provenance at write is the defense that works. Our design refuses the unreceipted loop — an owned corpus, a receipt on the write, a builder who does not judge the write.</p>
+  <p>We are not telling you to block Reddit. The paper’s own source-blocking defense throws away legitimate first-person sources and still misses poisoned blogs. The structural answer, on our side, is the write path.</p>
+</div></section>
+
+<section><div class="wrap narrow">
+  <span class="eyebrow">Fence</span>
+  <h2>This is a lab demonstration on simulated retrieval (GeoStorm).</h2>
+  <p>The authors did not poison the live web. Numbers are theirs, not ours. We did not re-run the attack. OpenAI Deep Research’s low cited-UGC rate in their reconnaissance is not proof the intermediate reasoning is clean — the paper says so.</p>
+  <ul class="plain">
+    <li>Evidence: <a href="https://arxiv.org/abs/2605.24245">arXiv 2605.24245</a></li>
+    <li>What a receipt contains: <a href="../../brain/receipts-schema.html">/brain/receipts-schema</a></li>
+    <li>Why a citation chip is not enough: <a href="../../why-receipts.html">/why-receipts</a></li>
+  </ul>
+</div></section>
+<section style="border-bottom:none"><div class="wrap narrow kicker-cta">
+  <p style="margin-top:22px"><a class="btn big" href="../../book.html">Get a price range</a></p>
+  <p class="sub"><a href="index.html">All articles →</a></p>
+</div></section>
+<footer class="footer"><div class="wrap"><div class="grid-3"><div><div class="brand" style="color:var(--ink)"><span class="mark"></span>Mnemma</div><p style="margin-top:14px">A company brain you own outright — never our cloud, with a receipt on every fact.</p><p style="margin-top:10px">Contact: <a href="/contact.html">send an inquiry</a> &middot; <a href="mailto:contact@mnemma.com">contact@mnemma.com</a></p></div><div><h4>Product</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="../../product.html">Product</a></li><li style="padding-left:0"><a href="../../how-it-works.html">How it works</a></li><li style="padding-left:0"><a href="../../security.html">Security — for your CTO</a></li><li style="padding-left:0"><a href="../../pricing.html">Pricing</a></li><li style="padding-left:0"><a href="../../book.html">Get a price range</a></li><li style="padding-left:0"><a href="../../one-pager.html">One-page overview</a></li><li style="padding-left:0"><a href="../../brain/index.html">The brain</a></li><li style="padding-left:0"><a href="../../ai-info.html">AI info</a></li><li style="padding-left:0"><a href="../../llms.txt">llms.txt</a></li></ul></div><div><h4>Who it's for</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="../../for-sbu.html">P&amp;L owner / GM — start here</a></li><li style="padding-left:0"><a href="../../for-startups.html">Startups — Greenfield</a></li><li style="padding-left:0"><a href="../../for-your-team.html">The four signatures</a></li><li style="padding-left:0"><a href="../../for-ceo.html">CEO / owner</a></li><li style="padding-left:0"><a href="../../for-cfo.html">CFO</a></li><li style="padding-left:0"><a href="../../for-cto.html">CTO</a></li><li style="padding-left:0"><a href="../../for-ciso.html">CISO</a></li></ul></div></div><div class="footer-receipt"><span class="rlabel">Receipt · this website</span><p style="margin-top:8px">Static site. The price-range questionnaire runs in your browser — nothing is submitted. Every factual claim carries a receipt that points at <a href="../../brain/index.html">/brain/</a>. Every figure is a planning band. No fabricated testimonials, logos, or usage stats — by policy. Agents start at <a href="../../ai-info.html">/ai-info</a>.</p></div></div></footer>
+<script src="../../site.js"></script>
+<script src="../../receipts.js"></script>
+<script src="../../reveal.js"></script>
+</body>
+</html>
