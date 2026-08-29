@@ -20,9 +20,10 @@ The buyer is SMB leadership and P&L owners. Single call to action: the seven-que
 - [The coverage panel](brain/coverage-panel.html): capability; What is connected, what is not, and how long the gap has been growing. Honesty is a product surface.
 - [Classification containers](brain/classification-containers.html): mechanism; Rules live on the data, not on each tool. Default-closed. Unclassified is refused.
 - [The walk-away briefcase](brain/projection-briefcase.html): capability; End the contract. Keep the brain. The readable copy is a Markdown projection you already hold.
-- [How the planning band is computed](brain/assessment-method.html): mechanism; Seven questions. A published formula. A band — never a point price. Nothing leaves the browser.
+- [How the planning band is computed](brain/assessment-method.html): mechanism; Seven questions. A published formula. A band — never a single fixed price. Nothing leaves the browser.
 - [What the numbers on a quote mean](brain/pricing-mechanics.html): pricing-fact; Two totals that add. Planning bands until a paid recount. The monthly fee is stewardship, not rent.
 - [Where Standard runs](brain/deployment-standard.html): deployment-fact; Your environment. Your tenancy. Your access rules. Never our cloud.
+- [The model-swap mechanism](brain/model-swap.html): mechanism; Year one, you can swap the model behind the same brain — no re-ingest. The graph stays; only the inference layer changes. Chat-client/copilot swap is a design cherry, not a promise.
 - [What Greenfield is](brain/greenfield-tier.html): deployment-fact; The same brain as Standard. Started earlier. Smaller. A design-partner motion, not a public storefront.
 - [The graduation ratchet](brain/greenfield-graduation.html): contractual ratchet; A Greenfield graduate never pays an install fee. You grow. You do not migrate.
 - [Day-14 terms](brain/terms.html): walk terms; If the recount disagrees with the band, you choose. Walk by day 14 and unused first-month fees come back.
@@ -34,14 +35,15 @@ The buyer is SMB leadership and P&L owners. Single call to action: the seven-que
 - [Home](index.html): conversion spine; hero is “Your company already knows the answer. Now you can ask it.”
 - [Product](product.html): outcomes (trust, own, compound) — MVP only
 - [How it works](how-it-works.html): assessment → recount gate → gated install → living brain
+- [Why Mnemma exists](why-mnemma.html): belief page — use cutting-edge tools without fearing the vendor; not a /brain/ fact source
 - [Pricing](pricing.html): Standard planning bands; day-14 terms; no Greenfield card
 - [Security](security.html): three deployment models; never our cloud
-- [Greenfield](for-startups.html): design-partner motion, two slots, graduation ratchet
+- [Greenfield](greenfield.html): canonical Greenfield product page — design-partner motion, two slots, graduation ratchet; for-startups.html is the audience door that links here
 - [Assessment](book.html): published formula; day-14 walk terms
 - [Contact](contact.html): inquiry form; nothing else on the site submits data
 
 ## Avoid
 
-- notes.html, eight-modes.html, why-receipts.html — editorial essays, not fact sources; cite /brain/#claim- anchors for product facts, not these pages
+- notes.html, eight-modes.html, why-receipts.html, why-mnemma.html — editorial / belief pages, not fact sources; cite /brain/#claim- anchors for product facts, not these pages
 - Internal document names (product drafts, census filenames, MSA packages). Cite /brain/#claim- anchors instead.
 - Invented testimonials, logos, usage statistics, customer names, Greenfield public price cards, roadmap language, extra heads, 24/7 Greenfield synthesis.

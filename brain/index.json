@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generated": "2026-08-26",
+  "generated": "2026-08-27",
   "namespace": "/brain/",
   "description": "Mnemma typed fact graph. One concept per page. Customer pages cite #claim- anchors only.",
   "types": [
@@ -422,7 +422,7 @@
       "type": "mechanism",
       "tier": "both",
       "title": "How the planning band is computed",
-      "lede": "Seven questions. A published formula. A band — never a point price. Nothing leaves the browser. No credentials. Unique stock is knowledge workers times years times a published range times a source modifier. If you undercount, days 3–7 of the paid engagement recount metadata; then you reprice, shrink, or walk.",
+      "lede": "Seven questions. A published formula. A band — never a single fixed price. Nothing leaves the browser. No credentials. Unique stock is knowledge workers times years times a published range times a source modifier. If you undercount, days 3–7 of the paid engagement recount metadata; then you reprice, shrink, or walk.",
       "claims": [
         {
           "id": "claim-seven",
@@ -451,7 +451,7 @@
         {
           "id": "claim-band",
           "anchor": "/brain/assessment-method.html#claim-band",
-          "text": "Output is a tier route plus a three-line year-one planning band — never a point price.",
+          "text": "Output is a tier route plus a three-line year-one planning band — never a single fixed price.",
           "appliesToTier": "both",
           "evidence": "Our fee / your tenancy / all-in. Cash at order is stated next to year one, never mashed with it.",
           "since": "2026-08-20"
@@ -494,7 +494,7 @@
         {
           "id": "claim-standard-bands",
           "anchor": "/brain/pricing-mechanics.html#claim-standard-bands",
-          "text": "Worked Standard example: about $42k cash at order, about $78k year one. Planning bands, not a point price.",
+          "text": "Worked Standard example: about $42k cash at order, about $78k year one. Planning bands, never a single fixed price.",
           "appliesToTier": "both",
           "evidence": "$30k install + ~$12k hybrid hardware; plus ~$3k/mo × 12. Cloud-native hardware is $0.",
           "since": "2026-08-14"
@@ -883,6 +883,49 @@
         "appliesToTier": "greenfield",
         "evidencedBy": []
       }
+    },
+    {
+      "id": "model-swap",
+      "path": "/brain/model-swap.html",
+      "type": "mechanism",
+      "tier": "both",
+      "title": "The model-swap mechanism",
+      "lede": "Year one, you can swap the model behind the same brain — no re-ingest. The graph, receipts, and classification do not move when the model does; only the inference layer changes. Swapping the chat client or a copilot inside a workflow is a design cherry, not a year-one promise this page makes.",
+      "claims": [
+        {
+          "id": "claim-model-swap",
+          "anchor": "/brain/model-swap.html#claim-model-swap",
+          "text": "Year one, you can swap the model behind the same brain — no re-ingest.",
+          "appliesToTier": "both",
+          "evidence": "This is the whole claim. Nothing about timing, downtime, or a drill cadence — those numbers are not measured, so they are not stated.",
+          "since": "2026-08-27"
+        },
+        {
+          "id": "claim-same-graph",
+          "anchor": "/brain/model-swap.html#claim-same-graph",
+          "text": "The graph, receipts, and classification do not move when the model does. Only the inference layer changes.",
+          "appliesToTier": "both",
+          "evidence": "The asset was never the model — it lives in your environment. See deployment-standard #claim-your-env.",
+          "since": "2026-08-27"
+        },
+        {
+          "id": "claim-not-chat-ui",
+          "anchor": "/brain/model-swap.html#claim-not-chat-ui",
+          "text": "Swapping the chat client or a copilot inside a workflow is a design cherry, not a year-one promise.",
+          "appliesToTier": "both",
+          "evidence": "States what this page does not claim — the honest-boundary pattern, same as what Greenfield does not include.",
+          "since": "2026-08-27"
+        }
+      ],
+      "relations": {
+        "dependsOn": [
+          "deployment-standard"
+        ],
+        "boundedBy": [],
+        "bounds": [],
+        "appliesToTier": "both",
+        "evidencedBy": []
+      }
     }
   ],
   "edges": [
@@ -1003,6 +1046,11 @@
       "from": "terms",
       "rel": "depends-on",
       "to": "projection-briefcase"
+    },
+    {
+      "from": "model-swap",
+      "rel": "depends-on",
+      "to": "deployment-standard"
     }
   ]
 }

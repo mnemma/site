@@ -52,6 +52,8 @@ a { color: var(--accent-ink); text-decoration: none; }
 a:hover { text-decoration: underline; }
 strong { font-weight: 600; color: var(--ink); }
 .lead { font-size: 1.22rem; line-height: 1.5; color: var(--ink-soft); }
+.belief { font-size: 1.02rem; line-height: 1.55; color: var(--ink-soft); margin: 14px 0 0; }
+.belief a, #footer-belief a, #why-tie-in a { white-space: nowrap; }
 .tnum { font-variant-numeric: tabular-nums; }
 
 .eyebrow {
@@ -78,7 +80,7 @@ header.site {
   background: url("img/favicon.svg") center/contain no-repeat;
 }
 .nav .links { display: flex; gap: 22px; margin-left: 28px; }
-.nav .links a { color: var(--ink-soft); font-size: .92rem; font-weight: 500; }
+.nav .links a { color: var(--ink-soft); font-size: .92rem; font-weight: 500; white-space: nowrap; }
 .nav .links a:hover { color: var(--ink); text-decoration: none; }
 .nav .links a[aria-current="page"] { color: var(--ink); box-shadow: inset 0 -2px 0 var(--accent); }
 .nav .spacer { flex: 1; }
@@ -419,8 +421,6 @@ form legend {
 @media (max-width: 1100px) {
   .doors { grid-template-columns: repeat(2, 1fr); }
   .rolestrip { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 920px) {
   .nav-toggle { display: inline-flex; }
   .nav .links {
     display: none;
@@ -440,6 +440,8 @@ form legend {
   .nav .links a[aria-current="page"] { box-shadow: inset 3px 0 0 var(--accent); }
   .nav .spacer { display: none; }
   .nav .nav-cta { margin-left: auto; margin-right: 8px; }
+}
+@media (max-width: 920px) {
   .grid-2, .grid-3, .outcomes { grid-template-columns: 1fr; gap: 28px; }
   .pains { grid-template-columns: 1fr; }
   .doors { grid-template-columns: 1fr 1fr; }

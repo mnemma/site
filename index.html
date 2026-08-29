@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="canonical" href="https://mnemma.com/">
 <title>Mnemma — Your company already knows the answer. Now you can ask it.</title>
-<meta name="description" content="Mnemma is a company brain SMB leadership owns — Standard or Greenfield — never our cloud, with a receipt on every fact. Get a price range in fifteen minutes.">
+<meta name="description" content="Mnemma is a company brain SMB leadership owns — it reads your company's history and runs in your environment, with a receipt on every fact. Get a price range in fifteen minutes.">
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="receipts-v2.css">
 <script>
@@ -23,7 +23,7 @@ window.addEventListener("load", function () {
 </head>
 <body data-page="home">
 
-<header class="site"><div class="wrap"><nav class="nav"><a class="brand" href="index.html"><span class="mark"></span>Mnemma</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="links" id="nav-links"><a href="product.html">Product</a><a href="how-it-works.html">How it works</a><a href="brain/index.html">Brain</a><a href="for-your-team.html">For your team</a><a href="security.html">Security</a><a href="pricing.html">Pricing</a></div><div class="spacer"></div><a class="btn nav-cta" href="book.html"><span class="cta-full">Get a price range</span><span class="cta-short">Price range</span></a></nav></div></header>
+<header class="site"><div class="wrap"><nav class="nav"><a class="brand" href="index.html"><span class="mark"></span>Mnemma</a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button><div class="links" id="nav-links"><a href="product.html">Product</a><a href="how-it-works.html">How it works</a><a href="why-mnemma.html">Why Mnemma</a><a href="brain/index.html">Brain</a><a href="for-your-team.html">For your team</a><a href="security.html">Security</a><a href="pricing.html">Pricing</a></div><div class="spacer"></div><a class="btn nav-cta" href="book.html"><span class="cta-full">Get a price range</span><span class="cta-short">Price range</span></a></nav></div></header>
 
 <!-- 1. HERO -->
 <div class="hero"><canvas id="hero-graph" aria-hidden="true"></canvas><div class="wrap">
@@ -31,115 +31,229 @@ window.addEventListener("load", function () {
     <div>
       <span class="eyebrow">For SMB owners, GMs, and the leadership teams they bring in</span>
       <h1>Your company already knows the answer. Now you can ask it.</h1>
-      <p class="lead">Mnemma turns what your business knows into a brain you own. Choose Standard if you already have the history. Choose Greenfield if you want to start recording now. It never runs on our cloud. Every fact has a receipt.</p>
+      <p class="lead">Mnemma turns what your business knows into a graph you own, running inside your own environment. Slot in models and tools you already run, and your company alpha never has to leave your walls — no vendor learning your business well enough to replace you.</p>
+      <p class="belief" id="hero-belief">We believe you should have access to frontier AI without fearing the vendor who runs it. <a href="why-mnemma.html">Why Mnemma exists →</a></p>
       <div style="margin-top:28px">
         <a class="btn big" href="book.html">Get a price range</a>
       </div>
-      <p class="sub" style="margin-top:14px">Every claim on this site has a receipt you can click.</p>
+      <p class="sub" style="margin-top:14px">Every answer runs in your environment, and every fact has a receipt you can click.</p>
     </div>
-    <div class="diagram proof-demo">
-      <div class="cap">Example: a fact from your brain, with its receipt.</div>
-      <p style="font-size:1.14rem; margin-bottom:4px">
-        <span class="claim">Our largest supplier accounts for 31% of Q2 procurement spend.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
-          <span class="rlabel">Receipt</span>
-          <span class="rrow"><span class="rk">Source</span><span class="rv">ERP purchase ledger · 3 contracts</span></span>
-          <span class="rrow"><span class="rk">Confidence</span><span class="rv">High — reconciled across systems</span></span>
-          <span class="rrow"><span class="rk">As of</span><span class="rv">Q2 close</span></span>
-          <span class="rrow"><span class="rk">Last checked</span><span class="rv">Re-verified nightly</span></span>
-          <span class="check">Every claim on this site follows this same pattern. Click any <span style="color:var(--accent-ink)">✓</span> mark to open a <a href="brain/receipts-schema.html#claim-fields">/brain/</a> fact, not an internal memo.</span>
-        </span></span></span></span>
-      </p>
-      <p style="font-size:.9rem; color:var(--muted); margin:14px 0 0">Trust the answer, or audit it in one click.</p>
+    <div class="diagram">
+      <div class="cap">Your sources feed the brain. Your tools build on it — in your environment.</div>
+      <svg viewBox="0 0 560 600" role="img" aria-labelledby="arch-t arch-d" style="width:100%; height:auto; display:block">
+  <title id="arch-t">The Mnemma architecture</title>
+  <desc id="arch-d">Your sources feed a company brain that grows inside your environment. External products — chatbots, agent harnesses, briefs and widgets — sit on top and connect through MCP, where only green-classified data leaves. In-house models you run inside the boundary read both red and green data directly from the brain, in memory.</desc>
+  <style>
+    .chip { fill:#fbfaf6; stroke:#ddd7c9; stroke-width:1.2; }
+    .chip-t { font:500 13px 'Inter',sans-serif; fill:#40403a; text-anchor:middle; }
+    .slab { fill:#fbfaf6; stroke:#40403a; stroke-width:1.4; }
+    .slab-t { font:600 15px 'Inter',sans-serif; fill:#1a1a17; text-anchor:middle; }
+    .bound { fill:none; stroke:#6a6860; stroke-width:1; stroke-dasharray:6 6; }
+    .bound-t { font:500 10px 'Spline Sans Mono',monospace; fill:#6a6860; letter-spacing:.12em; }
+    .mcp-t { font:500 10px 'Spline Sans Mono',monospace; fill:#6a6860; letter-spacing:.1em; }
+    .rail { stroke:#c9c3b4; stroke-width:1; stroke-dasharray:4 7; fill:none; }
+    .node { fill:#40403a; transform-box:fill-box; transform-origin:center; }
+    .edge { stroke:#b9b3a4; stroke-width:1; stroke-dasharray:1; }
+    .p { fill:#40403a; opacity:0; display:none; }
+    @supports (offset-path: path("M0 0 L1 1")) { .p { display:block; } }
+    .nr { fill:#9a3b2f; }
+    .ng { fill:#0d6b56; }
+    .pg { fill:#0d6b56; }
+    .pr { fill:#9a3b2f; }
+    .inhouse { fill:#f4f1ea; stroke:#40403a; stroke-width:1.3; }
+    .inhouse-t { font:600 13px 'Inter',sans-serif; fill:#1a1a17; text-anchor:middle; }
+    .mem-t { font:500 9.5px 'Spline Sans Mono',monospace; fill:#6a6860; letter-spacing:.06em; text-anchor:middle; }
+    .link { stroke:#40403a; stroke-width:2.4; fill:none; }
+    .legend-t { font:500 12px 'Inter',sans-serif; fill:#55534c; }
+    .g1n { animation:mn-n1 9s infinite; }
+    .g2n { animation:mn-n2 9s infinite; }
+    .g3n { animation:mn-n3 9s infinite; }
+    .g1e { animation:mn-e1 9s infinite; }
+    .g2e { animation:mn-e2 9s infinite; }
+    .g3e { animation:mn-e3 9s infinite; }
+    @keyframes mn-n1 {
+      0%, 8%  { opacity:0; transform:scale(.3); }
+      12% { opacity:1; transform:scale(1.2); }
+      14%, 90% { opacity:1; transform:scale(1); }
+      96%, 100% { opacity:0; transform:scale(.3); }
+    }
+    @keyframes mn-n2 {
+      0%, 30% { opacity:0; transform:scale(.3); }
+      34% { opacity:1; transform:scale(1.2); }
+      36%, 90% { opacity:1; transform:scale(1); }
+      96%, 100% { opacity:0; transform:scale(.3); }
+    }
+    @keyframes mn-n3 {
+      0%, 52% { opacity:0; transform:scale(.3); }
+      56% { opacity:1; transform:scale(1.2); }
+      58%, 90% { opacity:1; transform:scale(1); }
+      96%, 100% { opacity:0; transform:scale(.3); }
+    }
+    @keyframes mn-e1 {
+      0%, 10% { opacity:0; stroke-dashoffset:1; }
+      18%, 90% { opacity:1; stroke-dashoffset:0; }
+      96%, 100% { opacity:0; stroke-dashoffset:1; }
+    }
+    @keyframes mn-e2 {
+      0%, 32% { opacity:0; stroke-dashoffset:1; }
+      40%, 90% { opacity:1; stroke-dashoffset:0; }
+      96%, 100% { opacity:0; stroke-dashoffset:1; }
+    }
+    @keyframes mn-e3 {
+      0%, 54% { opacity:0; stroke-dashoffset:1; }
+      62%, 90% { opacity:1; stroke-dashoffset:0; }
+      96%, 100% { opacity:0; stroke-dashoffset:1; }
+    }
+    @keyframes mn-travel {
+      0% { offset-distance:0%; opacity:0; }
+      12% { opacity:.8; }
+      82% { opacity:.8; }
+      100% { offset-distance:100%; opacity:0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .p { display:none; }
+      .g1n,.g2n,.g3n,.g1e,.g2e,.g3e { animation:none; opacity:1; stroke-dashoffset:0; transform:none; }
+    }
+  </style>
+
+  <!-- external products on top (outside the boundary) -->
+  <rect class="chip" x="40" y="34" width="148" height="46" rx="8"/><text class="chip-t" x="114" y="62">Chatbots</text>
+  <rect class="chip" x="206" y="34" width="148" height="46" rx="8"/><text class="chip-t" x="280" y="62">Agent harnesses</text>
+  <rect class="chip" x="372" y="34" width="148" height="46" rx="8"/><text class="chip-t" x="446" y="62">Briefs &amp; widgets</text>
+
+  <!-- MCP stems: the brain's answers rise to the products; only green data leaves -->
+  <path class="rail" d="M135 205 L135 150 L114 82"/>
+  <path class="rail" d="M210 205 L210 150 L280 82"/>
+  <path class="rail" d="M300 205 L300 150 L446 82"/>
+  <text class="mcp-t" x="243" y="145" text-anchor="middle">MCP</text>
+  <circle class="p pg" r="2.5" style="offset-path:path('M135 205 L135 150 L114 82'); animation:mn-travel 2.2s linear infinite;"/>
+  <circle class="p pg" r="2.5" style="offset-path:path('M210 205 L210 150 L280 82'); animation:mn-travel 2.6s linear infinite; animation-delay:-1.2s;"/>
+  <circle class="p pg" r="2.5" style="offset-path:path('M300 205 L300 150 L446 82'); animation:mn-travel 2.4s linear infinite; animation-delay:-.7s;"/>
+
+  <!-- your environment boundary -->
+  <rect class="bound" x="22" y="150" width="512" height="405" rx="14"/>
+  <text class="bound-t" x="40" y="540">YOUR ENVIRONMENT</text>
+
+  <!-- the brain, growing (shifted left to make room for in-house models) -->
+  <rect class="slab" x="38" y="205" width="314" height="150" rx="10"/>
+  <text class="slab-t" x="195" y="233">Your company brain</text>
+  <g transform="translate(-77,19)">
+    <line class="edge" pathLength="1" x1="235" y1="252" x2="292" y2="296" style="stroke-dashoffset:0"/>
+    <line class="edge g1e" pathLength="1" x1="175" y1="290" x2="235" y2="252"/>
+    <line class="edge g1e" pathLength="1" x1="235" y1="252" x2="318" y2="236"/>
+    <line class="edge g2e" pathLength="1" x1="318" y1="236" x2="352" y2="250"/>
+    <line class="edge g2e" pathLength="1" x1="292" y1="296" x2="252" y2="312"/>
+    <line class="edge g2e" pathLength="1" x1="235" y1="252" x2="265" y2="230"/>
+    <line class="edge g3e" pathLength="1" x1="352" y1="250" x2="398" y2="288"/>
+    <line class="edge g3e" pathLength="1" x1="175" y1="290" x2="148" y2="262"/>
+    <line class="edge g3e" pathLength="1" x1="292" y1="296" x2="372" y2="314"/>
+    <line class="edge g3e" pathLength="1" x1="205" y1="232" x2="235" y2="252"/>
+    <line class="edge g3e" pathLength="1" x1="405" y1="240" x2="352" y2="250"/>
+    <circle class="node ng" cx="235" cy="252" r="6"/>
+    <circle class="node nr" cx="292" cy="296" r="5"/>
+    <circle class="node nr g1n" cx="175" cy="290" r="5"/>
+    <circle class="node ng g1n" cx="318" cy="236" r="4"/>
+    <circle class="node nr g2n" cx="352" cy="250" r="6"/>
+    <circle class="node ng g2n" cx="252" cy="312" r="4"/>
+    <circle class="node nr g2n" cx="265" cy="230" r="4"/>
+    <circle class="node ng g3n" cx="398" cy="288" r="4"/>
+    <circle class="node nr g3n" cx="148" cy="262" r="4"/>
+    <circle class="node ng g3n" cx="372" cy="314" r="4"/>
+    <circle class="node nr g3n" cx="205" cy="232" r="4"/>
+    <circle class="node ng g3n" cx="405" cy="240" r="4"/>
+  </g>
+
+  <!-- in-house models: inside the boundary, read the brain in memory (both red and green) -->
+  <line class="link" x1="352" y1="272" x2="394" y2="272"/>
+  <line class="link" x1="352" y1="285" x2="394" y2="285"/>
+  <line class="link" x1="352" y1="298" x2="394" y2="298"/>
+  <text class="mem-t" x="415" y="246">in-memory</text>
+  <rect class="inhouse" x="394" y="253" width="128" height="54" rx="9"/><text class="inhouse-t" x="458" y="285">In-house models</text>
+  <circle class="p pg" r="2.4" style="offset-path:path('M352 272 L394 272'); animation:mn-travel 1.3s linear infinite;"/>
+  <circle class="p pr" r="2.4" style="offset-path:path('M352 285 L394 285'); animation:mn-travel 1.5s linear infinite; animation-delay:-.6s;"/>
+  <circle class="p pg" r="2.4" style="offset-path:path('M352 298 L394 298'); animation:mn-travel 1.4s linear infinite; animation-delay:-.9s;"/>
+  <circle class="p pr" r="2.4" style="offset-path:path('M352 272 L394 272'); animation:mn-travel 1.5s linear infinite; animation-delay:-1.1s;"/>
+
+  <!-- data flowing in from sources, up into the brain -->
+  <path class="rail" d="M95 470 C 95 424, 120 398, 120 355"/>
+  <path class="rail" d="M218 470 C 218 424, 200 398, 200 355"/>
+  <path class="rail" d="M341 470 C 341 420, 285 398, 280 355"/>
+  <path class="rail" d="M464 470 C 464 412, 350 392, 330 355"/>
+  <circle class="p" r="2.6" style="offset-path:path('M95 470 C 95 424, 120 398, 120 355'); animation:mn-travel 2.4s linear infinite;"/>
+  <circle class="p" r="2.6" style="offset-path:path('M95 470 C 95 424, 120 398, 120 355'); animation:mn-travel 2.4s linear infinite; animation-delay:-1.2s;"/>
+  <circle class="p" r="2.6" style="offset-path:path('M218 470 C 218 424, 200 398, 200 355'); animation:mn-travel 2.8s linear infinite; animation-delay:-.5s;"/>
+  <circle class="p" r="2.6" style="offset-path:path('M218 470 C 218 424, 200 398, 200 355'); animation:mn-travel 2.8s linear infinite; animation-delay:-1.9s;"/>
+  <circle class="p" r="2.6" style="offset-path:path('M341 470 C 341 420, 285 398, 280 355'); animation:mn-travel 2.2s linear infinite; animation-delay:-.9s;"/>
+  <circle class="p" r="2.6" style="offset-path:path('M341 470 C 341 420, 285 398, 280 355'); animation:mn-travel 2.2s linear infinite; animation-delay:-2s;"/>
+  <circle class="p" r="2.6" style="offset-path:path('M464 470 C 464 412, 350 392, 330 355'); animation:mn-travel 2.6s linear infinite; animation-delay:-1.5s;"/>
+  <circle class="p" r="2.6" style="offset-path:path('M464 470 C 464 412, 350 392, 330 355'); animation:mn-travel 2.6s linear infinite; animation-delay:-.2s;"/>
+
+  <!-- sources -->
+  <rect class="chip" x="40" y="470" width="110" height="40" rx="8"/><text class="chip-t" x="95" y="495">Email</text>
+  <rect class="chip" x="163" y="470" width="110" height="40" rx="8"/><text class="chip-t" x="218" y="495">Documents</text>
+  <rect class="chip" x="286" y="470" width="110" height="40" rx="8"/><text class="chip-t" x="341" y="495">Transcripts</text>
+  <rect class="chip" x="409" y="470" width="110" height="40" rx="8"/><text class="chip-t" x="464" y="495">Code</text>
+
+  <!-- legend: the classification story -->
+  <circle cx="30" cy="573" r="5" fill="#0d6b56"/><text class="legend-t" x="42" y="577">green — the only data that leaves, through MCP</text>
+  <circle cx="30" cy="590" r="5" fill="#9a3b2f"/><text class="legend-t" x="42" y="594">red — in-house models only</text>
+</svg>
     </div>
   </div>
 </div></div>
 
-<!-- 2. PROBLEM-AGITATE -->
+<!-- 2. VALUE / STANDARD -->
+<section style="background:#efece2"><div class="wrap">
+  <span class="eyebrow" data-reveal>Your history, owned</span>
+  <h2 data-reveal style="--reveal-delay:.2s">Secure AI on the business you already run.</h2>
+  <p class="lead" data-reveal style="--reveal-delay:.35s; max-width:720px">What your business knows is not in any database — it is scattered across email, documents, and the heads of whoever was in the room. Mnemma reads that record and builds a private brain from it: the strategic decisions you made and why, the assumptions behind them, the competitor moves you tracked, the commitments you gave customers. Then you put AI on top — in your environment, without handing any of it to a vendor.</p>
+  <div class="card tier-card" data-reveal style="margin-top:28px; max-width:760px">
+    <span class="num">Standard</span>
+    <h3>Read the history. Own the map.</h3>
+    <ul class="plain in">
+      <li>Connect your data sources — email, documents, transcripts, code — and Mnemma builds the brain from what is already there.</li>
+      <li>Ask why the price changed, which bets paid off, why you walked away from a market — and who was in the room when it was decided.</li>
+      <li>It all accumulates in your environment — not inside a vendor's product that your competitors can rent.</li>
+      <li>When leadership corrects the record, the correction sticks — the brain compounds quarter over quarter into an asset only you hold.</li>
+    </ul>
+    <p><a href="pricing.html">See planning bands, cash at order, and year one →</a></p>
+  </div>
+  <p class="cxo-help" data-reveal style="margin-top:24px">Starting a company instead of running one? Greenfield gets you recording from day one, before the history debt grows. <a href="for-startups.html">Greenfield for startups →</a></p>
+</div></section>
+
+<!-- 3. PROBLEM-AGITATE -->
 <section><div class="wrap">
   <span class="eyebrow" data-reveal>What you already pay for</span>
-  <h2 data-reveal style="--reveal-delay:.2s">People leave. Their knowledge leaves with them.</h2>
-  <p class="lead" data-reveal style="--reveal-delay:.35s; max-width:720px">You already pay for AI that remembers nothing. Every answer starts a new search. Ask what your company knew last quarter. Notice how long it takes to get an answer you can check.</p>
-  <div class="pains">
-    <div class="pain" data-reveal>
-      <span class="who">Leave</span>
-      <p>Twenty years of knowledge leaves in one exit interview.</p>
+  <h2 data-reveal style="--reveal-delay:.2s">Your company leaks knowledge twice.</h2>
+  <p class="lead" data-reveal style="--reveal-delay:.35s; max-width:720px">One leak is the AI you rent: nothing it learns compounds for you. The other is your people: what they know walks out the door with them.</p>
+  <div class="grid-2" style="margin-top:28px; gap:40px">
+    <div>
+      <h3 data-reveal>The AI leak</h3>
+      <div class="pain" data-reveal>
+        <span class="who">Rent</span>
+        <p>Every vendor relearns the company from the beginning — and keeps what it learns.</p>
+      </div>
+      <div class="pain" data-reveal style="--reveal-delay:.2s; margin-top:18px">
+        <span class="who">Check</span>
+        <p>You paid for an AI answer. Then you paid someone to check it before you could act on it.</p>
+      </div>
     </div>
-    <div class="pain" data-reveal style="--reveal-delay:.2s">
-      <span class="who">Rent</span>
-      <p>Every vendor relearns the company from the beginning, then forgets it when the chat ends.</p>
-    </div>
-    <div class="pain" data-reveal style="--reveal-delay:.35s">
-      <span class="who">Check</span>
-      <p>You paid for an AI answer. Then you paid someone to check it before you could act on it.</p>
-    </div>
-    <div class="pain" data-reveal style="--reveal-delay:.5s">
-      <span class="who">Choose</span>
-      <p>You must hand your critical data to a cloud, or stay safe and fall behind.</p>
-    </div>
-  </div>
-</div></section>
-
-<!-- 3. VALUE / TIER STACK -->
-<section style="background:#efece2"><div class="wrap">
-  <span class="eyebrow" data-reveal>Two paths. Same brain.</span>
-  <h2 data-reveal style="--reveal-delay:.2s">Standard if the history is already there. Greenfield if you start now.</h2>
-  <p class="lead" data-reveal style="--reveal-delay:.35s; max-width:720px">Both run in your environment. Both put a receipt on every important fact. The assessment prints a planning band from your numbers. You qualify yourself — no sales call needed.</p>
-  <div class="grid-2" style="margin-top:28px; gap:28px">
-    <div class="card tier-card" data-reveal>
-      <span class="num">Standard</span>
-      <h3>Read the history. Own the map.</h3>
-      <ul class="plain in">
-        <li>Connect Gmail, Drive, Calendar, and GitHub. Mnemma then runs a paid recount of what you actually have.</li>
-        <li>Receipted answers, a morning brief, a coverage panel that tells the truth.</li>
-        <li>Corrections that survive the next run. Classification you govern once.</li>
-        <li>A Markdown briefcase if you leave. <span class="claim">End the contract, keep the brain.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
-          <span class="rlabel">Receipt</span>
-          <span class="rrow"><span class="rk">On the record</span><span class="rv"><a href="brain/projection-briefcase.html#claim-cancel-keep">End the contract, keep the brain at the last version we shipped</a></span></span>
-        </span></span></span></span></li>
-      </ul>
-      <p><a href="pricing.html">See planning bands, cash at order, and year one →</a></p>
-    </div>
-    <div class="card tier-card" data-reveal style="--reveal-delay:.2s">
-      <span class="num route-gf">Greenfield</span>
-      <h3>Start recording now, before the history debt grows.</h3>
-      <ul class="plain in">
-        <li>Sources connected from day one skip the burst. Mnemma measures existing history at sale.</li>
-        <li>Sources connected from day one build up naturally. Gaps stay visible.</li>
-        <li><span class="claim">A Greenfield graduate never pays an install fee.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
-          <span class="rlabel">Receipt</span>
-          <span class="rrow"><span class="rk">On the record</span><span class="rv"><a href="brain/greenfield-graduation.html#claim-no-install-fee">A Greenfield graduate never pays an install fee</a></span></span>
-        </span></span></span></span></li>
-        <li>Two design-partner slots. No public price card — the assessment prints the band if you qualify.</li>
-      </ul>
-      <p><a href="for-startups.html">Greenfield for startups →</a></p>
+    <div>
+      <h3 data-reveal>The people leak</h3>
+      <div class="pain" data-reveal>
+        <span class="who">Leave</span>
+        <p>Twenty years of knowledge leaves in one exit interview.</p>
+      </div>
+      <div class="pain" data-reveal style="--reveal-delay:.2s; margin-top:18px">
+        <span class="who">Unwritten</span>
+        <p>The reasons behind decisions never get written down. Six months later, no one can say why — or what it cost to learn.</p>
+      </div>
     </div>
   </div>
+  <p class="lead" data-reveal style="margin-top:32px; max-width:720px">The obvious fix — handing everything to a cloud AI vendor — just moves both leaks into someone else's product.</p>
 </div></section>
 
-<!-- 4. PROOF -->
-<section><div class="wrap">
-  <span class="eyebrow" data-reveal>Proof, before our first customer</span>
-  <h2 data-reveal style="--reveal-delay:.2s">We do not invent testimonials. We publish the work.</h2>
-  <p class="lead" data-reveal style="--reveal-delay:.35s; max-width:720px"><span class="claim">This site follows the same discipline we set up for you.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
-    <span class="rlabel">Receipt</span>
-    <span class="rrow"><span class="rk">On the record</span><span class="rv"><a href="brain/receipts-schema.html#claim-site">This site uses the same receipt pattern on its own claims</a></span></span>
-  </span></span></span></span> The check marks above are the real product, used on our own site. Below is a live neighborhood from the map — explore it.</p>
-  <div class="neighborhood walls proof-slice">
-    <span class="wlabel">A neighborhood on this site</span>
-    <span class="here">What a receipt contains</span>
-    <a class="hop" data-rel="depends-on" href="brain/adjudication.html"><span class="rel">depends-on</span> One adjudicator</a>
-    <a class="hop" data-rel="depends-on" href="brain/connected-sources.html"><span class="rel">depends-on</span> Connected sources</a>
-    <a class="hop" data-rel="required-by" href="brain/morning-brief.html"><span class="rel">required-by</span> The morning brief</a>
-    <a class="hop" href="brain/index.html"><span class="rel">browse</span> All sixteen pages</a>
-  </div>
-  <p style="margin-top:22px"><span class="claim">Seven questions, about fifteen minutes, a published formula.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
-    <span class="rlabel">Receipt</span>
-    <span class="rrow"><span class="rk">On the record</span><span class="rv"><a href="brain/assessment-method.html#claim-seven">Seven questions, about fifteen minutes, a published formula</a></span></span>
-    <span class="rrow"><span class="rk">Math</span><span class="rv"><a href="brain/assessment-method.html#claim-formula">Unique stock = knowledge workers × years × [4.1M, 16.2M] × source modifier</a></span></span>
-  </span></span></span></span> No credentials. Nothing leaves the browser.</p>
-</div></section>
-
-<!-- 5. TRANSFORMATION -->
+<!-- 4. TRANSFORMATION -->
 <section style="background:#efece2"><div class="wrap">
   <span class="eyebrow" data-reveal>On your schedule</span>
   <h2 data-reveal style="--reveal-delay:.2s">Day one connect. Week one brief. A map that is yours.</h2>
@@ -151,6 +265,30 @@ window.addEventListener("load", function () {
   </div>
 </div></section>
 
+<!-- 5. PROOF -->
+<section><div class="wrap">
+  <span class="eyebrow" data-reveal>Our own discipline, in public</span>
+  <h2 data-reveal style="--reveal-delay:.2s">The proof is the site you’re reading.</h2>
+  <p class="lead" data-reveal style="--reveal-delay:.35s; max-width:720px"><span class="claim">This site follows the same discipline we set up for you.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
+    <span class="rlabel">Receipt</span>
+    <span class="rrow"><span class="rk">On the record</span><span class="rv"><a href="brain/receipts-schema.html#claim-site">This site uses the same receipt pattern on its own claims</a></span></span>
+  </span></span></span></span> The check marks across this site are the real product, used on our own claims. <a href="brain/index.html">Browse the published work →</a></p>
+  <div class="diagram proof-demo" data-reveal style="max-width:640px; margin-top:26px">
+      <div class="cap">Example: a fact from the brain that runs in your environment — with its receipt.</div>
+      <p style="font-size:1.14rem; margin-bottom:4px">
+        <span class="claim">Our largest supplier accounts for 31% of Q2 procurement spend.<button class="receipt-marker" aria-expanded="false" aria-label="Show receipt"></button><span class="receipt"><span class="inner"><span class="body">
+          <span class="rlabel">Receipt</span>
+          <span class="rrow"><span class="rk">Source</span><span class="rv">ERP purchase ledger · 3 contracts</span></span>
+          <span class="rrow"><span class="rk">Confidence</span><span class="rv">High — reconciled across systems</span></span>
+          <span class="rrow"><span class="rk">As of</span><span class="rv">Q2 close</span></span>
+          <span class="rrow"><span class="rk">Last checked</span><span class="rv">Re-verified nightly</span></span>
+          <span class="check">Every claim on this site follows this same pattern. Click any <span style="color:var(--accent-ink)">✓</span> mark to open a <a href="brain/receipts-schema.html#claim-fields">/brain/</a> fact, not an internal memo.</span>
+        </span></span></span></span>
+      </p>
+      <p style="font-size:.9rem; color:var(--muted); margin:14px 0 0">The source travels with every answer — check it whenever it matters.</p>
+    </div>
+</div></section>
+
 <!-- 6. SECONDARY CTA -->
 <section><div class="wrap narrow kicker-cta">
   <h2 data-reveal>Find your planning band.</h2>
@@ -158,7 +296,7 @@ window.addEventListener("load", function () {
     <span class="rlabel">Receipt</span>
     <span class="rrow"><span class="rk">On the record</span><span class="rv"><a href="brain/terms.html#claim-day-14">Unused first-month fees refund if you walk by day 14</a></span></span>
     <span class="rrow"><span class="rk">Gate</span><span class="rv"><a href="brain/terms.html#claim-reprice">If the recount is 1.5× the planning band or crosses the cap, you reprice, shrink, or walk</a></span></span>
-  </span></span></span></span> Seven questions. A published formula. Never a point price.</p>
+  </span></span></span></span> Seven questions. A published formula. A price range — never a made-up exact number.</p>
   <p style="margin-top:24px"><a class="btn big" href="book.html">Get a price range</a></p>
   <p class="sub">About fifteen minutes. No credentials. Nothing leaves this browser.</p>
 </div></section>
@@ -190,10 +328,9 @@ window.addEventListener("load", function () {
     </a>
   </div>
   <p class="cxo-help">Do you run a unit inside a larger company? <a href="for-sbu.html">The GM page makes the same case for your part of the organization →</a></p>
-  <p class="cxo-help">Starting your company before the history debt builds up? <a href="for-startups.html">Greenfield for startups — two design-partner slots →</a></p>
 </div></section>
 
-<footer class="footer"><div class="wrap"><div class="grid-3"><div><div class="brand" style="color:var(--ink)"><span class="mark"></span>Mnemma</div><p style="margin-top:14px">A company brain you own outright — never our cloud, with a receipt on every fact.</p><p style="margin-top:10px">Contact: <a href="/contact.html">send an inquiry</a> &middot; <a href="mailto:contact@mnemma.com">contact@mnemma.com</a></p></div><div><h4>Product</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="product.html">Product</a></li><li style="padding-left:0"><a href="how-it-works.html">How it works</a></li><li style="padding-left:0"><a href="security.html">Security — for your CTO</a></li><li style="padding-left:0"><a href="pricing.html">Pricing</a></li><li style="padding-left:0"><a href="book.html">Get a price range</a></li><li style="padding-left:0"><a href="one-pager.html">One-page overview</a></li><li style="padding-left:0"><a href="brain/index.html">The brain</a></li><li style="padding-left:0"><a href="ai-info.html">AI info</a></li><li style="padding-left:0"><a href="llms.txt">llms.txt</a></li></ul></div><div><h4>Who it's for</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="for-sbu.html">P&amp;L owner / GM — start here</a></li><li style="padding-left:0"><a href="for-startups.html">Startups — Greenfield</a></li><li style="padding-left:0"><a href="for-your-team.html">The four signatures</a></li><li style="padding-left:0"><a href="for-ceo.html">CEO / owner</a></li><li style="padding-left:0"><a href="for-cfo.html">CFO</a></li><li style="padding-left:0"><a href="for-cto.html">CTO</a></li><li style="padding-left:0"><a href="for-ciso.html">CISO</a></li></ul></div></div><div class="footer-receipt"><span class="rlabel">Receipt · this website</span><p style="margin-top:8px">Static site. The price-range questionnaire runs in your browser — nothing is submitted. Every factual claim carries a receipt that points at <a href="brain/index.html">/brain/</a>. Every figure is a planning band. No fabricated testimonials, logos, or usage stats — by policy. Agents start at <a href="ai-info.html">/ai-info</a>.</p></div></div></footer>
+<footer class="footer"><div class="wrap"><div class="grid-3"><div><div class="brand" style="color:var(--ink)"><span class="mark"></span>Mnemma</div><p style="margin-top:14px">A company brain you own, running in your environment — what it learns compounds for you, not for a vendor.</p><p id="footer-belief" style="margin-top:10px">We believe the vendor who answers for you should not be able to replace you. <a href="why-mnemma.html">Why Mnemma exists →</a></p><p style="margin-top:10px">Contact: <a href="/contact.html">send an inquiry</a> &middot; <a href="mailto:contact@mnemma.com">contact@mnemma.com</a></p></div><div><h4>Product</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="product.html">Product</a></li><li style="padding-left:0"><a href="how-it-works.html">How it works</a></li><li style="padding-left:0"><a href="security.html">Security — for your CTO</a></li><li style="padding-left:0"><a href="pricing.html">Pricing</a></li><li style="padding-left:0"><a href="book.html">Get a price range</a></li><li style="padding-left:0"><a href="why-mnemma.html">Why Mnemma</a></li><li style="padding-left:0"><a href="one-pager.html">One-page overview</a></li><li style="padding-left:0"><a href="brain/index.html">The brain</a></li><li style="padding-left:0"><a href="ai-info.html">AI info</a></li><li style="padding-left:0"><a href="llms.txt">llms.txt</a></li></ul></div><div><h4>Who it's for</h4><ul class="plain" style="font-size:.92rem"><li style="padding-left:0"><a href="for-sbu.html">P&amp;L owner / GM — start here</a></li><li style="padding-left:0"><a href="for-startups.html">Startups — Greenfield</a></li><li style="padding-left:0"><a href="for-your-team.html">The four signatures</a></li><li style="padding-left:0"><a href="for-ceo.html">CEO / owner</a></li><li style="padding-left:0"><a href="for-cfo.html">CFO</a></li><li style="padding-left:0"><a href="for-cto.html">CTO</a></li><li style="padding-left:0"><a href="for-ciso.html">CISO</a></li></ul></div></div><div class="footer-receipt"><span class="rlabel">Receipt · this website</span><p style="margin-top:8px">Static site. The price-range questionnaire runs in your browser — nothing is submitted. Every factual claim carries a receipt that points at <a href="brain/index.html">/brain/</a>. Every figure is a planning band. No fabricated testimonials, logos, or usage stats — by policy. Agents start at <a href="ai-info.html">/ai-info</a>.</p></div></div></footer>
 <script src="site.js"></script>
 <script src="receipts.js"></script>
 <script src="reveal.js"></script>
